@@ -28,10 +28,18 @@
         height: auto;    
         border: black 2px solid;
         border-radius: 5%;
-        margin: 7% 0;
+        margin: 7% 0 5%;
     }
 }
 
 #info-text {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
 
+.price {
+    text-transform: uppercase;
+    letter-spacing: 0.03rem;
+    font-weight: 600;
 }

@@ -12,19 +12,27 @@ let items : IItem[] = []
 
 import './style.css'
 
-// Temporär knapp
-let cart: object [] = [];
+// Temporär knapp för att lägga in temporär object i cart array:en
+let cart: Array<any> = [];
 let button = document.querySelector("#addButton");
-button?.addEventListener("click", e => {
+button?.addEventListener("click", function(){
     cart.push({
-        produkt: "banan",
+        product: "Banan",
         quantity: 2,
         cost: 10
     })
     console.log(cart.length);
     console.log(cart);
+
+    const cartListEl = document.querySelector("#cartList");
+    cartListEl!.innerHTML += `<li>
+    <span class="cartItem1">${cart[0].product}</span><br>
+    <span class="cartItem2">${cart[0].quantity} st</span>
+    <span class="cartItem3">${cart[0].cost} kr</span>
+    </li>`
+
 })
-// Temporär knapp
+// Temporär knapp för att lägga in temporär object i cart array:en
 
 //testing
 moreInfoText!.innerHTML = `
@@ -54,3 +62,11 @@ infoDiv?.addEventListener("click", e => {
     }
 
 })
+
+const cartEl = document.querySelector("#cart");
+const activeCartEl = document.querySelector("#activeCart");
+
+cartEl?.addEventListener("click", function(){
+    activeCartEl?.classList.toggle("d-none");
+})
+

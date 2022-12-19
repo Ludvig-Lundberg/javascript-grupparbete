@@ -1,3 +1,7 @@
+#close-info-btn {
+    margin: 20px 0;
+}
+
 #fade-background {
     position: fixed;
     top: 0;
@@ -11,6 +15,12 @@
     background-color: rgba($color: #000000, $alpha: 0.4);
 }
 
+#info-text {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
 #more-information {
     position: relative;
     z-index: 2;
@@ -19,7 +29,7 @@
     align-items: center;
     width: 80%;
     max-width: 500px;
-    height: 80%;
+    height: auto;
     background-color: rgb(255, 255, 255);
     border-radius: 5%;
 
@@ -30,12 +40,6 @@
         border-radius: 5%;
         margin: 7% 0 5%;
     }
-}
-
-#info-text {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
 }
 
 .price {

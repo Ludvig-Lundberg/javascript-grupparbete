@@ -30,7 +30,13 @@ button?.addEventListener("click", e => {
 moreInfoText!.innerHTML = `
     <h3>Title</h3> 
     <span class="price">Pris: 20</span>
-    <p>Hej hej hej</p>`
+    <p>Hej hej hej</p>
+`
+
+// EventListeners
+closeInfoBtn?.addEventListener("click", () => {
+    infoDiv!.classList.toggle("d-none")
+})
 
 infoBtn?.addEventListener("click", () => {
     infoDiv!.classList.toggle("d-none")
@@ -44,8 +50,4 @@ infoDiv?.addEventListener("click", e => {
         infoDiv!.classList.toggle("d-none")
     }
 
-})
-
-closeInfoBtn?.addEventListener("click", () => {
-    infoDiv!.classList.toggle("d-none")
 })

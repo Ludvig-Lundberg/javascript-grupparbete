@@ -30,8 +30,11 @@ button?.addEventListener("click", e => {
 moreInfoText!.innerHTML = `
     <h3>Title</h3> 
     <span class="price">Pris: 20</span>
-    <p>Hej hej hej</p>
+    <div id="ingredients">
+    </div>    
 `
+
+document.querySelector("#ingredients")!.innerHTML = "<p>En mix av lakrits och gelé med fruktsmak</p>\n<p>Innehållsförteckning: Socker, glukossirap, glukos-fruktossirap, stärkelse, VETEMJÖL, melass, syra (citronsyra), fuktighetsbevarande medel (sorbitoler, glycerol), lakritsextrakt, salt, vegetabiliska oljor (kokos, palm), aromer, färgämnen (E153, E120, E100, E141), ytbehandlingsmedel (bivax), stabiliseringsmedel (E471).</p>\n<p><em>Alla priser är per skopa.</em></p>\n"
 
 // EventListeners
 closeInfoBtn?.addEventListener("click", () => {

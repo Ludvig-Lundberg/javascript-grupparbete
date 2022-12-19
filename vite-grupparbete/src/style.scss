@@ -1,5 +1,5 @@
 #close-info-btn {
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 #fade-background {
@@ -19,6 +19,19 @@
     display: flex;
     flex-direction: column;
     width: 80%;
+
+    p {
+        margin-bottom: 0.3rem;
+    }
+}
+
+#ingredients {
+
+    p:nth-child(2) {
+        font-size: small;
+        overflow-y: scroll;
+        max-height: 15vw;
+    }
 }
 
 #more-information {
@@ -28,13 +41,15 @@
     flex-direction: column;
     align-items: center;
     width: 80%;
-    max-width: 500px;
+    max-width: 800px;
     height: auto;
+    max-height: 90%;
     background-color: rgb(255, 255, 255);
     border-radius: 5%;
 
     img {
         width: 85%;
+        max-width: 350px;
         height: auto;    
         border: black 2px solid;
         border-radius: 5%;
@@ -47,3 +62,4 @@
     letter-spacing: 0.03rem;
     font-weight: 600;
 }
+

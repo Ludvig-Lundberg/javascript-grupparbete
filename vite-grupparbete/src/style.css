@@ -63,19 +63,17 @@ header {
   height: 7vh;
   margin-bottom: 1rem;
 }
-
-#cart {
+header #cart {
   margin-right: 1.5rem;
   background: none;
   border: none;
   font-size: 2rem;
   padding: 5px;
 }
-#cart:hover {
+header #cart:hover {
   color: rgb(62, 62, 255);
 }
-
-#activeCart {
+header #activeCart {
   position: absolute;
   right: 0px;
   padding: 5px 1.5rem;
@@ -88,27 +86,31 @@ header {
   border-bottom-left-radius: 15px;
   text-align: center;
 }
-#activeCart #cartList {
+header #activeCart #listSpan {
+  font-size: 2rem;
+  color: rgb(62, 62, 255);
+}
+header #activeCart #cartList {
   list-style: none;
   padding: 0px;
   width: 100%;
   text-align: left;
 }
-#activeCart #cartList li {
+header #activeCart #cartList li {
   border-bottom: 0.5px solid rgb(167, 167, 167);
   padding: 2px 1rem;
   min-width: 100px;
 }
-#activeCart #cartList .cartItem1 {
+header #activeCart #cartList .cartItem1 {
   text-align: left;
   font-size: 1.2rem;
 }
-#activeCart #cartList .cartItem2 {
+header #activeCart #cartList .cartItem2 {
   text-align: left;
   font-weight: lighter;
   font-size: 1.1rem;
 }
-#activeCart #cartList .cartItem3 {
+header #activeCart #cartList .cartItem3 {
   text-align: right;
   float: right;
   color: green;

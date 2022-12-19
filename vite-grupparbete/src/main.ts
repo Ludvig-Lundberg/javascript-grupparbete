@@ -3,6 +3,8 @@ import {fetchItems} from './api'
 
 // document.querySelector()
 
+// array för att hämta item från API
+let items : IItem[] = []
 
 import './style.css'
 

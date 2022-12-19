@@ -63,3 +63,14 @@
     font-weight: 600;
 }
 
+#cart {
+    margin-right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    padding: 5px;
+
+    &:hover {
+        color: rgb(62, 62, 255);
+    }
+}

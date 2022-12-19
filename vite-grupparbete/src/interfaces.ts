@@ -9,5 +9,5 @@ export interface IItem {
         large: string
     },
     stock_status: string,
-    stock_quantity: string
+    stock_quantity: null
   }

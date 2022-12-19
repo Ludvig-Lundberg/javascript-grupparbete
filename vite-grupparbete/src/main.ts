@@ -4,10 +4,9 @@ import {fetchItems} from './api'
 
 import './style.css'
 
+// Temporär knapp
 let cart: object [] = [];
-
 let button = document.querySelector("#addButton");
-
 button?.addEventListener("click", e => {
     cart.push({
         produkt: "banan",
@@ -17,3 +16,4 @@ button?.addEventListener("click", e => {
     console.log(cart.length);
     console.log(cart);
 })
+// Temporär knapp

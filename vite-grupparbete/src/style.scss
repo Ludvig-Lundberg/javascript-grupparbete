@@ -63,6 +63,11 @@
     font-weight: 600;
 }
 
+header {
+    border-bottom: 1px solid black;
+    height: 7vh;
+    margin-bottom: 1rem;
+}
 #cart {
     margin-right: 1.5rem;
     background: none;
@@ -72,5 +77,20 @@
 
     &:hover {
         color: rgb(62, 62, 255);
+    }
+}
+#activeCart {
+    position: absolute;
+    right: 0px;
+    padding: 5px 1.5rem;
+    top: 7vh;
+    z-index: 10;
+    background-color: white;
+    border: 1px solid black;
+    border-top: none;
+    border-bottom-left-radius: 15px;
+
+    ul {
+        list-style: none;
     }
 }

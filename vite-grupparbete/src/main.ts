@@ -1,7 +1,9 @@
 import { IItem } from './interfaces'
 import {fetchItems} from './api'
 
-// document.querySelector()
+const moreInfo = document.querySelector("#more-information")
+const moreInfoText = document.querySelector("#info-text")
+const infoDiv = document.querySelector("#fade-background")
 
 // array för att hämta item från API
 let items : IItem[] = []
@@ -21,3 +23,5 @@ button?.addEventListener("click", e => {
     console.log(cart);
 })
 // Temporär knapp
+
+moreInfoText!.innerHTML = `<p>Hej hej hej</p>`

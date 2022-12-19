@@ -83,14 +83,43 @@ header {
     position: absolute;
     right: 0px;
     padding: 5px 1.5rem;
+    width: 15rem;
     top: 7vh;
     z-index: 10;
     background-color: white;
     border: 1px solid black;
     border-top: none;
     border-bottom-left-radius: 15px;
+    text-align: center;
 
-    ul {
+    #cartList {
         list-style: none;
+        padding: 0px;
+        width: 100%;
+        text-align: left;
+
+        li {
+            border-bottom: 0.5px solid rgb(167, 167, 167);
+            padding: 2px 1rem;
+            min-width: 100px;
+        }
+
+        .cartItem1 {
+            text-align: left;
+            font-size: 1.2rem;
+        }
+        .cartItem2 {
+            text-align: left;
+            font-weight: lighter;
+            font-size: 1.1rem;
+        }
+        .cartItem3 {
+            text-align: right;
+            float: right;
+            color: green;
+            font-size: 1.5rem;
+            position: relative;
+            bottom: 5px;
+        }
     }
 }

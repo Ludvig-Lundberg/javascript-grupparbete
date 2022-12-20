@@ -98,6 +98,32 @@ header {
             font-size: 2rem;
             color: rgb(62, 62, 255);
         }
+        #cartPay {
+            background: rgb(10, 163, 10);
+            border: none;
+            font-size: 1.5rem;
+            padding: 2px 1rem;
+            color: white;
+            position: relative;
+            left: 1rem;
+
+            &:hover {
+                i {
+                    animation: cartAnimation 1s 0s infinite alternate;
+                    position: relative;
+
+                    @keyframes cartAnimation {
+                        0% {
+                            left: 0px;
+                        } 
+                        100% {
+                            left: 10px;
+                        }
+
+                    }
+                }
+            }
+        }
         #cartList {
             list-style: none;
             padding: 0px;

@@ -92,6 +92,36 @@ header #activeCart #listSpan {
   font-size: 2rem;
   color: rgb(62, 62, 255);
 }
+header #activeCart #cartPay {
+  background: rgb(10, 163, 10);
+  border: none;
+  font-size: 1.5rem;
+  padding: 2px 1rem;
+  color: white;
+  position: relative;
+  left: 1rem;
+}
+header #activeCart #cartPay:hover i {
+  -webkit-animation: cartAnimation 1s 0s infinite alternate;
+          animation: cartAnimation 1s 0s infinite alternate;
+  position: relative;
+}
+@-webkit-keyframes cartAnimation {
+  0% {
+    left: 0px;
+  }
+  100% {
+    left: 10px;
+  }
+}
+@keyframes cartAnimation {
+  0% {
+    left: 0px;
+  }
+  100% {
+    left: 10px;
+  }
+}
 header #activeCart #cartList {
   list-style: none;
   padding: 0px;

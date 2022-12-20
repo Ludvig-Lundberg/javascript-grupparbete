@@ -42,28 +42,19 @@ button?.addEventListener("click", function(){
 })
 // Funktion för att rendera ut DOM:en på 'cart'
 let renderCart = () => {
-    cartListEl!.innerHTML = `<li>
-    <span class="cartItem1">${cartArray[0].product}</span><br>
-    <span class="cartItem2">${cartArray[0].quantity} st</span>
-    <span class="cartItem3">${cartArray[0].cost} kr</span>
-        <i class="fa-solid fa-circle-plus plusButton"></i>
-        <i class="fa-solid fa-circle-minus minusButton"></i>
-    </li>
-    <li>
-    <span class="cartItem1">${cartArray[1].product}</span><br>
-    <span class="cartItem2">${cartArray[1].quantity} st</span>
-    <span class="cartItem3">${cartArray[1].cost} kr</span>
-        <i class="fa-solid fa-circle-plus plusButton"></i>
-        <i class="fa-solid fa-circle-minus minusButton"></i>
-    </li>
-    <li>
-    <span class="cartItem1">${cartArray[2].product}</span><br>
-    <span class="cartItem2">${cartArray[2].quantity} st</span>
-    <span class="cartItem3">${cartArray[2].cost} kr</span>
+    // först tömmer man sin cart
+    cartListEl!.innerHTML = ``;
+
+    // sedan fyller man på igen
+    for (let i = 0; i < cartArray.length; i++) {
+    cartListEl!.innerHTML += `<li>
+    <span class="cartItem1">${cartArray[i].product}</span><br>
+    <span class="cartItem2">${cartArray[i].quantity} st</span>
+    <span class="cartItem3">${(cartArray[i].cost) * (cartArray[i].quantity)} kr</span>
         <i class="fa-solid fa-circle-plus plusButton"></i>
         <i class="fa-solid fa-circle-minus minusButton"></i>
     </li>`
-    };
+}};
 
 // Temporär knapp för att lägga in temporär object i cart array:en
 // Håller föräldren på vilken knapp man trycker på, den visar vilken DOM 'li' som varan är i

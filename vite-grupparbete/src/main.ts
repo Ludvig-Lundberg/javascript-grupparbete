@@ -99,11 +99,10 @@ const renderDom = (() => {
     
     renderItems.innerHTML += itemArray.map(item => 
         `
-        <div id="card" class="card col-6">
+        <div id="${item.id}" class="card col-4" >
             <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">${item.name}</h5>
-                <p class="card-text">${item.description}asd</p>
                 <a href="#" class="btn btn-primary">Lägg till i varukorgen</a>
                 <!-- testar att ha en button som visar mer info -->
                 <button class="btn btn-secondary" id="info-btn">Läs mer</button>

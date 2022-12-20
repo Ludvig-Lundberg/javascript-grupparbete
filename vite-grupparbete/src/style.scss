@@ -1,5 +1,5 @@
 #close-info-btn {
-    margin: 10px 0;
+    margin: 10px 0 0;
 }
 
 #fade-background {
@@ -53,7 +53,7 @@
         height: auto;    
         border: black 2px solid;
         border-radius: 5%;
-        margin: 7% 0 5%;
+        margin: 5% 0 5%;
     }
 }
 
@@ -170,4 +170,14 @@ header {
             }
         }
     }
+}
+div#Cardsbox {
+    display: block;
+    // p:nth-child() {
+    //     display: block;
+    // }
+    
+}
+div#hideDescription {
+    display: none;
 }

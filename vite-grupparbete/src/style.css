@@ -103,13 +103,14 @@ header #activeCart #cartList li {
   padding: 2px 1rem;
   min-width: 100px;
 }
-header #activeCart #cartList li button {
+header #activeCart #cartList li i {
   background: none;
   border: none;
   font-size: 1.5rem;
   float: right;
   position: relative;
   bottom: 7px;
+  padding: 5px;
 }
 header #activeCart #cartList li .plusButton {
   color: green;

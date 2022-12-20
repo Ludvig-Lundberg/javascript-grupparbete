@@ -1,4 +1,4 @@
-export interface IItem {
+/* export interface IItem {
     id: number,
     name: string,
     description: string,
@@ -10,4 +10,4 @@ export interface IItem {
     },
     stock_status: string,
     stock_quantity: null
-  }
+  } */

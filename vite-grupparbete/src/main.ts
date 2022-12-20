@@ -1,5 +1,6 @@
 import { IItem } from './interfaces'
 import {fetchItems} from './api'
+import './style.css'
 
 const moreInfo = document.querySelector("#more-information")
 const moreInfoText = document.querySelector("#info-text")
@@ -8,9 +9,9 @@ const infoBtn = document.querySelector("#info-btn")
 const closeInfoBtn = document.querySelector("#close-info-btn")
 
 // array för att hämta item (product) från API
-let items : IItem[] = []
+// let items : IItem[] = []
+let items : []
 
-import './style.css'
 
 // Temporär knapp för att lägga in temporär object i cart array:en
 let cart: Array<any> = [];
@@ -77,22 +78,32 @@ cartEl?.addEventListener("click", function(){
 // }
 
 const getItems = async () => {
-    let items: IItem = await fetchItems()
-      console.log(items)
-      renderDom()
+    items = await fetchItems()
+      console.log(items.data)
+
+    renderDom()
+    return items.data
+ 
   }
 
-const renderDom = () => {
+
+
+const renderDom = (() => {
     
-    const renderItems = document.querySelector<any>('#card')!;
+    const renderItems = document.querySelector('#grid')!;
+    console.log(items.data)
+
+    let itemArray = items.data
+
+    console.log(itemArray.map(e => e.name))
     
-    renderItems!.innerHTML += items.map(item => 
+    renderItems.innerHTML += itemArray.map(item => 
         `
         <div id="card" class="card col-6">
-            <img class="card-img-top" src="${item.images}" alt="Card image cap">
+            <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">
             <div class="card-body">
-                <h5 class="card-title">${item.name[0]}</h5>
-                <p class="card-text">${item.description[0]}asd</p>
+                <h5 class="card-title">${item.name}</h5>
+                <p class="card-text">${item.description}asd</p>
                 <a href="#" class="btn btn-primary">Lägg till i varukorgen</a>
                 <!-- testar att ha en button som visar mer info -->
                 <button class="btn btn-secondary" id="info-btn">Läs mer</button>
@@ -102,7 +113,7 @@ const renderDom = () => {
         `
         ).join('')
     
-    console.log(renderItems)
-}
+})
+
 getItems()
 renderDom()

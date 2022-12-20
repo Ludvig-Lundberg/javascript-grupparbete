@@ -9,5 +9,6 @@ export const fetchItems = async () => {
 		throw new Error(`${res.status} ${res.statusText}`)
 	}
 
-	return await res.json() as IItem
+	return await res.json() 
+	
 }

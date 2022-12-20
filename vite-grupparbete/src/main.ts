@@ -41,20 +41,28 @@ button?.addEventListener("click", function(){
     renderCart();   
 })
 // Funktion för att rendera ut DOM:en på 'cart'
+const cartPayButton = document.querySelector("#cartPay");
 let renderCart = () => {
     // först tömmer man sin cart
     cartListEl!.innerHTML = ``;
+    // kollar om det finns minst 1 vara så att det visas "betala" knapp
+    if (cartArray.length === 0) {
+        cartPayButton?.classList.add("d-none")
+    } else {
+        cartPayButton?.classList.remove("d-none")
 
-    // sedan fyller man på igen
-    for (let i = 0; i < cartArray.length; i++) {
-    cartListEl!.innerHTML += `<li>
-    <span class="cartItem1">${cartArray[i].product}</span><br>
-    <span class="cartItem2">${cartArray[i].quantity} st</span>
-    <span class="cartItem3">${(cartArray[i].cost) * (cartArray[i].quantity)} kr</span>
-        <i class="fa-solid fa-circle-plus plusButton"></i>
-        <i class="fa-solid fa-circle-minus minusButton"></i>
-    </li>`
-}};
+        // sedan fyller man på igen
+        for (let i = 0; i < cartArray.length; i++) {
+            cartListEl!.innerHTML += `<li>
+            <span class="cartItem1">${cartArray[i].product}</span><br>
+            <span class="cartItem2">${cartArray[i].quantity} st</span>
+            <span class="cartItem3">${(cartArray[i].cost) * (cartArray[i].quantity)} kr</span>
+                <i class="fa-solid fa-circle-plus plusButton"></i>
+                <i class="fa-solid fa-circle-minus minusButton"></i>
+            </li>`
+        }
+    }
+};
 
 // Temporär knapp för att lägga in temporär object i cart array:en
 // Håller föräldren på vilken knapp man trycker på, den visar vilken DOM 'li' som varan är i

@@ -15,6 +15,7 @@ import './style.css'
 // Temporär knapp för att lägga in temporär object i cart array:en
 let cart: Array<any> = [];
 let button = document.querySelector("#addButton");
+const cartListEl = document.querySelector("#cartList");
 button?.addEventListener("click", function(){
     cart.push({
         product: "Banan",
@@ -38,43 +39,42 @@ button?.addEventListener("click", function(){
     console.log(cart);
 
     const cartListEl = document.querySelector("#cartList");
-    cartListEl!.innerHTML += `<li>
+    cartListEl!.innerHTML += `<li id="list1">
     <span class="cartItem1">${cart[0].product}</span><br>
     <span class="cartItem2">${cart[0].quantity} st</span>
     <span class="cartItem3">${cart[0].cost} kr</span>
-    <button class="plusButton">
-        <i class="fa-solid fa-circle-plus"></i>
-    </button>
-    <button class="minusButton">
-        <i class="fa-solid fa-circle-minus"></i>
-    </button>
+        <i class="fa-solid fa-circle-plus plusButton"></i>
+        <i class="fa-solid fa-circle-minus minusButton"></i>
     </li>
     <li>
     <span class="cartItem1">${cart[1].product}</span><br>
     <span class="cartItem2">${cart[1].quantity} st</span>
     <span class="cartItem3">${cart[1].cost} kr</span>
-    <button class="plusButton">
-        <i class="fa-solid fa-circle-plus"></i>
-    </button>
-    <button class="minusButton">
-        <i class="fa-solid fa-circle-minus"></i>
-    </button>
+        <i class="fa-solid fa-circle-plus plusButton"></i>
+        <i class="fa-solid fa-circle-minus minusButton"></i>
     </li>
     <li>
     <span class="cartItem1">${cart[2].product}</span><br>
     <span class="cartItem2">${cart[2].quantity} st</span>
     <span class="cartItem3">${cart[2].cost} kr</span>
-    <button class="plusButton">
-        <i class="fa-solid fa-circle-plus"></i>
-    </button>
-    <button class="minusButton">
-        <i class="fa-solid fa-circle-minus"></i>
-    </button>
+        <i class="fa-solid fa-circle-plus plusButton"></i>
+        <i class="fa-solid fa-circle-minus minusButton"></i>
     </li>`
-    
+
+
 
 })
 // Temporär knapp för att lägga in temporär object i cart array:en
+
+cartListEl?.addEventListener("click", e => {
+    if ((e.target as HTMLElement).tagName === "I") {
+        console.log("hej")
+    } if ((e.target as HTMLElement).classList.contains("plusButton")) {
+        console.log("PLUS PLUS PLUS PLUS")
+    } else {
+        console.log("MINUS MINUS MINUS")
+    }
+});
 
 //testing
 moreInfoText!.innerHTML = `

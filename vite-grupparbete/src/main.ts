@@ -71,11 +71,6 @@ cartEl?.addEventListener("click", function(){
     activeCartEl?.classList.toggle("d-none");
 })
 
-// const getItems = async () => {
-//   items[0]= await fetchItems()
-//     console.log(items)
-//     renderDom()
-// }
 
 const getItems = async () => {
     items = await fetchItems()
@@ -99,10 +94,12 @@ const renderDom = (() => {
     
     renderItems.innerHTML += itemArray.map(item => 
         `
-        <div id="${item.id}" class="card col-4" >
+        <div id="${item.id}" class="card col-6">
             <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">
-            <div class="card-body">
+            <div id="Cardsbox" class="card-body">
                 <h5 class="card-title">${item.name}</h5>
+                <div id="priceTitles">${item.price}kr per skopa</div>
+                <div id="hideDescription">${item.description}</div>
                 <a href="#" class="btn btn-primary">Lägg till i varukorgen</a>
                 <!-- testar att ha en button som visar mer info -->
                 <button class="btn btn-secondary" id="info-btn">Läs mer</button>

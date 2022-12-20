@@ -81,6 +81,9 @@ cartListEl?.addEventListener("click", e => {
         for (; i < cartArray.length; i++) {
             if (cartArray[i].product.includes(productName)) {
                 cartArray[i].quantity --;
+                if (cartArray[i].quantity === 0) {
+                    cartArray.splice(i, 1);
+                }
                 renderCart();
                 return;
             }

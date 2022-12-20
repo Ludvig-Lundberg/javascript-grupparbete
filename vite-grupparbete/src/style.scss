@@ -1,8 +1,8 @@
-#close-info-btn {
+.close-info-btn {
     margin: 10px 0 0;
 }
 
-#fade-background {
+.fade-background {
     position: fixed;
     top: 0;
     right: 0;
@@ -25,7 +25,7 @@
     }
 }
 
-#ingredients {
+.ingredients {
 
     p:nth-child(2) {
         font-size: small;
@@ -34,7 +34,7 @@
     }
 }
 
-#more-information {
+.more-information {
     position: relative;
     z-index: 2;
     display: flex;

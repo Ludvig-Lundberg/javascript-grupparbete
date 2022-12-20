@@ -1,22 +1,24 @@
 import { IItem } from './interfaces'
-import {fetchItems} from './api'
+import { fetchItems } from './api'
 import './style.css'
 
 const moreInfo = document.querySelector("#more-information")
 const moreInfoText = document.querySelector("#info-text")
-const infoDiv = document.querySelector("#fade-background")
-const infoBtn = document.querySelector("#info-btn")
-const closeInfoBtn = document.querySelector("#close-info-btn")
+const infoDiv = document.querySelector(".fade-background")
+// const infoBtn = document.querySelector("#info-btn")
+const closeInfoBtn = document.querySelector(".close-info-btn")
+const gridEl = document.querySelector("#grid")
 
 // array för att hämta item (product) från API
 // let items : IItem[] = []
-let items : []
+let items: []
+let itemArray;
 
 
 // Temporär knapp för att lägga in temporär object i cart array:en
 let cart: Array<any> = [];
 let button = document.querySelector("#addButton");
-button?.addEventListener("click", function(){
+button?.addEventListener("click", function () {
     cart.push({
         product: "Banan",
         quantity: 2,
@@ -50,9 +52,30 @@ closeInfoBtn?.addEventListener("click", () => {
     infoDiv!.classList.toggle("d-none")
 })
 
-infoBtn?.addEventListener("click", () => {
-    infoDiv!.classList.toggle("d-none")
+// infoBtn?.addEventListener("click", () => {
+//     infoDiv!.classList.toggle("d-none")
+// })
+
+gridEl!.addEventListener("click", async e => {
+    const target = e.target as HTMLElement
+
+    console.log("e target", e.target)
+
+    if (target.tagName === "BUTTON") {
+		// get the `data-todo-id` attribute from the LI element
+		const itemId = Number(target.dataset.itemId);     // `data-todo-id`
+
+		// search todos for the todo with the id todoId
+		const foundItem = itemArray.find(item => item.id === itemId)!
+
+        console.log("hej")
+
+        infoDiv?.classList.toggle("d-none")
+        
+	}
+
 })
+
 
 infoDiv?.addEventListener("click", e => {
 
@@ -67,7 +90,7 @@ infoDiv?.addEventListener("click", e => {
 const cartEl = document.querySelector("#cart");
 const activeCartEl = document.querySelector("#activeCart");
 
-cartEl?.addEventListener("click", function(){
+cartEl?.addEventListener("click", function () {
     activeCartEl?.classList.toggle("d-none");
 })
 
@@ -79,25 +102,22 @@ cartEl?.addEventListener("click", function(){
 
 const getItems = async () => {
     items = await fetchItems()
-      console.log(items.data)
+    console.log(items.data)
 
     renderDom()
     return items.data
- 
-  }
+
+}
 
 
 
 const renderDom = (() => {
-    
+
+    itemArray = items.data
+
     const renderItems = document.querySelector('#grid')!;
-    console.log(items.data)
 
-    let itemArray = items.data
-
-    console.log(itemArray.map(e => e.name))
-    
-    renderItems.innerHTML += itemArray.map(item => 
+    renderItems.innerHTML += itemArray.map(item =>
         `
         <div id="${item.id}" class="card col-4" >
             <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">
@@ -105,13 +125,25 @@ const renderDom = (() => {
                 <h5 class="card-title">${item.name}</h5>
                 <a href="#" class="btn btn-primary">Lägg till i varukorgen</a>
                 <!-- testar att ha en button som visar mer info -->
-                <button class="btn btn-secondary" id="info-btn">Läs mer</button>
+                <button class="btn btn-secondary" data-item-id="${item.id}">Läs mer</button>
+        </div>
+        <div class="d-none fade-background" id="">
+            <div class="more-information">
+                <button class="btn btn-secondary close-info-btn">Stäng</button>
+                <img src="images/test-1997509.png" alt="">
+                    <div id="info-text">
+                    <h3>${item.name}</h3> 
+                    <span class="price">Pris: ${item.price}</span>
+                    <div class="ingredients">
+                    ${item.description}
+                    </div>
+                </div>
             </div>
         </div>
-
+        </div>
         `
-        ).join('')
-    
+    ).join('')
+
 })
 
 getItems()

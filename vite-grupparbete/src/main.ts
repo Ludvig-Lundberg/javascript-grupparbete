@@ -1,10 +1,10 @@
-import { IItem } from './interfaces'
+// import { IItem } from './interfaces'
 import { fetchItems } from './api'
 import './style.css'
 
-const moreInfo = document.querySelector("#more-information")
-const moreInfoText = document.querySelector("#info-text")
-const infoDiv = document.querySelector(".fade-background")
+// const moreInfo = document.querySelector("#more-information")
+// const moreInfoText = document.querySelector("#info-text")
+const infoDiv = document.querySelector("#fade-background")
 // const infoBtn = document.querySelector("#info-btn")
 const closeInfoBtn = document.querySelector(".close-info-btn")
 const gridEl = document.querySelector("#grid")
@@ -38,14 +38,14 @@ button?.addEventListener("click", function () {
 // Temporär knapp för att lägga in temporär object i cart array:en
 
 //testing
-moreInfoText!.innerHTML = `
+/* moreInfoText!.innerHTML = `
     <h3>Title</h3> 
     <span class="price">Pris: 20</span>
     <div id="ingredients">
     </div>    
-`
+` */
 
-document.querySelector("#ingredients")!.innerHTML = "<p>En mix av lakrits och gelé med fruktsmak</p>\n<p>Innehållsförteckning: Socker, glukossirap, glukos-fruktossirap, stärkelse, VETEMJÖL, melass, syra (citronsyra), fuktighetsbevarande medel (sorbitoler, glycerol), lakritsextrakt, salt, vegetabiliska oljor (kokos, palm), aromer, färgämnen (E153, E120, E100, E141), ytbehandlingsmedel (bivax), stabiliseringsmedel (E471).</p>\n<p><em>Alla priser är per skopa.</em></p>\n"
+// document.querySelector("#ingredients")!.innerHTML = "<p>En mix av lakrits och gelé med fruktsmak</p>\n<p>Innehållsförteckning: Socker, glukossirap, glukos-fruktossirap, stärkelse, VETEMJÖL, melass, syra (citronsyra), fuktighetsbevarande medel (sorbitoler, glycerol), lakritsextrakt, salt, vegetabiliska oljor (kokos, palm), aromer, färgämnen (E153, E120, E100, E141), ytbehandlingsmedel (bivax), stabiliseringsmedel (E471).</p>\n<p><em>Alla priser är per skopa.</em></p>\n"
 
 // EventListeners
 closeInfoBtn?.addEventListener("click", () => {
@@ -62,15 +62,17 @@ gridEl!.addEventListener("click", async e => {
     console.log("e target", e.target)
 
     if (target.tagName === "BUTTON") {
-		// get the `data-todo-id` attribute from the LI element
-		const itemId = Number(target.dataset.itemId);     // `data-todo-id`
+		
+		const itemId = Number(target.dataset.itemIdButton);     // `data-item-id-button`
 
-		// search todos for the todo with the id todoId
+        console.log("item ID", itemId)
+
 		const foundItem = itemArray.find(item => item.id === itemId)!
 
         console.log("hej")
+        console.log(infoDiv as HTMLElement)
 
-        infoDiv?.classList.toggle("d-none")
+        infoDiv!.classList.remove("d-none")
         
 	}
 
@@ -82,7 +84,7 @@ infoDiv?.addEventListener("click", e => {
     const target = e.target as HTMLElement
 
     if (target.tagName === "DIV") {
-        infoDiv!.classList.toggle("d-none")
+        infoDiv?.classList.toggle("d-none")
     }
 
 })
@@ -124,22 +126,21 @@ const renderDom = (() => {
             <div class="card-body">
                 <h5 class="card-title">${item.name}</h5>
                 <a href="#" class="btn btn-primary">Lägg till i varukorgen</a>
-                <!-- testar att ha en button som visar mer info -->
-                <button class="btn btn-secondary" data-item-id="${item.id}">Läs mer</button>
-        </div>
-        <div class="d-none fade-background" id="">
-            <div class="more-information">
-                <button class="btn btn-secondary close-info-btn">Stäng</button>
-                <img src="images/test-1997509.png" alt="">
-                    <div id="info-text">
-                    <h3>${item.name}</h3> 
-                    <span class="price">Pris: ${item.price}</span>
-                    <div class="ingredients">
-                    ${item.description}
+                <button class="btn btn-secondary" data-item-id-button="${item.id}">Läs mer</button>
+            </div>
+            <div class="d-none" id="fade-background">
+                <div class="more-information">
+                    <button class="btn btn-secondary close-info-btn">Stäng</button>
+                    <img src="https://bortakvall.se/${item.images.large}" alt="">
+                        <div id="info-text">
+                        <h3>${item.name}</h3> 
+                        <span class="price">Pris: ${item.price}</span>
+                        <div class="ingredients">
+                        ${item.description}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
         `
     ).join('')

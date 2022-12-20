@@ -13,11 +13,11 @@ let items : IItem[] = []
 import './style.css'
 
 // Temporär knapp för att lägga in temporär object i cart array:en
-let cart: Array<any> = [];
+let cartArray: Array<any> = [];
 let button = document.querySelector("#addButton");
 const cartListEl = document.querySelector("#cartList");
 button?.addEventListener("click", function(){
-    cart.push({
+    cartArray.push({
         product: "Banan",
         quantity: 2,
         cost: 10,
@@ -35,28 +35,28 @@ button?.addEventListener("click", function(){
         cost: 25,
         id: 639
     })
-    console.log(cart.length);
-    console.log(cart);
+    console.log(cartArray.length);
+    console.log(cartArray);
 
     const cartListEl = document.querySelector("#cartList");
-    cartListEl!.innerHTML += `<li id="list1">
-    <span class="cartItem1">${cart[0].product}</span><br>
-    <span class="cartItem2">${cart[0].quantity} st</span>
-    <span class="cartItem3">${cart[0].cost} kr</span>
+    cartListEl!.innerHTML += `<li>
+    <span class="cartItem1">${cartArray[0].product}</span><br>
+    <span class="cartItem2">${cartArray[0].quantity} st</span>
+    <span class="cartItem3">${cartArray[0].cost} kr</span>
         <i class="fa-solid fa-circle-plus plusButton"></i>
         <i class="fa-solid fa-circle-minus minusButton"></i>
     </li>
     <li>
-    <span class="cartItem1">${cart[1].product}</span><br>
-    <span class="cartItem2">${cart[1].quantity} st</span>
-    <span class="cartItem3">${cart[1].cost} kr</span>
+    <span class="cartItem1">${cartArray[1].product}</span><br>
+    <span class="cartItem2">${cartArray[1].quantity} st</span>
+    <span class="cartItem3">${cartArray[1].cost} kr</span>
         <i class="fa-solid fa-circle-plus plusButton"></i>
         <i class="fa-solid fa-circle-minus minusButton"></i>
     </li>
     <li>
-    <span class="cartItem1">${cart[2].product}</span><br>
-    <span class="cartItem2">${cart[2].quantity} st</span>
-    <span class="cartItem3">${cart[2].cost} kr</span>
+    <span class="cartItem1">${cartArray[2].product}</span><br>
+    <span class="cartItem2">${cartArray[2].quantity} st</span>
+    <span class="cartItem3">${cartArray[2].cost} kr</span>
         <i class="fa-solid fa-circle-plus plusButton"></i>
         <i class="fa-solid fa-circle-minus minusButton"></i>
     </li>`
@@ -65,17 +65,40 @@ button?.addEventListener("click", function(){
 
 })
 // Temporär knapp för att lägga in temporär object i cart array:en
-
+// Håller föräldren på vilken knapp man trycker på, den visar vilken DOM 'li' som varan är i
+let productName: any;
+// Eventlistener för shopping cart 
 cartListEl?.addEventListener("click", e => {
     if ((e.target as HTMLElement).tagName === "I") {
-        console.log("hej")
     } if ((e.target as HTMLElement).classList.contains("plusButton")) {
-        console.log("PLUS PLUS PLUS PLUS")
-    } else {
-        console.log("MINUS MINUS MINUS")
+        productName = (e.target as HTMLElement).parentElement?.querySelector(".cartItem1")?.textContent;
+        console.log("plus 1",(e.target as HTMLElement).parentElement?.querySelector(".cartItem1")?.textContent);
+        nyFunction();
+    } else if ((e.target as HTMLElement).classList.contains("minusButton")) {
+        productName = (e.target as HTMLElement).parentElement?.querySelector(".cartItem1")?.textContent;
+        console.log("minus 1",(e.target as HTMLElement).parentElement?.querySelector(".cartItem1")?.textContent);
+        nyFunction();
     }
 });
+// function som kollar om 'ProductName' finns inuti 'cartArray'
+let nyFunction = () => {
+    let i = 0;
+    for (; i < cartArray.length; i++) {
+        console.log(cartArray[i].product.includes(productName));
+    }
+}
 
+/* 
+function {
+    for (let i = 0; i < cart.length; i++;) {
+        cart[i].includes("productName");
+        console.log(cart[i].includes("productName"));
+    }
+
+
+}
+    
+ */
 //testing
 moreInfoText!.innerHTML = `
     <h3>Title</h3> 

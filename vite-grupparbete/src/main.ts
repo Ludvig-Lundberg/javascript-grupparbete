@@ -38,8 +38,11 @@ button?.addEventListener("click", function(){
     console.log(cartArray.length);
     console.log(cartArray);
 
-    const cartListEl = document.querySelector("#cartList");
-    cartListEl!.innerHTML += `<li>
+    renderCart();   
+})
+// Funktion för att rendera ut DOM:en på 'cart'
+let renderCart = () => {
+    cartListEl!.innerHTML = `<li>
     <span class="cartItem1">${cartArray[0].product}</span><br>
     <span class="cartItem2">${cartArray[0].quantity} st</span>
     <span class="cartItem3">${cartArray[0].cost} kr</span>
@@ -60,45 +63,40 @@ button?.addEventListener("click", function(){
         <i class="fa-solid fa-circle-plus plusButton"></i>
         <i class="fa-solid fa-circle-minus minusButton"></i>
     </li>`
+    };
 
-
-
-})
 // Temporär knapp för att lägga in temporär object i cart array:en
 // Håller föräldren på vilken knapp man trycker på, den visar vilken DOM 'li' som varan är i
 let productName: any;
 // Eventlistener för shopping cart 
 cartListEl?.addEventListener("click", e => {
     if ((e.target as HTMLElement).tagName === "I") {
+        
     } if ((e.target as HTMLElement).classList.contains("plusButton")) {
         productName = (e.target as HTMLElement).parentElement?.querySelector(".cartItem1")?.textContent;
-        console.log("plus 1",(e.target as HTMLElement).parentElement?.querySelector(".cartItem1")?.textContent);
-        nyFunction();
+
+        let i = 0;
+        for (; i < cartArray.length; i++) {
+            if (cartArray[i].product.includes(productName)) {
+                cartArray[i].quantity ++;
+                renderCart();
+                return;
+            }
+        }
     } else if ((e.target as HTMLElement).classList.contains("minusButton")) {
         productName = (e.target as HTMLElement).parentElement?.querySelector(".cartItem1")?.textContent;
-        console.log("minus 1",(e.target as HTMLElement).parentElement?.querySelector(".cartItem1")?.textContent);
-        nyFunction();
+        
+        let i = 0;
+        for (; i < cartArray.length; i++) {
+            if (cartArray[i].product.includes(productName)) {
+                cartArray[i].quantity --;
+                renderCart();
+                return;
+            }
+        }
     }
 });
-// function som kollar om 'ProductName' finns inuti 'cartArray'
-let nyFunction = () => {
-    let i = 0;
-    for (; i < cartArray.length; i++) {
-        console.log(cartArray[i].product.includes(productName));
-    }
-}
 
-/* 
-function {
-    for (let i = 0; i < cart.length; i++;) {
-        cart[i].includes("productName");
-        console.log(cart[i].includes("productName"));
-    }
-
-
-}
-    
- */
 //testing
 moreInfoText!.innerHTML = `
     <h3>Title</h3> 

@@ -54,3 +54,40 @@ infoDiv?.addEventListener("click", e => {
     }
 
 })
+
+// const getItems = async () => {
+//   items[0]= await fetchItems()
+//     console.log(items)
+//     renderDom()
+// }
+
+const getItems = async () => {
+    let items: IItem = await fetchItems()
+      console.log(items)
+      renderDom()
+  }
+
+const renderDom = () => {
+    
+    const renderItems = document.querySelector<any>('#card')!;
+    
+    renderItems!.innerHTML += items.map(item => 
+        `
+        <div id="card" class="card col-6">
+            <img class="card-img-top" src="${item.images}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">${item.name[0]}</h5>
+                <p class="card-text">${item.description[0]}asd</p>
+                <a href="#" class="btn btn-primary">Lägg till i varukorgen</a>
+                <!-- testar att ha en button som visar mer info -->
+                <button class="btn btn-secondary" id="info-btn">Läs mer</button>
+            </div>
+        </div>
+
+        `
+        ).join('')
+    
+    console.log(renderItems)
+}
+getItems()
+renderDom()

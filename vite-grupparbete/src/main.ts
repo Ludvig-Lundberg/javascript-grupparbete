@@ -19,7 +19,20 @@ button?.addEventListener("click", function(){
     cart.push({
         product: "Banan",
         quantity: 2,
-        cost: 10
+        cost: 10,
+        id: 1403
+    },
+    {
+        product: "Cola",
+        quantity: 1,
+        cost: 20,
+        id: 1183
+    },
+    {
+        product: "Choklad",
+        quantity: 5,
+        cost: 25,
+        id: 639
     })
     console.log(cart.length);
     console.log(cart);
@@ -29,7 +42,36 @@ button?.addEventListener("click", function(){
     <span class="cartItem1">${cart[0].product}</span><br>
     <span class="cartItem2">${cart[0].quantity} st</span>
     <span class="cartItem3">${cart[0].cost} kr</span>
+    <button class="plusButton">
+        <i class="fa-solid fa-circle-plus"></i>
+    </button>
+    <button class="minusButton">
+        <i class="fa-solid fa-circle-minus"></i>
+    </button>
+    </li>
+    <li>
+    <span class="cartItem1">${cart[1].product}</span><br>
+    <span class="cartItem2">${cart[1].quantity} st</span>
+    <span class="cartItem3">${cart[1].cost} kr</span>
+    <button class="plusButton">
+        <i class="fa-solid fa-circle-plus"></i>
+    </button>
+    <button class="minusButton">
+        <i class="fa-solid fa-circle-minus"></i>
+    </button>
+    </li>
+    <li>
+    <span class="cartItem1">${cart[2].product}</span><br>
+    <span class="cartItem2">${cart[2].quantity} st</span>
+    <span class="cartItem3">${cart[2].cost} kr</span>
+    <button class="plusButton">
+        <i class="fa-solid fa-circle-plus"></i>
+    </button>
+    <button class="minusButton">
+        <i class="fa-solid fa-circle-minus"></i>
+    </button>
     </li>`
+    
 
 })
 // Temporär knapp för att lägga in temporär object i cart array:en

@@ -66,6 +66,10 @@
 header {
     border-bottom: 1px solid black;
     margin-bottom: 1rem;
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+    background-color: white;
 
     h1 {
         margin: 0px;
@@ -93,6 +97,9 @@ header {
         border-top: none;
         border-bottom-left-radius: 15px;
         text-align: center;
+        max-height: 90vh;
+        overflow-y: scroll;
+        overflow-x: hidden;
     
         #listSpan {
             font-size: 2rem;
@@ -106,6 +113,8 @@ header {
             color: white;
             position: relative;
             left: 1rem;
+            border-radius: 10px;
+
 
             &:hover {
                 i {

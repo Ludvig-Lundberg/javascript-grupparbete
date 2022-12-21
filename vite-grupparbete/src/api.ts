@@ -1,5 +1,3 @@
-import { IItem } from './interfaces'
-
 import './style.css'
 
 export const fetchItems = async () => {

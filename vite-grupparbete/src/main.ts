@@ -4,9 +4,9 @@ import './style.css'
 
 // const moreInfo = document.querySelector("#more-information")
 // const moreInfoText = document.querySelector("#info-text")
-const infoDiv = document.querySelector("#fade-background")
+const infoDiv = document.querySelector("#fade-background")!
 // const infoBtn = document.querySelector("#info-btn")
-const closeInfoBtn = document.querySelector(".close-info-btn")
+const closeInfoBtn = document.querySelector("#close-info-btn")
 const gridEl = document.querySelector("#grid")
 
 // array för att hämta item (product) från API
@@ -71,9 +71,21 @@ gridEl!.addEventListener("click", async e => {
 
         console.log("hej")
         console.log(infoDiv)
+        console.log(foundItem, foundItem.name)
 
-        infoDiv!.classList.remove("d-none")
-        
+        infoDiv.classList.toggle("d-none")
+        infoDiv.innerHTML = `                
+            <div id="more-information">
+                <button class="btn btn-secondary close-info-btn" id="close-info-btn">Stäng</button>
+                <img src="https://bortakvall.se/${foundItem.images.large}" alt="Bild av ${foundItem.name}">
+                <div id="info-text">
+                    <h3>${foundItem.name}</h3> 
+                    <span id="price">Pris: ${foundItem.price} kronor</span>
+                    <div id="ingredients">
+                        ${foundItem.description}
+                    </div>
+                </div>
+            </div>`
 	}
 
 })
@@ -125,19 +137,6 @@ const renderDom = (() => {
                 <a href="#" class="btn btn-primary">Lägg till i varukorgen</a>
                 <button class="btn btn-secondary" data-item-id-button="${item.id}">Läs mer</button>
             </div>
-            <div class="d-none" id="fade-background">
-                <div class="more-information">
-                    <button class="btn btn-secondary close-info-btn">Stäng</button>
-                    <img src="https://bortakvall.se/${item.images.large}" alt="">
-                        <div id="info-text">
-                        <h3>${item.name}</h3> 
-                        <span class="price">Pris: ${item.price}</span>
-                        <div class="ingredients">
-                        ${item.description}
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         `
     ).join('')
@@ -146,3 +145,19 @@ const renderDom = (() => {
 
 getItems()
 renderDom()
+
+// kod som inte används atm
+
+/* <div class="d-none" id="fade-background">
+<div class="more-information">
+    <button class="btn btn-secondary close-info-btn">Stäng</button>
+    <img src="https://bortakvall.se/${item.images.large}" alt="">
+        <div id="info-text">
+        <h3>${item.name}</h3> 
+        <span class="price">Pris: ${item.price}</span>
+        <div class="ingredients">
+        ${item.description}
+        </div>
+    </div>
+</div>
+</div> */

@@ -14,26 +14,94 @@ let items : []
 
 
 // Temporär knapp för att lägga in temporär object i cart array:en
-let cart: Array<any> = [];
+let cartArray: Array<any> = [];
 let button = document.querySelector("#addButton");
+const cartListEl = document.querySelector("#cartList");
 button?.addEventListener("click", function(){
-    cart.push({
+    cartArray.push({
         product: "Banan",
         quantity: 2,
-        cost: 10
+        cost: 10,
+        id: 1403
+    },
+    {
+        product: "Cola",
+        quantity: 1,
+        cost: 20,
+        id: 1183
+    },
+    {
+        product: "Choklad",
+        quantity: 5,
+        cost: 25,
+        id: 639
     })
-    console.log(cart.length);
-    console.log(cart);
+    console.log(cartArray.length);
+    console.log(cartArray);
 
-    const cartListEl = document.querySelector("#cartList");
-    cartListEl!.innerHTML += `<li>
-    <span class="cartItem1">${cart[0].product}</span><br>
-    <span class="cartItem2">${cart[0].quantity} st</span>
-    <span class="cartItem3">${cart[0].cost} kr</span>
-    </li>`
-
+    renderCart();   
 })
+// Funktion för att rendera ut DOM:en på 'cart'
+const cartPayButton = document.querySelector("#cartPay");
+const cartNumber = document.querySelector("#cartNumber");
+let renderCart = () => {
+    // först tömmer man sin cart
+    cartListEl!.innerHTML = ``;
+    // kollar om det finns minst 1 vara så att det visas "betala" knapp
+    if (cartArray.length === 0) {
+        cartPayButton?.classList.add("d-none")
+        cartNumber?.classList.add("d-none")
+    } else {
+        cartPayButton?.classList.remove("d-none")
+        cartNumber?.classList.remove("d-none")
+        cartNumber!.innerHTML = `${cartArray.length}`;
+        // sedan fyller man på igen
+        for (let i = 0; i < cartArray.length; i++) {
+            cartListEl!.innerHTML += `<li>
+            <span class="cartItem1">${cartArray[i].product}</span><br>
+            <span class="cartItem2">${cartArray[i].quantity} st</span>
+            <span class="cartItem3">${(cartArray[i].cost) * (cartArray[i].quantity)} kr</span>
+                <i class="fa-solid fa-circle-plus plusButton"></i>
+                <i class="fa-solid fa-circle-minus minusButton"></i>
+            </li>`
+        }
+    }
+};
+
 // Temporär knapp för att lägga in temporär object i cart array:en
+// Håller föräldren på vilken knapp man trycker på, den visar vilken DOM 'li' som varan är i
+let productName: any;
+// Eventlistener för shopping cart 
+cartListEl?.addEventListener("click", e => {
+    if ((e.target as HTMLElement).tagName === "I") {
+        
+    } if ((e.target as HTMLElement).classList.contains("plusButton")) {
+        productName = (e.target as HTMLElement).parentElement?.querySelector(".cartItem1")?.textContent;
+
+        let i = 0;
+        for (; i < cartArray.length; i++) {
+            if (cartArray[i].product.includes(productName)) {
+                cartArray[i].quantity ++;
+                renderCart();
+                return;
+            }
+        }
+    } else if ((e.target as HTMLElement).classList.contains("minusButton")) {
+        productName = (e.target as HTMLElement).parentElement?.querySelector(".cartItem1")?.textContent;
+        
+        let i = 0;
+        for (; i < cartArray.length; i++) {
+            if (cartArray[i].product.includes(productName)) {
+                cartArray[i].quantity --;
+                if (cartArray[i].quantity === 0) {
+                    cartArray.splice(i, 1);
+                }
+                renderCart();
+                return;
+            }
+        }
+    }
+});
 
 //testing
 moreInfoText!.innerHTML = `

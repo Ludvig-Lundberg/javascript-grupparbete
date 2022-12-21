@@ -66,6 +66,10 @@
 header {
     border-bottom: 1px solid black;
     margin-bottom: 1rem;
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+    background-color: white;
 
     h1 {
         margin: 0px;
@@ -80,12 +84,22 @@ header {
         &:hover {
             color: rgb(62, 62, 255);
         }
+        #cartNumber {
+            font-size: 1rem;
+            color: white;
+            background-color: red;
+            padding: 4px;
+            border-radius: 50%;
+            position: relative;
+            bottom: 1.5rem;
+            right: 10px;
+        }
     }
     #activeCart {
         position: absolute;
         right: 0px;
         padding: 5px 1.5rem;
-        width: 15rem;
+        width: 25rem;
         top: 75px;
         z-index: 1;
         background-color: white;
@@ -93,10 +107,41 @@ header {
         border-top: none;
         border-bottom-left-radius: 15px;
         text-align: center;
+        max-height: 90vh;
+        overflow-y: scroll;
+        overflow-x: hidden;
     
         #listSpan {
             font-size: 2rem;
             color: rgb(62, 62, 255);
+        }
+        #cartPay {
+            background: rgb(10, 163, 10);
+            border: none;
+            font-size: 1.5rem;
+            padding: 2px 1rem;
+            color: white;
+            position: relative;
+            left: 1rem;
+            border-radius: 10px;
+
+
+            &:hover {
+                i {
+                    animation: cartAnimation 1s 0s infinite alternate;
+                    position: relative;
+
+                    @keyframes cartAnimation {
+                        0% {
+                            left: 0px;
+                        } 
+                        100% {
+                            left: 10px;
+                        }
+
+                    }
+                }
+            }
         }
         #cartList {
             list-style: none;
@@ -108,24 +153,39 @@ header {
                 border-bottom: 0.5px solid rgb(167, 167, 167);
                 padding: 2px 1rem;
                 min-width: 100px;
-            }
-    
-            .cartItem1 {
-                text-align: left;
-                font-size: 1.2rem;
-            }
-            .cartItem2 {
-                text-align: left;
-                font-weight: lighter;
-                font-size: 1.1rem;
-            }
-            .cartItem3 {
-                text-align: right;
-                float: right;
-                color: green;
-                font-size: 1.5rem;
-                position: relative;
-                bottom: 5px;
+
+                i {
+                    background: none;
+                    border: none;
+                    font-size: 1.5rem;
+                    float: right;
+                    position: relative;
+                    bottom: 7px;
+                    padding: 5px;
+                }
+                .plusButton {
+                    color: green;
+                }
+                .minusButton {
+                    color: red;
+                }
+                .cartItem1 {
+                    text-align: left;
+                    font-size: 1.2rem;
+                }
+                .cartItem2 {
+                    text-align: left;
+                    font-weight: lighter;
+                    font-size: 1.1rem;
+                }
+                .cartItem3 {
+                    text-align: right;
+                    float: right;
+                    color: green;
+                    font-size: 1.5rem;
+                    position: relative;
+                    bottom: 7px;
+                }
             }
         }
     }

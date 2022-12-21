@@ -115,13 +115,13 @@ closeInfoBtn?.addEventListener("click", () => {
 gridEl!.addEventListener("click", async e => {
     const target = e.target as HTMLElement
 
-    console.log("e target", e.target)
+    // console.log("e target", e.target)
 
     if (target.tagName === "BUTTON" && target.classList.contains("read-more")) {
 		
 		const itemId = Number(target.dataset.itemIdButton);     // `data-item-id-button`
 
-        console.log("item ID", itemId)
+        // console.log("item ID", itemId)
 
 		const foundItem = itemArray.find(item => item.id === itemId)!
 
@@ -184,7 +184,7 @@ const renderDom = (() => {
                 <div id="priceTitles">${item.price}kr per skopa</div>
                 <div id="hideDescription">${item.description}</div>
                 <button class="btn btn-primary addButton">Lägg till i varukorgen</button>
-                <button class="btn btn-secondary" data-item-id-button="${item.id}">Läs mer</button>
+                <button class="btn btn-secondary read-more" data-item-id-button="${item.id}">Läs mer</button>
             </div>
         </div>
         `

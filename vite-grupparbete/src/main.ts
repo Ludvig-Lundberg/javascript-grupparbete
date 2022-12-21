@@ -242,18 +242,23 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     const newLastNameTitle = document.querySelector<HTMLInputElement>('#lastName')?.value
     const newEmailTitle = document.querySelector<HTMLInputElement>('#c-Email')!.value
     const newPhoneNumberTitle = document.querySelector<HTMLInputElement>('#c-Phone')?.value
-    const newAddressTitle = document.querySelector<HTMLInputElement>('#c-Postcode')!.value
+    const newAddressTitle = document.querySelector<HTMLInputElement>('#c-Address')!.value
     const newZipTitle = document.querySelector<HTMLInputElement>('#c-Zip')?.value
     const newCityTitle = document.querySelector<HTMLInputElement>('#c-City')?.value
+
+    const formInput = document.querySelector<HTMLFormElement>("#form")
+    console.log(formInput!.value)
     let newDetails: IDetails[] = []
+
     console.log("Sent", newDetails)
-    if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newPostCodeTitle && !newZipTitle && !newCityTitle) {
+
+    if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newAddressTitle && !newZipTitle && !newCityTitle) {
         console.log("empty input");
         return
     }
-    if (newFirstNameTitle && newLastNameTitle && newEmailTitle && newPhoneNumberTitle && newPostCodeTitle && newZipTitle && newCityTitle) {
+    if (newFirstNameTitle && newLastNameTitle && newEmailTitle && newPhoneNumberTitle && newAddressTitle && newZipTitle && newCityTitle) {
         
-    }else if (newFirstNameTitle && newLastNameTitle && newEmailTitle && !newPhoneNumberTitle && newPostCodeTitle && newZipTitle && newCityTitle) {
+    } else if (newFirstNameTitle && newLastNameTitle && newEmailTitle && !newPhoneNumberTitle && newAddressTitle && newZipTitle && newCityTitle) {
         
     }
     

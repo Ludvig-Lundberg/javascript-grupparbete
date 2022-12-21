@@ -1,19 +1,13 @@
-// import { IItem } from './interfaces'
+import { IItem } from './interfaces'
 import { fetchItems } from './api'
 import './style.css'
 
-// const moreInfo = document.querySelector("#more-information")
-// const moreInfoText = document.querySelector("#info-text")
-const infoDiv = document.querySelector("#fade-background")!
-// const infoBtn = document.querySelector("#info-btn")
-const closeInfoBtn = document.querySelector("#close-info-btn")
-const gridEl = document.querySelector("#grid")
+// HTML elements
+const infoDiv = document.querySelector("#fade-background") as HTMLElement
+const gridEl = document.querySelector("#grid") as HTMLElement
 
-// array för att hämta item (product) från API
-// let items : IItem[] = []
-let items: []
-let itemArray: []
-
+// arrays
+let items: {data: Array<IItem>}
 
 // // Array som kommer att hålla alla sina varor man valt i korgen
 let cartArray: Array<any> = [];
@@ -93,37 +87,22 @@ cartListEl?.addEventListener("click", e => {
     }
 });
 
-//testing
-/* moreInfoText!.innerHTML = `
-    <h3>Title</h3> 
-    <span class="price">Pris: 20</span>
-    <div id="ingredients">
-    </div>    
-` */
 
-// document.querySelector("#ingredients")!.innerHTML = "<p>En mix av lakrits och gelé med fruktsmak</p>\n<p>Innehållsförteckning: Socker, glukossirap, glukos-fruktossirap, stärkelse, VETEMJÖL, melass, syra (citronsyra), fuktighetsbevarande medel (sorbitoler, glycerol), lakritsextrakt, salt, vegetabiliska oljor (kokos, palm), aromer, färgämnen (E153, E120, E100, E141), ytbehandlingsmedel (bivax), stabiliseringsmedel (E471).</p>\n<p><em>Alla priser är per skopa.</em></p>\n"
+
 
 // EventListeners
-closeInfoBtn?.addEventListener("click", () => {
-    infoDiv!.classList.toggle("d-none")
-})
-
-// infoBtn?.addEventListener("click", () => {
-//     infoDiv!.classList.toggle("d-none")
-// })
-
 gridEl!.addEventListener("click", async e => {
     const target = e.target as HTMLElement
 
-    console.log("e target", e.target)
+    // console.log("e target", e.target)
 
     if (target.tagName === "BUTTON" && target.classList.contains("read-more")) {
 		
 		const itemId = Number(target.dataset.itemIdButton);     // `data-item-id-button`
 
-        console.log("item ID", itemId)
+        // console.log("item ID", itemId)
 
-		const foundItem = itemArray.find(item => item.id === itemId)!
+		const foundItem = items.data.find(item => item.id === itemId)!
 
         infoDiv.classList.toggle("d-none")
         infoDiv.innerHTML = `                
@@ -166,7 +145,7 @@ const getItems = async () => {
     console.log(items.data)
 
     renderDom()
-    return items.data
+    return items
 
 }
 // ÄNDRA INTE NAMN, används också för att lägga till saker i varukorgen
@@ -174,9 +153,7 @@ const renderItems = document.querySelector('#grid')!;
 
 const renderDom = (() => {
 
-    itemArray = items.data
-
-    renderItems.innerHTML += itemArray.map(item =>
+    renderItems.innerHTML += items.data.map(item =>
         `
         <div id="${item.id}" class="card col-sm-6 col-md-4 col-lg-3">
             <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">

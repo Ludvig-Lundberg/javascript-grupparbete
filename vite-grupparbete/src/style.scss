@@ -84,6 +84,16 @@ header {
         &:hover {
             color: rgb(62, 62, 255);
         }
+        #cartNumber {
+            font-size: 1rem;
+            color: white;
+            background-color: red;
+            padding: 4px;
+            border-radius: 50%;
+            position: relative;
+            bottom: 1.5rem;
+            right: 10px;
+        }
     }
     #activeCart {
         position: absolute;

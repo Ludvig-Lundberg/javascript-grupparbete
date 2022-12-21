@@ -78,7 +78,14 @@ cartListEl?.addEventListener("click", e => {
     } if ((e.target as HTMLElement).classList.contains("plusButton")) {
         productName = (e.target as HTMLElement).parentElement?.querySelector(".cartItem1")?.textContent;
 
-        addProductFunction();
+        let i = 0;
+        for (; i < cartArray.length; i++) {
+            if (cartArray[i].item_name.includes(productName)) {
+                cartArray[i].qty ++;
+                renderCart();
+                return;
+            }
+        }
 
     } else if ((e.target as HTMLElement).classList.contains("minusButton")) {
         productName = (e.target as HTMLElement).parentElement?.querySelector(".cartItem1")?.textContent;
@@ -174,11 +181,9 @@ const renderDom = (() => {
 })
 // eventlistener som kollar om man trycker på "Lägg till i varukorgen"
 renderItems?.addEventListener("click", e => {
-
     const target = e.target as HTMLElement;
 
     if (target.tagName === "BUTTON" && target.classList.contains("addButton")) {
-
         let price: string = target.parentElement?.querySelector("#priceTitles")?.textContent!,
             productId: number = Number(target.parentElement?.parentElement?.getAttribute("id")),
             // ta bort allt förutom siffrorna
@@ -186,9 +191,17 @@ renderItems?.addEventListener("click", e => {
             item_total: number = 1 * item_price,
             item_name: string = target.parentElement?.querySelector("h5")?.textContent!;
 
-
-        console.log(productId, item_price, item_total, item_name);
-
+            // kollar om det redan finns det typen av varan då 'qty ++;' och returerar, slutar alltså hela funktionen. Annars pushar den in ett nytt object.
+        for (let i = 0; i < cartArray.length; i++) {
+            if(cartArray.some(e => e.id === productId)) {
+                let o = cartArray.findIndex(e => e.id === productId);
+                console.log("Object found inside the array.");
+                console.log(o);
+                cartArray[o].qty ++;
+                renderCart();
+                return;
+            }
+        }
         cartArray.push({
             item_name: item_name,
             id: productId,
@@ -197,21 +210,12 @@ renderItems?.addEventListener("click", e => {
             item_total: item_total
         });
 
+
+
         renderCart();
         console.log(cartArray)
     }
 });
-// funktion som lägger till +1 på den varan man vill
-let addProductFunction = () => {
-    let i = 0;
-    for (; i < cartArray.length; i++) {
-        if (cartArray[i].item_name.includes(productName)) {
-            cartArray[i].qty ++;
-            renderCart();
-            return;
-        }
-    }
-}
 
 getItems()
 renderDom()

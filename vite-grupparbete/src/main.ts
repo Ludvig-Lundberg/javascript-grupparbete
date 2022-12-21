@@ -149,11 +149,11 @@ const getItems = async () => {
  
   }
 
-
+const renderItems = document.querySelector('#grid')!;
 
 const renderDom = (() => {
     
-    const renderItems = document.querySelector('#grid')!;
+    
     console.log(items.data)
 
     let itemArray = items.data
@@ -168,7 +168,7 @@ const renderDom = (() => {
                 <h5 class="card-title">${item.name}</h5>
                 <div id="priceTitles">${item.price}kr per skopa</div>
                 <div id="hideDescription">${item.description}</div>
-                <a href="#" class="btn btn-primary">Lägg till i varukorgen</a>
+                <button class="btn btn-primary addButton">Lägg till i varukorgen</button>
                 <!-- testar att ha en button som visar mer info -->
                 <button class="btn btn-secondary" id="info-btn">Läs mer</button>
             </div>
@@ -178,6 +178,27 @@ const renderDom = (() => {
         ).join('')
     
 })
+// eventlistener som kollar om man trycker på "Lägg till i varukorgen"
+renderItems?.addEventListener("click", e => {
+
+    const target = e.target as HTMLElement;
+
+    if (target.tagName === "BUTTON" && target.classList.contains("addButton")) {
+        console.log("BUTTON & ADD");
+        let productId = target.parentElement?.parentElement?.getAttribute("id");
+        let item_price = target.parentElement?.querySelector("#priceTitles")?.textContent;
+        let item_total = productId * item_price;
+        console.log(productId, item_price);
+
+        cartArray.push({
+            id: productId,
+            qty: 1,
+            item_price: item_price,
+            item_total: item_total
+        })
+        console.log(cartArray)
+    }
+});
 
 getItems()
 renderDom()

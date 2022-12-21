@@ -78,14 +78,8 @@ cartListEl?.addEventListener("click", e => {
     } if ((e.target as HTMLElement).classList.contains("plusButton")) {
         productName = (e.target as HTMLElement).parentElement?.querySelector(".cartItem1")?.textContent;
 
-        let i = 0;
-        for (; i < cartArray.length; i++) {
-            if (cartArray[i].product.includes(productName)) {
-                cartArray[i].quantity ++;
-                renderCart();
-                return;
-            }
-        }
+        addProductFunction();
+
     } else if ((e.target as HTMLElement).classList.contains("minusButton")) {
         productName = (e.target as HTMLElement).parentElement?.querySelector(".cartItem1")?.textContent;
         
@@ -188,13 +182,15 @@ renderItems?.addEventListener("click", e => {
         let price: string = target.parentElement?.querySelector("#priceTitles")?.textContent!,
             productId: number = Number(target.parentElement?.parentElement?.getAttribute("id")),
             // ta bort allt förutom siffrorna
-            item_price: any = Number(price?.replace(/\D/g, '')),
-            item_total: number = 1 * item_price;
+            item_price: number = Number(price?.replace(/\D/g, '')),
+            item_total: number = 1 * item_price,
+            item_name: string = target.parentElement?.querySelector("h5")?.textContent!;
 
 
-        console.log(productId, item_price, item_total);
+        console.log(productId, item_price, item_total, item_name);
 
         cartArray.push({
+            item_name: item_name,
             id: productId,
             qty: 1,
             item_price: item_price,
@@ -203,6 +199,17 @@ renderItems?.addEventListener("click", e => {
         console.log(cartArray)
     }
 });
+// funktion som lägger till +1 på den varan man vill
+let addProductFunction = () => {
+    let i = 0;
+    for (; i < cartArray.length; i++) {
+        if (cartArray[i].product.includes(productName)) {
+            cartArray[i].quantity ++;
+            renderCart();
+            return;
+        }
+    }
+}
 
 getItems()
 renderDom()

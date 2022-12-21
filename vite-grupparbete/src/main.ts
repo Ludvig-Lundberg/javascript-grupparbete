@@ -121,7 +121,6 @@ gridEl!.addEventListener("click", async e => {
 
 })
 
-
 infoDiv?.addEventListener("click", e => {
 
     const target = e.target as HTMLElement
@@ -198,23 +197,6 @@ renderItems?.addEventListener("click", e => {
     }
 });
 
-// kod som inte används atm
-
-/* <div class="d-none" id="fade-background">
-<div class="more-information">
-    <button class="btn btn-secondary close-info-btn">Stäng</button>
-    <img src="https://bortakvall.se/${item.images.large}" alt="">
-        <div id="info-text">
-        <h3>${item.name}</h3> 
-        <span class="price">Pris: ${item.price}</span>
-        <div class="ingredients">
-        ${item.description}
-        </div>
-    </div>
-</div>
-</div> */
-
-// Detta submit knappen med interface fungerar visa på konsolen när allt kod skrivs ut
 interface IDetails {
     firstname?: string,
     lastname?: string,
@@ -262,5 +244,8 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     console.log("Skickat in", newCollectTitles)
     
 })
+
 getItems()
 renderDom()
+
+// kod som inte används atm

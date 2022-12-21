@@ -20,7 +20,7 @@
     flex-direction: column;
     width: 80%;
     margin: 15px 0;
-    height: 50%;
+    height: 45%;
     max-height: 50%;
 
     p {
@@ -63,6 +63,28 @@
     text-transform: uppercase;
     letter-spacing: 0.03rem;
     font-weight: 600;
+}
+
+@media (min-width: 410px) {
+    #info-text {
+        max-height: 30%;
+    }
+
+    #more-information {
+        height: 70%;
+    }
+
+}
+
+@media (min-width: 460px) {
+    #info-text {
+        max-height: 32%;
+    }
+
+    #more-information {
+        height: 80%;
+    }
+
 }
 
 @media (min-width: 768px) {

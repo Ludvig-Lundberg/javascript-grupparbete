@@ -181,3 +181,48 @@ const renderDom = (() => {
 
 getItems()
 renderDom()
+
+// Detta submit knappen med interface fungerar visa på konsolen när allt kod ovanför är ut kommenterad.
+interface IDetails {
+    firstname?: string,
+    lastname?: string,
+    email: any,
+    phonenumber: any,
+    postcode: any,
+    zip: any,
+    city?: string,
+}
+
+document.querySelector('#form')?.addEventListener('submit', async e => {
+    e.preventDefault()
+    console.log("clicking")
+
+    const newFirstNameTitle = document.querySelector<HTMLInputElement>('#firstName')?.value
+    const newLastNameTitle = document.querySelector<HTMLInputElement>('#lastName')?.value
+    const newEmailTitle = document.querySelector<HTMLInputElement>('#c-Email')?.value
+    const newPhoneNumberTitle = document.querySelector<HTMLInputElement>('#c-Phone')?.value
+    const newPostCodeTitle = document.querySelector<HTMLInputElement>('#c-Postcode')?.value
+    const newZipTitle = document.querySelector<HTMLInputElement>('#c-Zip')?.value
+    const newCityTitle = document.querySelector<HTMLInputElement>('#c-City')?.value
+    let newDetails: IDetails[] = []
+    if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newPostCodeTitle && !newZipTitle && !newCityTitle) {
+        console.log("empty input");
+        return
+    }
+    if (newFirstNameTitle && newLastNameTitle && newEmailTitle && newPhoneNumberTitle && newPostCodeTitle && newZipTitle && newCityTitle) {
+        console.log("Sent", newDetails)
+    }
+    const newCollectTitles: IDetails = {
+        firstname: newFirstNameTitle,
+        lastname: newLastNameTitle,
+        email: newEmailTitle,
+        phonenumber: newPhoneNumberTitle,
+        postcode: newPostCodeTitle,
+        zip: newZipTitle,
+        city: newCityTitle,
+
+    }
+
+    console.log(newCollectTitles);
+    
+})

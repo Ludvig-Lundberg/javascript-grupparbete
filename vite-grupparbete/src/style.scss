@@ -159,7 +159,7 @@ header {
     
             li {
                 border-bottom: 0.5px solid rgb(167, 167, 167);
-                padding: 2px 1rem;
+                padding: 2px 0px 2px 1rem;
                 min-width: 100px;
 
                 i {
@@ -219,7 +219,8 @@ div#hideDescription {
 @media screen and (max-width: 480px) {
     header {
         #activeCart {
-            width: 15rem;
+            width: 75vw;
+            min-width: 15rem;
         }
     }
 }

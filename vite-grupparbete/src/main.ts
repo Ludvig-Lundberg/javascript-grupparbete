@@ -117,17 +117,13 @@ gridEl!.addEventListener("click", async e => {
 
     console.log("e target", e.target)
 
-    if (target.tagName === "BUTTON") {
+    if (target.tagName === "BUTTON" && target.classList.contains("read-more")) {
 		
 		const itemId = Number(target.dataset.itemIdButton);     // `data-item-id-button`
 
         console.log("item ID", itemId)
 
 		const foundItem = itemArray.find(item => item.id === itemId)!
-
-        console.log("hej")
-        console.log(infoDiv)
-        console.log(foundItem, foundItem.name)
 
         infoDiv.classList.toggle("d-none")
         infoDiv.innerHTML = `                
@@ -189,8 +185,7 @@ const renderDom = (() => {
                 <div id="priceTitles">${item.price}kr per skopa</div>
                 <div id="hideDescription">${item.description}</div>
                 <button class="btn btn-primary addButton">Lägg till i varukorgen</button>
-                <!-- testar att ha en button som visar mer info -->
-                <button class="btn btn-secondary" id="info-btn">Läs mer</button>
+                <button class="btn btn-secondary read-more" data-item-id-button="${item.id}">Läs mer</button>
             </div>
         </div>
         `

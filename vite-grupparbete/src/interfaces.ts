@@ -11,3 +11,13 @@ export interface IItem {
     stock_status: string,
     stock_quantity: null
   }
+
+  export interface IDetails {
+    firstname?: string,
+    lastname?: string,
+    email: string,
+    phonenumber: number,
+    address: string,
+    zip: number,
+    city?: string,
+}

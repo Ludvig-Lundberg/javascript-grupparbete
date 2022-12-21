@@ -1,4 +1,4 @@
-// import { IItem } from './interfaces'
+import { IItem, IDetails } from './interfaces'
 import { fetchItems } from './api'
 import './style.css'
 
@@ -231,30 +231,8 @@ renderDom()
 
 // kod som inte används atm
 
-/* <div class="d-none" id="fade-background">
-<div class="more-information">
-    <button class="btn btn-secondary close-info-btn">Stäng</button>
-    <img src="https://bortakvall.se/${item.images.large}" alt="">
-        <div id="info-text">
-        <h3>${item.name}</h3> 
-        <span class="price">Pris: ${item.price}</span>
-        <div class="ingredients">
-        ${item.description}
-        </div>
-    </div>
-</div>
-</div> */
-
 // Detta submit knappen med interface fungerar visa på konsolen när allt kod ovanför är ut kommenterad.
-interface IDetails {
-    firstname?: string,
-    lastname?: string,
-    email: any,
-    phonenumber: any,
-    postcode: any,
-    zip: any,
-    city?: string,
-}
+
 
 document.querySelector('#form')?.addEventListener('submit', async e => {
     e.preventDefault()
@@ -262,13 +240,13 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
 
     const newFirstNameTitle = document.querySelector<HTMLInputElement>('#firstName')?.value
     const newLastNameTitle = document.querySelector<HTMLInputElement>('#lastName')?.value
-    const newEmailTitle = document.querySelector<HTMLInputElement>('#c-Email')?.value
+    const newEmailTitle = document.querySelector<HTMLInputElement>('#c-Email')!.value
     const newPhoneNumberTitle = document.querySelector<HTMLInputElement>('#c-Phone')?.value
-    const newPostCodeTitle = document.querySelector<HTMLInputElement>('#c-Postcode')?.value
+    const newAddressTitle = document.querySelector<HTMLInputElement>('#c-Postcode')!.value
     const newZipTitle = document.querySelector<HTMLInputElement>('#c-Zip')?.value
     const newCityTitle = document.querySelector<HTMLInputElement>('#c-City')?.value
     let newDetails: IDetails[] = []
-    if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newPostCodeTitle && !newZipTitle && !newCityTitle) {
+    if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newAddressTitle && !newZipTitle && !newCityTitle) {
         console.log("empty input");
         return
     }
@@ -279,9 +257,9 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         firstname: newFirstNameTitle,
         lastname: newLastNameTitle,
         email: newEmailTitle,
-        phonenumber: newPhoneNumberTitle,
-        postcode: newPostCodeTitle,
-        zip: newZipTitle,
+        phonenumber: Number(newPhoneNumberTitle),
+        address: newAddressTitle,
+        zip: Number(newZipTitle),
         city: newCityTitle,
 
     }

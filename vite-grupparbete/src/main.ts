@@ -184,11 +184,15 @@ renderItems?.addEventListener("click", e => {
     const target = e.target as HTMLElement;
 
     if (target.tagName === "BUTTON" && target.classList.contains("addButton")) {
-        console.log("BUTTON & ADD");
-        let productId = target.parentElement?.parentElement?.getAttribute("id");
-        let item_price = target.parentElement?.querySelector("#priceTitles")?.textContent;
-        let item_total = productId * item_price;
-        console.log(productId, item_price);
+
+        let price: string = target.parentElement?.querySelector("#priceTitles")?.textContent!,
+            productId: number = Number(target.parentElement?.parentElement?.getAttribute("id")),
+            // ta bort allt förutom siffrorna
+            item_price: any = Number(price?.replace(/\D/g, '')),
+            item_total: number = 1 * item_price;
+
+
+        console.log(productId, item_price, item_total);
 
         cartArray.push({
             id: productId,

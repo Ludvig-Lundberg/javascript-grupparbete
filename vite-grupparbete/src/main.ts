@@ -13,37 +13,12 @@ const closeInfoBtn = document.querySelector("#close-info-btn")
 let items : []
 
 
-// Temporär knapp för att lägga in temporär object i cart array:en
+// // Array som kommer att hålla alla sina varor man valt i korgen
 let cartArray: Array<any> = [];
-let button = document.querySelector("#addButton");
 const cartListEl = document.querySelector("#cartList");
-button?.addEventListener("click", function(){
-    cartArray.push({
-        product: "Banan",
-        quantity: 2,
-        cost: 10,
-        id: 1403
-    },
-    {
-        product: "Cola",
-        quantity: 1,
-        cost: 20,
-        id: 1183
-    },
-    {
-        product: "Choklad",
-        quantity: 5,
-        cost: 25,
-        id: 639
-    })
-    console.log(cartArray.length);
-    console.log(cartArray);
-
-    renderCart();   
-})
-// Funktion för att rendera ut DOM:en på 'cart'
 const cartPayButton = document.querySelector("#cartPay");
 const cartNumber = document.querySelector("#cartNumber");
+// Funktion för att rendera ut DOM:en på 'cart'
 let renderCart = () => {
     // först tömmer man sin cart
     cartListEl!.innerHTML = ``;

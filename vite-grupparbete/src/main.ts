@@ -126,7 +126,7 @@ infoDiv?.addEventListener("click", e => {
 
     const target = e.target as HTMLElement
 
-    if (target.tagName === "DIV") {
+    if (target.tagName === "DIV" || target.tagName === "BUTTON") {
         infoDiv?.classList.toggle("d-none")
     }
 

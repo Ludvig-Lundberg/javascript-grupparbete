@@ -58,9 +58,9 @@ let renderCart = () => {
         // sedan fyller man på igen
         for (let i = 0; i < cartArray.length; i++) {
             cartListEl!.innerHTML += `<li>
-            <span class="cartItem1">${cartArray[i].product}</span><br>
-            <span class="cartItem2">${cartArray[i].quantity} st</span>
-            <span class="cartItem3">${(cartArray[i].cost) * (cartArray[i].quantity)} kr</span>
+            <span class="cartItem1">${cartArray[i].item_name}</span><br>
+            <span class="cartItem2">${cartArray[i].qty} st</span>
+            <span class="cartItem3">${(cartArray[i].item_price) * (cartArray[i].qty)} kr</span>
                 <i class="fa-solid fa-circle-plus plusButton"></i>
                 <i class="fa-solid fa-circle-minus minusButton"></i>
             </li>`
@@ -85,9 +85,9 @@ cartListEl?.addEventListener("click", e => {
         
         let i = 0;
         for (; i < cartArray.length; i++) {
-            if (cartArray[i].product.includes(productName)) {
-                cartArray[i].quantity --;
-                if (cartArray[i].quantity === 0) {
+            if (cartArray[i].item_name.includes(productName)) {
+                cartArray[i].qty --;
+                if (cartArray[i].qty === 0) {
                     cartArray.splice(i, 1);
                 }
                 renderCart();
@@ -195,7 +195,9 @@ renderItems?.addEventListener("click", e => {
             qty: 1,
             item_price: item_price,
             item_total: item_total
-        })
+        });
+
+        renderCart();
         console.log(cartArray)
     }
 });
@@ -203,8 +205,8 @@ renderItems?.addEventListener("click", e => {
 let addProductFunction = () => {
     let i = 0;
     for (; i < cartArray.length; i++) {
-        if (cartArray[i].product.includes(productName)) {
-            cartArray[i].quantity ++;
+        if (cartArray[i].item_name.includes(productName)) {
+            cartArray[i].qty ++;
             renderCart();
             return;
         }

@@ -226,9 +226,6 @@ renderItems?.addEventListener("click", e => {
     }
 });
 
-getItems()
-renderDom()
-
 // kod som inte används atm
 
 /* <div class="d-none" id="fade-background">
@@ -245,7 +242,7 @@ renderDom()
 </div>
 </div> */
 
-// Detta submit knappen med interface fungerar visa på konsolen när allt kod ovanför är ut kommenterad.
+// Detta submit knappen med interface fungerar visa på konsolen när allt kod skrivs ut
 interface IDetails {
     firstname?: string,
     lastname?: string,
@@ -293,3 +290,5 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     console.log("Skickat in", newCollectTitles)
     
 })
+getItems()
+renderDom()

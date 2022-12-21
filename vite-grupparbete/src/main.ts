@@ -43,15 +43,18 @@ button?.addEventListener("click", function(){
 })
 // Funktion för att rendera ut DOM:en på 'cart'
 const cartPayButton = document.querySelector("#cartPay");
+const cartNumber = document.querySelector("#cartNumber");
 let renderCart = () => {
     // först tömmer man sin cart
     cartListEl!.innerHTML = ``;
     // kollar om det finns minst 1 vara så att det visas "betala" knapp
     if (cartArray.length === 0) {
         cartPayButton?.classList.add("d-none")
+        cartNumber?.classList.add("d-none")
     } else {
         cartPayButton?.classList.remove("d-none")
-
+        cartNumber?.classList.remove("d-none")
+        cartNumber!.innerHTML = `${cartArray.length}`;
         // sedan fyller man på igen
         for (let i = 0; i < cartArray.length; i++) {
             cartListEl!.innerHTML += `<li>

@@ -15,39 +15,12 @@ let items: []
 let itemArray: []
 
 
-// Temporär knapp för att lägga in temporär object i cart array:en
+// // Array som kommer att hålla alla sina varor man valt i korgen
 let cartArray: Array<any> = [];
-let button = document.querySelector("#addButton");
-
 const cartListEl = document.querySelector("#cartList");
-
-button?.addEventListener("click", function () {
-    cartArray.push({
-        product: "Banan",
-        quantity: 2,
-        cost: 10,
-        id: 1403
-    },
-    {
-        product: "Cola",
-        quantity: 1,
-        cost: 20,
-        id: 1183
-    },
-    {
-        product: "Choklad",
-        quantity: 5,
-        cost: 25,
-        id: 639
-    })
-    console.log(cartArray.length);
-    console.log(cartArray);
-
-    renderCart();   
-})
-// Funktion för att rendera ut DOM:en på 'cart'
 const cartPayButton = document.querySelector("#cartPay");
 const cartNumber = document.querySelector("#cartNumber");
+// Funktion för att rendera ut DOM:en på 'cart'
 let renderCart = () => {
     // först tömmer man sin cart
     cartListEl!.innerHTML = ``;
@@ -59,20 +32,32 @@ let renderCart = () => {
         cartPayButton?.classList.remove("d-none")
         cartNumber?.classList.remove("d-none")
         cartNumber!.innerHTML = `${cartArray.length}`;
+        totalCostFunc();
+        cartListEl!.innerHTML += `
+        <li id="totalCost" class="text-right float-right">Totalt: ${totalCost} kr</li>`
         // sedan fyller man på igen
         for (let i = 0; i < cartArray.length; i++) {
+
             cartListEl!.innerHTML += `<li>
-            <span class="cartItem1">${cartArray[i].product}</span><br>
-            <span class="cartItem2">${cartArray[i].quantity} st</span>
-            <span class="cartItem3">${(cartArray[i].cost) * (cartArray[i].quantity)} kr</span>
+            <span class="cartItem1">${cartArray[i].item_name}</span><br>
+            <span class="cartItem2">${cartArray[i].qty} st</span>
+            <span class="cartItem3">${(cartArray[i].item_price) * (cartArray[i].qty)} kr</span>
                 <i class="fa-solid fa-circle-plus plusButton"></i>
                 <i class="fa-solid fa-circle-minus minusButton"></i>
             </li>`
         }
     }
 };
+let totalCost = 0;
+let totalCostFunc = () => {
+    totalCost = 0;
+    for (let i = 0; i < cartArray.length; i++) {
+            // beräknar totala värdet på varje vara
+            cartArray[i].item_total = (cartArray[i].item_price) * (cartArray[i].qty);
+            totalCost += cartArray[i].item_total;
+    }
+}
 
-// Temporär knapp för att lägga in temporär object i cart array:en
 // Håller föräldren på vilken knapp man trycker på, den visar vilken DOM 'li' som varan är i
 let productName: any;
 // Eventlistener för shopping cart 
@@ -84,20 +69,21 @@ cartListEl?.addEventListener("click", e => {
 
         let i = 0;
         for (; i < cartArray.length; i++) {
-            if (cartArray[i].product.includes(productName)) {
-                cartArray[i].quantity ++;
+            if (cartArray[i].item_name.includes(productName)) {
+                cartArray[i].qty ++;
                 renderCart();
                 return;
             }
         }
+
     } else if ((e.target as HTMLElement).classList.contains("minusButton")) {
         productName = (e.target as HTMLElement).parentElement?.querySelector(".cartItem1")?.textContent;
         
         let i = 0;
         for (; i < cartArray.length; i++) {
-            if (cartArray[i].product.includes(productName)) {
-                cartArray[i].quantity --;
-                if (cartArray[i].quantity === 0) {
+            if (cartArray[i].item_name.includes(productName)) {
+                cartArray[i].qty --;
+                if (cartArray[i].qty === 0) {
                     cartArray.splice(i, 1);
                 }
                 renderCart();
@@ -173,7 +159,7 @@ infoDiv?.addEventListener("click", e => {
 
 const cartEl = document.querySelector("#cart");
 const activeCartEl = document.querySelector("#activeCart");
-
+// visa och dölj sin varukorg
 cartEl?.addEventListener("click", function () {
     activeCartEl?.classList.toggle("d-none");
 })
@@ -187,31 +173,58 @@ const getItems = async () => {
     return items.data
 
 }
-
-
+// ÄNDRA INTE NAMN, används också för att lägga till saker i varukorgen
+const renderItems = document.querySelector('#grid')!;
 
 const renderDom = (() => {
 
     itemArray = items.data
 
-    const renderItems = document.querySelector('#grid')!;
-
     renderItems.innerHTML += itemArray.map(item =>
         `
-        <div id="${item.id}" class="card col-6">
+        <div id="${item.id}" class="card col-sm-6 col-md-4 col-lg-3">
             <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">
             <div id="Cardsbox" class="card-body">
                 <h5 class="card-title">${item.name}</h5>
                 <div id="priceTitles">${item.price}kr per skopa</div>
                 <div id="hideDescription">${item.description}</div>
-                <a href="#" class="btn btn-primary">Lägg till i varukorgen</a>
-                <button class="btn btn-secondary" data-item-id-button="${item.id}">Läs mer</button>
+                <button class="btn btn-primary addButton">Lägg till i varukorgen</button>
+                <!-- testar att ha en button som visar mer info -->
+                <button class="btn btn-secondary" id="info-btn">Läs mer</button>
             </div>
         </div>
         `
     ).join('')
 
 })
+// eventlistener som kollar om man trycker på "Lägg till i varukorgen"
+renderItems?.addEventListener("click", e => {
+    const target = e.target as HTMLElement;
+    if (target.tagName === "BUTTON" && target.classList.contains("addButton")) {
+        let price: string = target.parentElement?.querySelector("#priceTitles")?.textContent!,
+            productId: number = Number(target.parentElement?.parentElement?.getAttribute("id")),
+            // ta bort allt förutom siffrorna
+            item_price: number = Number(price?.replace(/\D/g, '')),
+            item_name: string = target.parentElement?.querySelector("h5")?.textContent!;
+        // kollar om det redan finns det typen av varan då 'qty ++;' och returerar, slutar alltså hela funktionen. Annars pushar den in ett nytt object.
+        for (let i = 0; i < cartArray.length; i++) {
+            if(cartArray.some(e => e.id === productId)) {
+                let o = cartArray.findIndex(e => e.id === productId);
+                cartArray[o].qty ++;
+                renderCart();
+                return;
+            }
+        }
+        cartArray.push({
+            item_name: item_name,
+            id: productId,
+            qty: 1,
+            item_price: item_price,
+            item_total: item_price
+        });
+        renderCart();
+    }
+});
 
 getItems()
 renderDom()

@@ -20,13 +20,16 @@
 <body>
 	<header class="navbar position-sticky">
 		<h1>Bortakväll</h1>
-		<button id="addButton">Klicka Mig!</button>
-		<button id="cart"><i class="fa-solid fa-cart-shopping"><span id="cartNumber" class="d-none"></span></i></button>
+		<button id="cart">
+			<i class="fa-solid fa-cart-shopping"><span id="cartNumber" class="d-none"></span></i>
+		</button>
 		<div id="activeCart" class="d-none">
-			<span id="listSpan">Dina varor</span>
-			<button id="cartPay" class="d-none">
-				Betala <i class="fa-solid fa-money-check-dollar"></i>
-			</button>
+			<div>
+				<span id="listSpan">Dina varor</span>
+				<button id="cartPay" class="d-none">
+					Betala <i class="fa-solid fa-money-check-dollar"></i>
+				</button>
+			</div>
 			<ul id="cartList">
 			</ul>
 		</div>

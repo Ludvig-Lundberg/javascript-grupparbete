@@ -39,7 +39,7 @@ header {
     #activeCart {
         position: absolute;
         right: 0px;
-        padding: 5px 1.5rem;
+        padding: 0px 1.5rem 5px 1.5rem;
         width: 25rem;
         top: 75px;
         z-index: 1;
@@ -51,48 +51,61 @@ header {
         max-height: 90vh;
         overflow-y: scroll;
         overflow-x: hidden;
+
+        div {
+            position: sticky;
+            top: 0px;
+            background-color: white;
+            z-index: 1;
+            padding-bottom: 5px;
+            border-bottom: 1px solid black;
+
+            #listSpan {
+                font-size: 2rem;
+                color: rgb(62, 62, 255);
+            }
+            #cartPay {
+                background: rgb(10, 163, 10);
+                border: none;
+                font-size: 1.5rem;
+                padding: 2px 1rem;
+                color: white;
+                left: 1rem;
+                border-radius: 10px;
     
-        #listSpan {
-            font-size: 2rem;
-            color: rgb(62, 62, 255);
-        }
-        #cartPay {
-            background: rgb(10, 163, 10);
-            border: none;
-            font-size: 1.5rem;
-            padding: 2px 1rem;
-            color: white;
-            position: relative;
-            left: 1rem;
-            border-radius: 10px;
-
-
-            &:hover {
-                i {
-                    animation: cartAnimation 1s 0s infinite alternate;
-                    position: relative;
-
-                    @keyframes cartAnimation {
-                        0% {
-                            left: 0px;
-                        } 
-                        100% {
-                            left: 10px;
+                &:hover {
+                    i {
+                        animation: cartAnimation 1s 0s infinite alternate;
+                        position: relative;
+    
+                        @keyframes cartAnimation {
+                            0% {
+                                left: 0px;
+                            } 
+                            100% {
+                                left: 10px;
+                            }
+    
                         }
-
                     }
                 }
             }
-        }
+        } 
         #cartList {
             list-style: none;
             padding: 0px;
             width: 100%;
             text-align: left;
-    
+            margin-top: 2px;
+
+            #totalCost {
+                font-size: 1.5rem;
+                color: green;
+                text-align: right;
+            }
             li {
                 border-bottom: 0.5px solid rgb(167, 167, 167);
-                padding: 2px 1rem;
+                padding: 2px 0px 2px 1rem;
                 min-width: 100px;
 
                 i {
@@ -113,6 +126,9 @@ header {
                 .cartItem1 {
                     text-align: left;
                     font-size: 1.2rem;
+                    width: 100%;
+                    display: inline-block;
+                    margin-bottom: 10px;
                 }
                 .cartItem2 {
                     text-align: left;
@@ -143,4 +159,28 @@ div#hideDescription {
 }
 #btn {
     margin-inline: auto;
+}
+
+
+@media screen and (max-width: 480px) {
+    header {
+        #activeCart {
+            width: 75vw;
+            min-width: 15rem;
+
+            #cartList {
+
+                li {
+                    padding-left: 0px;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 1024px) {
+    header {
+        #activeCart {
+            max-height: 80vh;
+        }
+    }
 }

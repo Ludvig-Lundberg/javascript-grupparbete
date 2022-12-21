@@ -246,13 +246,17 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     const newZipTitle = document.querySelector<HTMLInputElement>('#c-Zip')?.value
     const newCityTitle = document.querySelector<HTMLInputElement>('#c-City')?.value
     let newDetails: IDetails[] = []
-    if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newAddressTitle && !newZipTitle && !newCityTitle) {
+    console.log("Sent", newDetails)
+    if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newPostCodeTitle && !newZipTitle && !newCityTitle) {
         console.log("empty input");
         return
     }
     if (newFirstNameTitle && newLastNameTitle && newEmailTitle && newPhoneNumberTitle && newPostCodeTitle && newZipTitle && newCityTitle) {
-        console.log("Sent", newDetails)
+        
+    }else if (newFirstNameTitle && newLastNameTitle && newEmailTitle && !newPhoneNumberTitle && newPostCodeTitle && newZipTitle && newCityTitle) {
+        
     }
+    
     const newCollectTitles: IDetails = {
         firstname: newFirstNameTitle,
         lastname: newLastNameTitle,
@@ -264,6 +268,6 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
 
     }
 
-    console.log(newCollectTitles);
+    console.log("Skickat in", newCollectTitles)
     
 })

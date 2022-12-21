@@ -12,7 +12,7 @@ const gridEl = document.querySelector("#grid")
 // array för att hämta item (product) från API
 // let items : IItem[] = []
 let items: []
-let itemArray;
+let itemArray: []
 
 
 // Temporär knapp för att lägga in temporär object i cart array:en
@@ -20,8 +20,9 @@ let cartArray: Array<any> = [];
 let button = document.querySelector("#addButton");
 
 const cartListEl = document.querySelector("#cartList");
+
 button?.addEventListener("click", function () {
-    cart.push({
+    cartArray.push({
         product: "Banan",
         quantity: 2,
         cost: 10,

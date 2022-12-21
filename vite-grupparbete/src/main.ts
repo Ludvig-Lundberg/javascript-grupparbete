@@ -30,8 +30,12 @@ let renderCart = () => {
         cartPayButton?.classList.remove("d-none")
         cartNumber?.classList.remove("d-none")
         cartNumber!.innerHTML = `${cartArray.length}`;
+        totalCostFunc();
+        cartListEl!.innerHTML += `
+        <li class="text-right float-right">Totalt: ${totalCost} kr</li>`
         // sedan fyller man på igen
         for (let i = 0; i < cartArray.length; i++) {
+
             cartListEl!.innerHTML += `<li>
             <span class="cartItem1">${cartArray[i].item_name}</span><br>
             <span class="cartItem2">${cartArray[i].qty} st</span>
@@ -42,8 +46,16 @@ let renderCart = () => {
         }
     }
 };
+let totalCost = 0;
+let totalCostFunc = () => {
+    totalCost = 0;
+    for (let i = 0; i < cartArray.length; i++) {
+            // beräknar totala värdet på varje vara
+            cartArray[i].item_total = (cartArray[i].item_price) * (cartArray[i].qty);
+            totalCost += cartArray[i].item_total;
+    }
+}
 
-// Temporär knapp för att lägga in temporär object i cart array:en
 // Håller föräldren på vilken knapp man trycker på, den visar vilken DOM 'li' som varan är i
 let productName: any;
 // Eventlistener för shopping cart 
@@ -182,7 +194,7 @@ renderItems?.addEventListener("click", e => {
             id: productId,
             qty: 1,
             item_price: item_price,
-            item_total: item_total
+            item_total: item_price
         });
 
 

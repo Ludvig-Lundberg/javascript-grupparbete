@@ -32,7 +32,7 @@ let renderCart = () => {
         cartNumber!.innerHTML = `${cartArray.length}`;
         totalCostFunc();
         cartListEl!.innerHTML += `
-        <li class="text-right float-right">Totalt: ${totalCost} kr</li>`
+        <li id="totalCost" class="text-right float-right">Totalt: ${totalCost} kr</li>`
         // sedan fyller man på igen
         for (let i = 0; i < cartArray.length; i++) {
 
@@ -169,21 +169,16 @@ const renderDom = (() => {
 // eventlistener som kollar om man trycker på "Lägg till i varukorgen"
 renderItems?.addEventListener("click", e => {
     const target = e.target as HTMLElement;
-
     if (target.tagName === "BUTTON" && target.classList.contains("addButton")) {
         let price: string = target.parentElement?.querySelector("#priceTitles")?.textContent!,
             productId: number = Number(target.parentElement?.parentElement?.getAttribute("id")),
             // ta bort allt förutom siffrorna
             item_price: number = Number(price?.replace(/\D/g, '')),
-            item_total: number = 1 * item_price,
             item_name: string = target.parentElement?.querySelector("h5")?.textContent!;
-
-            // kollar om det redan finns det typen av varan då 'qty ++;' och returerar, slutar alltså hela funktionen. Annars pushar den in ett nytt object.
+        // kollar om det redan finns det typen av varan då 'qty ++;' och returerar, slutar alltså hela funktionen. Annars pushar den in ett nytt object.
         for (let i = 0; i < cartArray.length; i++) {
             if(cartArray.some(e => e.id === productId)) {
                 let o = cartArray.findIndex(e => e.id === productId);
-                console.log("Object found inside the array.");
-                console.log(o);
                 cartArray[o].qty ++;
                 renderCart();
                 return;
@@ -196,11 +191,7 @@ renderItems?.addEventListener("click", e => {
             item_price: item_price,
             item_total: item_price
         });
-
-
-
         renderCart();
-        console.log(cartArray)
     }
 });
 

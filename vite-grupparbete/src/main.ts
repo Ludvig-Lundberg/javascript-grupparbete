@@ -87,9 +87,6 @@ cartListEl?.addEventListener("click", e => {
     }
 });
 
-
-
-
 // EventListeners
 gridEl!.addEventListener("click", async e => {
     const target = e.target as HTMLElement

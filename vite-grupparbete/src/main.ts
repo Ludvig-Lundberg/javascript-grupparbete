@@ -167,7 +167,6 @@ cartEl?.addEventListener("click", function () {
 
 const getItems = async () => {
     items = await fetchItems()
-    console.log(items.data)
 
     renderDom()
     return items.data
@@ -189,7 +188,6 @@ const renderDom = (() => {
                 <div id="priceTitles">${item.price}kr per skopa</div>
                 <div id="hideDescription">${item.description}</div>
                 <button class="btn btn-primary addButton">Lägg till i varukorgen</button>
-                <!-- testar att ha en button som visar mer info -->
                 <button class="btn btn-secondary" id="info-btn">Läs mer</button>
             </div>
         </div>
@@ -226,31 +224,17 @@ renderItems?.addEventListener("click", e => {
     }
 });
 
-getItems()
-renderDom()
-
-// kod som inte används atm
-
-// Detta submit knappen med interface fungerar visa på konsolen när allt kod ovanför är ut kommenterad.
-
-
 document.querySelector('#form')?.addEventListener('submit', async e => {
     e.preventDefault()
     console.log("clicking")
 
-    const newFirstNameTitle = document.querySelector<HTMLInputElement>('#firstName')?.value
-    const newLastNameTitle = document.querySelector<HTMLInputElement>('#lastName')?.value
+    const newFirstNameTitle = document.querySelector<HTMLInputElement>('#firstName')!.value
+    const newLastNameTitle = document.querySelector<HTMLInputElement>('#lastName')!.value
     const newEmailTitle = document.querySelector<HTMLInputElement>('#c-Email')!.value
     const newPhoneNumberTitle = document.querySelector<HTMLInputElement>('#c-Phone')?.value
     const newAddressTitle = document.querySelector<HTMLInputElement>('#c-Address')!.value
-    const newZipTitle = document.querySelector<HTMLInputElement>('#c-Zip')?.value
-    const newCityTitle = document.querySelector<HTMLInputElement>('#c-City')?.value
-
-    const formInput = document.querySelector<HTMLFormElement>("#form")
-    console.log(formInput!.value)
-    let newDetails: IDetails[] = []
-
-    console.log("Sent", newDetails)
+    const newZipTitle = document.querySelector<HTMLInputElement>('#c-Zip')!.value
+    const newCityTitle = document.querySelector<HTMLInputElement>('#c-City')!.value
 
     if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newAddressTitle && !newZipTitle && !newCityTitle) {
         console.log("empty input");
@@ -270,9 +254,14 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         address: newAddressTitle,
         zip: Number(newZipTitle),
         city: newCityTitle,
-
     }
 
     console.log("Skickat in", newCollectTitles)
     
 })
+
+getItems()
+renderDom()
+
+// kod som inte används atm
+

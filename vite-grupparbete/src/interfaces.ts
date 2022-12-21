@@ -13,11 +13,11 @@ export interface IItem {
   }
 
   export interface IDetails {
-    firstname?: string,
-    lastname?: string,
+    firstname: string,
+    lastname: string,
     email: string,
-    phonenumber: number,
+    phonenumber?: number,
     address: string,
     zip: number,
-    city?: string,
+    city: string,
 }

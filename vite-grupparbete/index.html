@@ -41,39 +41,41 @@
 			<div id="grid" class="row d-flex justify-content-center">
 			</div>
 		</div>
+		
 		<div class="d-none" id="fade-background">
 		</div>
+
 		<form id="form" class="bg-info text-secondary col-12 flex">
 			<h2 class="text-center">Dina kontakt uppgifter</h2>
 			<hr>
 			<div id="adjustbox" class="col-12 d-flex row text-center">
 				<div class="form-group col-6">
 					<label for="InputFirstName">Förnamn:</label>
-					<input name="firstname" type="firstname" class="form-control" id="firstName" placeholder="Förnamn" required>
+					<input name="firstname" type="text" class="form-control" id="firstName" placeholder="Förnamn" required>
 				</div>
 				<div class="form-group col-6">
 					<label for="InputLastName">Efternamn:</label>
-					<input name="lastname" type="lastname" class="form-control" id="lastName" placeholder="Efternamn" required>
+					<input name="lastname" type="text" class="form-control" id="lastName" placeholder="Efternamn" required>
 				</div>
 				<div class="form-group col-6">
 					<label for="InputEmail">Email:</label>
-					<input name="email" type="email" class="form-control" id="c-Email" placeholder="Email" required>
+					<input name="email" type="text" class="form-control" id="c-Email" placeholder="Email" required>
 				</div>
 				<div class="form-group col-6">
 					<label for="InputPhoneNumber">Mobilnummer:</label>
-					<input name="phone-number" type="phone-number" class="form-control" id="c-Phone" placeholder="Mobilnummer">
+					<input name="phone-number" type="number" class="form-control" id="c-Phone" placeholder="Mobilnummer">
 				</div>
 				<div class="form-group col-4">
 					<label for="InputAddress">Adress:</label>
-					<input name="address" type="address" class="form-control" id="c-Address" placeholder="Adress" required>
+					<input name="address" type="text" class="form-control" id="c-Address" placeholder="Adress" required>
 				</div>
 				<div class="form-group col-4">
 					<label for="InputZip">Postnummer:</label>
-					<input name="zip" type="zip" class="form-control" id="c-Zip" placeholder="Postnummer" required>
+					<input name="zip" type="number" class="form-control" id="c-Zip" placeholder="Postnummer" required>
 				</div>
 				<div class="form-group col-4">
 					<label for="InputCity">Ort:</label>
-					<input name="city" type="city" class="form-control" id="c-City" placeholder="Ort" required>
+					<input name="city" type="text" class="form-control" id="c-City" placeholder="Ort" required>
 				</div>
 				<button id="btn" type="submit" class="btn btn-success mt-3 col-3">Skicka in</button>
 			</div>

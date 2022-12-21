@@ -221,6 +221,13 @@ div#hideDescription {
         #activeCart {
             width: 75vw;
             min-width: 15rem;
+
+            #cartList {
+
+                li {
+                    padding-left: 0px;
+                }
+            }
         }
     }
 }

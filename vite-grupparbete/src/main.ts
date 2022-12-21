@@ -188,7 +188,7 @@ const renderDom = (() => {
                 <div id="priceTitles">${item.price}kr per skopa</div>
                 <div id="hideDescription">${item.description}</div>
                 <button class="btn btn-primary addButton">Lägg till i varukorgen</button>
-                <button class="btn btn-secondary" id="info-btn">Läs mer</button>
+                <button class="btn btn-secondary" data-item-id-button="${item.id}">Läs mer</button>
             </div>
         </div>
         `

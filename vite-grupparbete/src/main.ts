@@ -70,7 +70,7 @@ gridEl!.addEventListener("click", async e => {
 		const foundItem = itemArray.find(item => item.id === itemId)!
 
         console.log("hej")
-        console.log(infoDiv as HTMLElement)
+        console.log(infoDiv)
 
         infoDiv!.classList.remove("d-none")
         

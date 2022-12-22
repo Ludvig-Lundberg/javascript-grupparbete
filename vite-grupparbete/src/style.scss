@@ -227,6 +227,7 @@ main {
 			@keyframes formAnimation {
 				0% {
 					right: 10px;
+					color: black;
 				} 
 				100% {
 					right: 0px;
@@ -244,6 +245,7 @@ main {
 					} 
 					100% {
 						right: 10px;
+						color: black;
 					}
 				}
 			}

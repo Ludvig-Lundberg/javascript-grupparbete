@@ -34,37 +34,6 @@ const testOrder : IOrder = {
     order_items: testCart
 }
 
-/* {
-    "customer_first_name": "Arden",
-    "customer_last_name": "H",
-    "customer_address": "Hemma 2B",
-    "customer_postcode": "211 76",
-    "customer_city": "Malmö",
-    "customer_email": "email@here.com",
-    "order_total": 48,
-    "order_items": [
-        {
-        "product_id": 5216,
-        "qty": 2,
-        "item_price": 12,
-        "item_total": 24
-        }, 
-        {
-            "product_id": 6545,
-            "qty": 3,
-            "item_price": 8,
-            "item_total": 24
-        }
-    ]
-} */
-
-/* const getOrder = async () => {
-	// fetch
-	todos = await fetchItems()
-
-	renderTodos()
-} */
-
 let orderResponse : IResponse
 
 

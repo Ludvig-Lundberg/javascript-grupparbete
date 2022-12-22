@@ -171,10 +171,9 @@ header {
                     background: none;
                     border: none;
                     font-size: 1.5rem;
-                    float: right;
-                    position: relative;
                     bottom: 7px;
                     padding: 5px;
+                    float: left;
                 }
                 .plusButton {
                     color: green;
@@ -182,25 +181,28 @@ header {
                 .minusButton {
                     color: red;
                 }
+                .removeButton {
+                    float: right;
+                }
                 .cartItem1 {
                     text-align: left;
                     font-size: 1.2rem;
                     width: 100%;
                     display: inline-block;
-                    margin-bottom: 10px;
                 }
                 .cartItem2 {
                     text-align: left;
                     font-weight: lighter;
                     font-size: 1.1rem;
+                    width: 100%;
+                    display: inline-block;
                 }
                 .cartItem3 {
                     text-align: right;
-                    float: right;
                     color: green;
                     font-size: 1.5rem;
-                    position: relative;
-                    bottom: 7px;
+                    width: 100%;
+                    display: inline-block;
                 }
             }
         }

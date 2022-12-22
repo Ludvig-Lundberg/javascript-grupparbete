@@ -33,11 +33,16 @@ let renderCart = () => {
         for (let i = 0; i < cartArray.length; i++) {
 
             cartListEl!.innerHTML += `<li>
-            <span class="cartItem1">${cartArray[i].item_name}</span><br>
-            <span class="cartItem2">${cartArray[i].qty} st</span>
-            <span class="cartItem3">${(cartArray[i].item_price) * (cartArray[i].qty)} kr</span>
-                <i class="fa-solid fa-circle-plus plusButton"></i>
-                <i class="fa-solid fa-circle-minus minusButton"></i>
+            <span class="cartItem1">${cartArray[i].item_name}</span>
+            <br>
+            <span class="cartItem2">${cartArray[i].qty} st <i class="fa-solid fa-trash-can removeButton float-right"></i></span>
+            <br>
+            <span class="cartItem3">
+                <i class="fa-solid fa-circle-plus plusButton float-left"></i>
+                <i class="fa-solid fa-circle-minus minusButton float-left"></i>
+                ${(cartArray[i].item_price) * (cartArray[i].qty)} kr
+            </span>
+                
             </li>`
         }
     }
@@ -59,7 +64,7 @@ cartListEl?.addEventListener("click", e => {
     if ((e.target as HTMLElement).tagName === "I") {
         
     } if ((e.target as HTMLElement).classList.contains("plusButton")) {
-        productName = (e.target as HTMLElement).parentElement?.querySelector(".cartItem1")?.textContent;
+        productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent;
 
         let i = 0;
         for (; i < cartArray.length; i++) {
@@ -71,7 +76,7 @@ cartListEl?.addEventListener("click", e => {
         }
 
     } else if ((e.target as HTMLElement).classList.contains("minusButton")) {
-        productName = (e.target as HTMLElement).parentElement?.querySelector(".cartItem1")?.textContent;
+        productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent;
         
         let i = 0;
         for (; i < cartArray.length; i++) {

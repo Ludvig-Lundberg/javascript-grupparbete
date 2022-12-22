@@ -221,7 +221,15 @@ div#hideDescription {
 #btn {
     margin-inline: auto;
 }
-
+#confirmation {
+    position: relative;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+    text-align: center;
+    //display: none;
+}
 
 @media screen and (max-width: 480px) {
     header {

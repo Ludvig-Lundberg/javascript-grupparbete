@@ -124,7 +124,7 @@ infoDiv.addEventListener("click", e => {
 
     const target = e.target as HTMLElement
 
-    if (target.tagName === "DIV" || target.tagName === "BUTTON") {
+    if (target.tagName === "DIV" && target.id.includes("fade-background") || target.tagName === "BUTTON") {
         infoDiv.classList.toggle("d-none")
     }
 

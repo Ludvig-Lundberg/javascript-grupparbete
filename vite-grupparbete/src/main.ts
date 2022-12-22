@@ -183,7 +183,7 @@ const renderDom = (() => {
 
     renderItems.innerHTML += items.data.map(item =>
         `
-        <div id="${item.id}" class="card col-6 col-md-4 col-lg-3">
+        <div id="${item.id}" class="card col-6 col-md-4 col-lg-3 col-xl-2">
             <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">
             <div id="Cardsbox" class="card-body">
                 <h5 class="card-title">${item.name}</h5>

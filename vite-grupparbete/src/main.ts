@@ -17,6 +17,8 @@ const cartNumber = document.querySelector("#cartNumber");
 // Funktion för att rendera ut DOM:en på 'cart'
 let renderCart = () => {
     console.log(cartArray);
+    // Fyller på localStorage med nytt innehåll
+    localStorage.setItem("cart", JSON.stringify(cartArray));
     // först tömmer man sin cart
     cartListEl!.innerHTML = ``;
     // kollar om det finns minst 1 vara så att det visas "betala" knapp
@@ -46,6 +48,7 @@ let renderCart = () => {
         }
     }
 };
+
 const continueShoppingEl = document.querySelector("#continueShopping");
 document.querySelector("#form")?.classList.add("d-none");
 let toggleFormFunc = () => {
@@ -271,7 +274,10 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     
 })
 
-getItems()
-renderDom()
+// localStorage för cart
+const storageCart = localStorage.getItem("cart");
+cartArray = JSON.parse(storageCart!);
 
-// kod som inte används atm
+renderCart();
+getItems();
+renderDom();

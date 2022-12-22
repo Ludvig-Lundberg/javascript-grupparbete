@@ -172,6 +172,7 @@ const getItems = async () => {
     items = await fetchItems()
     console.log(items.data)
 
+    
     renderDom()
     return items
 
@@ -288,4 +289,3 @@ if (storageCart !== null) {
 
 renderCart();
 getItems();
-renderDom();

@@ -46,7 +46,7 @@
     height: 80%;
     max-height: 90%;
     background-color: rgb(255, 255, 255);
-    border-radius: 5%;
+    border-radius: 15px;
 
     img {
         width: 85%;
@@ -54,7 +54,7 @@
         object-fit: cover;
         height: auto;    
         border: black 2px solid;
-        border-radius: 5%;
+        border-radius: 15px;
         margin: 10px 0 15px;
     }
 }
@@ -93,7 +93,6 @@
         img {
             max-width: 500px;
             height: 350px;
-            border-radius: 3%;
         }
     }
 }

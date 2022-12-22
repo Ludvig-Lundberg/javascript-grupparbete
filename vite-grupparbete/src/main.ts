@@ -16,6 +16,7 @@ const cartPayButton = document.querySelector("#cartPay");
 const cartNumber = document.querySelector("#cartNumber");
 // Funktion för att rendera ut DOM:en på 'cart'
 let renderCart = () => {
+    console.log(cartArray);
     // först tömmer man sin cart
     cartListEl!.innerHTML = ``;
     // kollar om det finns minst 1 vara så att det visas "betala" knapp
@@ -63,6 +64,7 @@ let productName: any;
 cartListEl?.addEventListener("click", e => {
     if ((e.target as HTMLElement).tagName === "I") {
         
+        // Lägger till +1
     } if ((e.target as HTMLElement).classList.contains("plusButton")) {
         productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent;
 
@@ -74,7 +76,7 @@ cartListEl?.addEventListener("click", e => {
                 return;
             }
         }
-
+        // Tar bort -1
     } else if ((e.target as HTMLElement).classList.contains("minusButton")) {
         productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent;
         
@@ -85,6 +87,18 @@ cartListEl?.addEventListener("click", e => {
                 if (cartArray[i].qty === 0) {
                     cartArray.splice(i, 1);
                 }
+                renderCart();
+                return;
+            }
+        }
+        // Tar bort hela varan
+    } else if ((e.target as HTMLElement).classList.contains("removeButton")) {
+        productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent;
+        
+        let i = 0;
+        for (; i < cartArray.length; i++) {
+            if (cartArray[i].item_name.includes(productName)) {
+                cartArray.splice(i, 1);
                 renderCart();
                 return;
             }

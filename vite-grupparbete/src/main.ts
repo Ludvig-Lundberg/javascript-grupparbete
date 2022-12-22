@@ -1,13 +1,40 @@
 import { ICartitem, IItem, IOrder } from './interfaces'
-import { fetchItems } from './api'
+import { createOrder, fetchItems } from './api'
 import './style.css'
 
 // HTML elements
 const infoDiv = document.querySelector("#fade-background") as HTMLElement
 const gridEl = document.querySelector("#grid") as HTMLElement
+const testPostBtn = document.querySelector("#test-post") as HTMLElement
 
 // arrays
 let items: {data: Array<IItem>}
+
+// test POST req
+const testCart : Array<ICartitem> = [{
+    product_id: 5216,
+    qty: 2,
+    item_price: 12,
+    item_total: 24
+}, 
+{
+    product_id: 6545,
+    qty: 3,
+    item_price: 8,
+    item_total: 24
+}]
+
+const testOrder : IOrder = {
+    customer_first_name: "Arden",
+    customer_last_name: "H",
+    customer_address: "Hemma 2B",
+    customer_postcode: "211 76",
+    customer_city: "Malmö",
+    customer_email: "email@here.com",
+    order_total: 56,
+    order_items: testCart
+}
+
 
 // // Array som kommer att hålla alla sina varor man valt i korgen
 let cartArray: Array<any> = [];

@@ -1,4 +1,4 @@
-import { IOrder } from './interfaces'
+import { IOrder, IResponse } from './interfaces'
 
 export const createOrder = async (order : IOrder) => {
 	const res = await fetch("https://bortakvall.se/api/orders", {
@@ -16,7 +16,7 @@ export const createOrder = async (order : IOrder) => {
 		throw new Error(`Could not create a new order, reason: ${res.status} ${res.statusText}`)
 	}
 
-	return await res.json() as IOrder;
+	return await res.json() as IResponse
 
 }
 
@@ -27,6 +27,6 @@ export const fetchItems = async () => {
 		throw new Error(`${res.status} ${res.statusText}`)
 	}
 
-	return await res.json() 
+	return await res.json()
 	
 }

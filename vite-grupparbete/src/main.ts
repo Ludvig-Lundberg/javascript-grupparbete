@@ -258,7 +258,13 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     }
 
     console.log("Skickat in", newCollectTitles)
-    
+    const confirmationEl = document.querySelector('#confirmation')!;
+    confirmationEl!.innerHTML = `
+    <h2>Beställningen är slutförd!</h2>
+    <p>Tack för du handlade hos oss!</p>
+    <button id="submitAgain" type="submit">close</button>
+    `;
+
 })
 
 getItems()

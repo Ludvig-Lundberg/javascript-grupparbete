@@ -35,6 +35,20 @@ const testOrder : IOrder = {
     order_items: testCart
 }
 
+/* const getOrder = async () => {
+	// fetch
+	todos = await fetchItems()
+
+	renderTodos()
+} */
+
+testPostBtn.addEventListener("click", () => {
+    createOrder(testOrder)
+
+    console.log("skickade iväg order", )
+})
+
+
 
 // // Array som kommer att hålla alla sina varor man valt i korgen
 let cartArray: Array<any> = [];

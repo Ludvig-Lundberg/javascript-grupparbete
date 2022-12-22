@@ -170,7 +170,7 @@ const renderDom = (() => {
 
     renderItems.innerHTML += items.data.map(item =>
         `
-        <div id="${item.id}" class="card col-sm-6 col-md-4 col-lg-3">
+        <div id="${item.id}" class="card col-6 col-md-4 col-lg-3">
             <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">
             <div id="Cardsbox" class="card-body">
                 <h5 class="card-title">${item.name}</h5>
@@ -214,13 +214,13 @@ renderItems?.addEventListener("click", e => {
 });
 
 interface IDetails {
-    firstname?: string,
-    lastname?: string,
-    email: any,
-    phonenumber: any,
-    postcode: any,
-    zip: any,
-    city?: string,
+    customer_firstname?: string,
+    customer_lastname?: string,
+    customer_email: any,
+    customer_phonenumber: any,
+    customer_adress: any,
+    customer_postcode: any,
+    customer_city?: string,
 }
 
 document.querySelector('#form')?.addEventListener('submit', async e => {
@@ -231,29 +231,29 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     const newLastNameTitle = document.querySelector<HTMLInputElement>('#lastName')?.value
     const newEmailTitle = document.querySelector<HTMLInputElement>('#c-Email')?.value
     const newPhoneNumberTitle = document.querySelector<HTMLInputElement>('#c-Phone')?.value
+    const newAdressTitle = document.querySelector<HTMLInputElement>('#c-Adress')?.value
     const newPostCodeTitle = document.querySelector<HTMLInputElement>('#c-Postcode')?.value
-    const newZipTitle = document.querySelector<HTMLInputElement>('#c-Zip')?.value
     const newCityTitle = document.querySelector<HTMLInputElement>('#c-City')?.value
     let newDetails: IDetails[] = []
     console.log("Sent", newDetails)
-    if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newPostCodeTitle && !newZipTitle && !newCityTitle) {
+    if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newAdressTitle && !newPostCodeTitle && !newCityTitle) {
         console.log("empty input");
         return
     }
-    if (newFirstNameTitle && newLastNameTitle && newEmailTitle && newPhoneNumberTitle && newPostCodeTitle && newZipTitle && newCityTitle) {
+    if (newFirstNameTitle && newLastNameTitle && newEmailTitle && newPhoneNumberTitle && newAdressTitle && newPostCodeTitle && newCityTitle) {
         
-    }else if (newFirstNameTitle && newLastNameTitle && newEmailTitle && !newPhoneNumberTitle && newPostCodeTitle && newZipTitle && newCityTitle) {
+    }else if (newFirstNameTitle && newLastNameTitle && newEmailTitle && !newPhoneNumberTitle && newAdressTitle && newPostCodeTitle && newCityTitle) {
         
     }
     
     const newCollectTitles: IDetails = {
-        firstname: newFirstNameTitle,
-        lastname: newLastNameTitle,
-        email: newEmailTitle,
-        phonenumber: newPhoneNumberTitle,
-        postcode: newPostCodeTitle,
-        zip: newZipTitle,
-        city: newCityTitle,
+        customer_firstname: newFirstNameTitle,
+        customer_lastname: newLastNameTitle,
+        customer_email: newEmailTitle,
+        customer_phonenumber: newPhoneNumberTitle,
+        customer_adress: newAdressTitle,
+        customer_postcode: newPostCodeTitle,
+        customer_city: newCityTitle,
 
     }
 

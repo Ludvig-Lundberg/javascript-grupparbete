@@ -1,4 +1,4 @@
-import { IItem } from './interfaces'
+import { ICartitem, IItem, IOrder } from './interfaces'
 import { fetchItems } from './api'
 import './style.css'
 

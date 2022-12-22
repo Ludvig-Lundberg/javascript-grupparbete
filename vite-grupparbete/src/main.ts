@@ -32,7 +32,6 @@ let renderCart = () => {
         <li id="totalCost" class="text-right float-right">Totalt: ${totalCost} kr</li>`
         // sedan fyller man på igen
         for (let i = 0; i < cartArray.length; i++) {
-
             cartListEl!.innerHTML += `<li>
             <span class="cartItem1">${cartArray[i].item_name}</span>
             <br>
@@ -43,11 +42,22 @@ let renderCart = () => {
                 <i class="fa-solid fa-circle-minus minusButton float-left"></i>
                 ${(cartArray[i].item_price) * (cartArray[i].qty)} kr
             </span>
-                
             </li>`
         }
     }
 };
+const continueShoppingEl = document.querySelector("#continueShopping");
+document.querySelector("#form")?.classList.add("d-none");
+let toggleFormFunc = () => {
+    gridEl.classList.toggle("d-none");
+    document.querySelector("#form")?.classList.toggle("d-none");
+    continueShoppingEl?.classList.toggle("d-none");
+    activeCartEl?.classList.add("d-none");
+}
+cartPayButton?.addEventListener("click", toggleFormFunc);
+
+continueShoppingEl?.addEventListener("click", toggleFormFunc);
+
 let totalCost = 0;
 let totalCostFunc = () => {
     totalCost = 0;

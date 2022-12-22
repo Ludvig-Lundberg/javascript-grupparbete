@@ -1,11 +1,10 @@
-import { ICartitem, IItem, IOrder } from './interfaces'
+import { ICartitem, IItem, IOrder, IResponse } from './interfaces'
 import { createOrder, fetchItems } from './api'
 import './style.css'
 
 // HTML elements
 const infoDiv = document.querySelector("#fade-background") as HTMLElement
 const gridEl = document.querySelector("#grid") as HTMLElement
-const testPostBtn = document.querySelector("#test-post") as HTMLElement
 
 // arrays
 let items: {data: Array<IItem>}
@@ -66,15 +65,17 @@ const testOrder : IOrder = {
 	renderTodos()
 } */
 
-let orderResponse : object
+let orderResponse : IResponse
 
-testPostBtn.addEventListener("click", () => {
-    createOrder(testOrder)
 
-    console.log("skickade iväg order", )
+const getOrderRes = async () => {
+    orderResponse = await createOrder(testOrder)
 
-    return 
-})
+    console.log(orderResponse)
+    return orderResponse
+
+}
+
 
 
 
@@ -331,6 +332,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
 })
 
 getItems()
+getOrderRes()
 renderDom()
 
 // kod som inte används atm

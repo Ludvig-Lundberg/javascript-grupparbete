@@ -276,9 +276,14 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     confirmationEl!.innerHTML = `
     <h2>Beställningen är slutförd!</h2>
     <p>Tack för du handlade hos oss!</p>
-    <button id="submitAgain" type="submit">close</button>
+    <button id="submitAgain" type="submit">Stäng</button>
     `;
 
+    const submitAgainEl = document.querySelector('#submitAgain') as HTMLElement
+    submitAgainEl?.addEventListener('click', e => {
+        e.preventDefault()
+        return window.location.assign("index.html")
+    })
 })
 
 // localStorage för cart

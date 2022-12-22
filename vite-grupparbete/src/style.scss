@@ -1,7 +1,66 @@
-@import "information-box";
+#close-info-btn {
+    margin: 10px 0 0;
+}
 
-body {
-    box-sizing: border-box;
+#fade-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba($color: #000000, $alpha: 0.4);
+}
+
+#info-text {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+
+    p {
+        margin-bottom: 0.3rem;
+    }
+}
+
+#ingredients {
+
+    p:nth-child(2) {
+        font-size: small;
+        overflow-y: scroll;
+        max-height: 15vw;
+    }
+}
+
+#more-information {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    max-width: 800px;
+    height: auto;
+    max-height: 90%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5%;
+
+    img {
+        width: 85%;
+        max-width: 350px;
+        height: auto;    
+        border: black 2px solid;
+        border-radius: 5%;
+        margin: 5% 0 5%;
+    }
+}
+
+.price {
+    text-transform: uppercase;
+    letter-spacing: 0.03rem;
+    font-weight: 600;
 }
 
 header {
@@ -112,10 +171,9 @@ header {
                     background: none;
                     border: none;
                     font-size: 1.5rem;
-                    float: right;
-                    position: relative;
                     bottom: 7px;
                     padding: 5px;
+                    float: left;
                 }
                 .plusButton {
                     color: green;
@@ -123,25 +181,28 @@ header {
                 .minusButton {
                     color: red;
                 }
+                .removeButton {
+                    float: right;
+                }
                 .cartItem1 {
                     text-align: left;
                     font-size: 1.2rem;
                     width: 100%;
                     display: inline-block;
-                    margin-bottom: 10px;
                 }
                 .cartItem2 {
                     text-align: left;
                     font-weight: lighter;
                     font-size: 1.1rem;
+                    width: 100%;
+                    display: inline-block;
                 }
                 .cartItem3 {
                     text-align: right;
-                    float: right;
                     color: green;
                     font-size: 1.5rem;
-                    position: relative;
-                    bottom: 7px;
+                    width: 100%;
+                    display: inline-block;
                 }
             }
         }
@@ -166,12 +227,19 @@ div#hideDescription {
     header {
         #activeCart {
             width: 75vw;
-            min-width: 15rem;
+            min-width: 16rem;
 
             #cartList {
 
                 li {
                     padding-left: 0px;
+
+                    i {
+                        font-size: 1.2rem;
+                    }
+                    .spanItem3{
+                        font-size: 1.2rem;
+                    }
                 }
             }
         }

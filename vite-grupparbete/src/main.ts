@@ -16,6 +16,7 @@ const cartPayButton = document.querySelector("#cartPay");
 const cartNumber = document.querySelector("#cartNumber");
 // Funktion för att rendera ut DOM:en på 'cart'
 let renderCart = () => {
+    console.log(cartArray);
     // först tömmer man sin cart
     cartListEl!.innerHTML = ``;
     // kollar om det finns minst 1 vara så att det visas "betala" knapp
@@ -33,11 +34,16 @@ let renderCart = () => {
         for (let i = 0; i < cartArray.length; i++) {
 
             cartListEl!.innerHTML += `<li>
-            <span class="cartItem1">${cartArray[i].item_name}</span><br>
-            <span class="cartItem2">${cartArray[i].qty} st</span>
-            <span class="cartItem3">${(cartArray[i].item_price) * (cartArray[i].qty)} kr</span>
-                <i class="fa-solid fa-circle-plus plusButton"></i>
-                <i class="fa-solid fa-circle-minus minusButton"></i>
+            <span class="cartItem1">${cartArray[i].item_name}</span>
+            <br>
+            <span class="cartItem2">${cartArray[i].qty} st <i class="fa-solid fa-trash-can removeButton float-right"></i></span>
+            <br>
+            <span class="cartItem3">
+                <i class="fa-solid fa-circle-plus plusButton float-left"></i>
+                <i class="fa-solid fa-circle-minus minusButton float-left"></i>
+                ${(cartArray[i].item_price) * (cartArray[i].qty)} kr
+            </span>
+                
             </li>`
         }
     }
@@ -58,8 +64,9 @@ let productName: any;
 cartListEl?.addEventListener("click", e => {
     if ((e.target as HTMLElement).tagName === "I") {
         
+        // Lägger till +1
     } if ((e.target as HTMLElement).classList.contains("plusButton")) {
-        productName = (e.target as HTMLElement).parentElement?.querySelector(".cartItem1")?.textContent;
+        productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent;
 
         let i = 0;
         for (; i < cartArray.length; i++) {
@@ -69,9 +76,9 @@ cartListEl?.addEventListener("click", e => {
                 return;
             }
         }
-
+        // Tar bort -1
     } else if ((e.target as HTMLElement).classList.contains("minusButton")) {
-        productName = (e.target as HTMLElement).parentElement?.querySelector(".cartItem1")?.textContent;
+        productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent;
         
         let i = 0;
         for (; i < cartArray.length; i++) {
@@ -80,6 +87,18 @@ cartListEl?.addEventListener("click", e => {
                 if (cartArray[i].qty === 0) {
                     cartArray.splice(i, 1);
                 }
+                renderCart();
+                return;
+            }
+        }
+        // Tar bort hela varan
+    } else if ((e.target as HTMLElement).classList.contains("removeButton")) {
+        productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent;
+        
+        let i = 0;
+        for (; i < cartArray.length; i++) {
+            if (cartArray[i].item_name.includes(productName)) {
+                cartArray.splice(i, 1);
                 renderCart();
                 return;
             }

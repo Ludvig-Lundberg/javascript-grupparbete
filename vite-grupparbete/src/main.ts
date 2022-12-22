@@ -276,7 +276,9 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
 
 // localStorage för cart
 const storageCart = localStorage.getItem("cart");
-cartArray = JSON.parse(storageCart!);
+if (storageCart !== null) {
+        cartArray = JSON.parse(storageCart!);
+}
 
 renderCart();
 getItems();

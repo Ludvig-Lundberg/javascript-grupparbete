@@ -1,4 +1,5 @@
 node_modules
 dist
-.css
-.css.map
+
+/vite-grupparbete/src/style.css
+/vite-grupparbete/src/style.css.map

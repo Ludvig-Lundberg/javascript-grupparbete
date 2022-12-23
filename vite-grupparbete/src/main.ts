@@ -302,6 +302,5 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
 
 getItems()
 getOrderRes()
-renderDom()
 
 // kod som inte används atm

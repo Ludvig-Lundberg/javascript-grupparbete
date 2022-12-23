@@ -46,8 +46,6 @@ const getOrderRes = async () => {
 }
 
 
-
-
 // // Array som kommer att hålla alla sina varor man valt i korgen
 let cartArray: Array<any> = [];
 const cartListEl = document.querySelector("#cartList");
@@ -301,6 +299,6 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
 })
 
 getItems()
-getOrderRes()
+// getOrderRes() // skickar iväg testorder till api
 
 // kod som inte används atm

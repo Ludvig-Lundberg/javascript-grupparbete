@@ -45,12 +45,18 @@ const getOrderRes = async () => {
 
 }
 
-
 // // Array som kommer att hålla alla sina varor man valt i korgen
 let cartArray: Array<any> = [];
 const cartListEl = document.querySelector("#cartList");
 const cartPayButton = document.querySelector("#cartPay");
 const cartNumber = document.querySelector("#cartNumber");
+
+/* // localStorage för cart
+const storageCart = localStorage.getItem("cart");
+if (storageCart !== null) {
+        cartArray = JSON.parse(storageCart!);
+} */
+
 // Funktion för att rendera ut DOM:en på 'cart'
 let renderCart = () => {
     console.log(cartArray);
@@ -316,12 +322,6 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     `;
 
 })
-
-// localStorage för cart
-const storageCart = localStorage.getItem("cart");
-if (storageCart !== null) {
-        cartArray = JSON.parse(storageCart!);
-}
 
 getItems()
 renderCart()

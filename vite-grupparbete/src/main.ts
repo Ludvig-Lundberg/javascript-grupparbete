@@ -51,12 +51,6 @@ const cartListEl = document.querySelector("#cartList");
 const cartPayButton = document.querySelector("#cartPay");
 const cartNumber = document.querySelector("#cartNumber");
 
-/* // localStorage för cart
-const storageCart = localStorage.getItem("cart");
-if (storageCart !== null) {
-        cartArray = JSON.parse(storageCart!);
-} */
-
 // Funktion för att rendera ut DOM:en på 'cart'
 let renderCart = () => {
     console.log(cartArray);
@@ -318,11 +312,22 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     confirmationEl!.innerHTML = `
     <h2>Beställningen är slutförd!</h2>
     <p>Tack för du handlade hos oss!</p>
-    <button id="submitAgain" type="submit">close</button>
+    <button id="submitAgain" type="submit">Stäng</button>
     `;
 
+    const submitAgainEl = document.querySelector('#submitAgain') as HTMLElement
+    submitAgainEl?.addEventListener('click', e => {
+        e.preventDefault()
+        return window.location.assign("index.html")
+    })
 })
 
-getItems()
-renderCart()
+// localStorage för cart
+const storageCart = localStorage.getItem("cart");
+if (storageCart !== null) {
+        cartArray = JSON.parse(storageCart!);
+}
+
+renderCart();
+getItems();
 // getOrderRes() // skickar iväg testorder till api

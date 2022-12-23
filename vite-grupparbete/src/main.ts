@@ -54,6 +54,8 @@ const cartNumber = document.querySelector("#cartNumber");
 // Funktion för att rendera ut DOM:en på 'cart'
 let renderCart = () => {
     console.log(cartArray);
+    // Fyller på localStorage med nytt innehåll
+    localStorage.setItem("cart", JSON.stringify(cartArray));
     // först tömmer man sin cart
     cartListEl!.innerHTML = ``;
     // kollar om det finns minst 1 vara så att det visas "betala" knapp
@@ -69,7 +71,6 @@ let renderCart = () => {
         <li id="totalCost" class="text-right float-right">Totalt: ${totalCost} kr</li>`
         // sedan fyller man på igen
         for (let i = 0; i < cartArray.length; i++) {
-
             cartListEl!.innerHTML += `<li>
             <span class="cartItem1">${cartArray[i].item_name}</span>
             <br>
@@ -80,11 +81,23 @@ let renderCart = () => {
                 <i class="fa-solid fa-circle-minus minusButton float-left"></i>
                 ${(cartArray[i].item_price) * (cartArray[i].qty)} kr
             </span>
-                
             </li>`
         }
     }
 };
+
+const continueShoppingEl = document.querySelector("#continueShopping");
+document.querySelector("#form")?.classList.add("d-none");
+let toggleFormFunc = () => {
+    gridEl.classList.toggle("d-none");
+    document.querySelector("#form")?.classList.toggle("d-none");
+    continueShoppingEl?.classList.toggle("d-none");
+    activeCartEl?.classList.add("d-none");
+}
+cartPayButton?.addEventListener("click", toggleFormFunc);
+
+continueShoppingEl?.addEventListener("click", toggleFormFunc);
+
 let totalCost = 0;
 let totalCostFunc = () => {
     totalCost = 0;
@@ -207,7 +220,7 @@ const renderDom = (() => {
 
     renderItems.innerHTML += items.data.map(item =>
         `
-        <div id="${item.id}" class="card col-6 col-md-4 col-lg-3">
+        <div id="${item.id}" class="card col-6 col-md-4 col-lg-3 col-xl-2">
             <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">
             <div id="Cardsbox" class="card-body">
                 <h5 class="card-title">${item.name}</h5>
@@ -295,10 +308,21 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     }
 
     console.log("Skickat in", newCollectTitles)
-    
+    const confirmationEl = document.querySelector('#confirmation')!;
+    confirmationEl!.innerHTML = `
+    <h2>Beställningen är slutförd!</h2>
+    <p>Tack för du handlade hos oss!</p>
+    <button id="submitAgain" type="submit">close</button>
+    `;
+
 })
 
-getItems()
-// getOrderRes() // skickar iväg testorder till api
+// localStorage för cart
+const storageCart = localStorage.getItem("cart");
+if (storageCart !== null) {
+        cartArray = JSON.parse(storageCart!);
+}
 
-// kod som inte används atm
+getItems()
+renderCart()
+// getOrderRes() // skickar iväg testorder till api

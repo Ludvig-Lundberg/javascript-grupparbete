@@ -197,12 +197,22 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     
     const confirmationEl = document.querySelector('#confirmation')! as HTMLElement;
     const mostrecentProducts = JSON.parse(localStorage.getItem("cart")!);
+
+    let cartItems = cartArray
+        .map(e => 
+        `<li>${e.item_name}</li>`
+        )
+        .join("")
+
     confirmationEl!.innerHTML = `
     <h2>Beställningen är slutförd!</h2>
-    <p>Tack för du handlade hos oss!</p>
-    <p>Din order:${mostrecentProducts}</p>
+    <p>Din order:</p>
+        <ul>
+            ${cartItems}
+        </ul>
     <button id="submitAgain" type="submit">Stäng</button>
-    `;
+    <p>Tack för du handlade hos oss!</p>
+    `
     
     const submitAgainEl = document.querySelector('#submitAgain') as HTMLElement
     submitAgainEl?.addEventListener('click', e => {

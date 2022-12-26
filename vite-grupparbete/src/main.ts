@@ -276,7 +276,7 @@ interface IDetails {
 document.querySelector('#form')?.addEventListener('submit', async e => {
     e.preventDefault()
     console.log("clicking")
-
+   
     const newFirstNameTitle = document.querySelector<HTMLInputElement>('#firstName')?.value
     const newLastNameTitle = document.querySelector<HTMLInputElement>('#lastName')?.value
     const newEmailTitle = document.querySelector<HTMLInputElement>('#c-Email')?.value
@@ -308,6 +308,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     }
 
     console.log("Skickat in", newCollectTitles)
+    
     const confirmationEl = document.querySelector('#confirmation')!;
     confirmationEl!.innerHTML = `
     <h2>Beställningen är slutförd!</h2>
@@ -321,6 +322,11 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         return window.location.assign("index.html")
     })
 })
+let toggleRemoveForm = () => {
+    document.querySelector("#form")?.classList.toggle("d-none");
+    
+}
+document.querySelector('#form')?.addEventListener('submit', toggleRemoveForm);
 
 // localStorage för cart
 const storageCart = localStorage.getItem("cart");

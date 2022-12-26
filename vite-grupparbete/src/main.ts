@@ -6,6 +6,7 @@ import './style.css'
 // HTML elements
 const infoDiv = document.querySelector("#fade-background") as HTMLElement
 const gridEl = document.querySelector("#grid") as HTMLElement
+const checkoutCart = document.querySelector("#checkout-cart") as HTMLElement
 
 // arrays
 export let items: {data: Array<IItem>}
@@ -264,10 +265,14 @@ renderItems?.addEventListener("click", e => {
             qty: 1,
             item_price: item_price,
             item_total: item_price
-        });
-        renderCart();
+        })
+        renderCart()
     }
-});
+})
+
+const renderCheckoutCart = async () => {
+    
+}
 
 /* interface IDetails {
     customer_firstname?: string,
@@ -342,6 +347,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
 
     getOrderRes()
 })
+
 let toggleRemoveForm = () => {
     document.querySelector("#form")?.classList.toggle("d-none");
     cartArray = []

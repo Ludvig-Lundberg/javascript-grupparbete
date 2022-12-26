@@ -194,11 +194,13 @@ main {
 	#showMoreDiv {
 		width: fit-content;
 		margin: 2rem;
+		text-align: center;
 		#showMoreButton {
 			border: 1px solid black;
 			border-radius: 15px;
 			background: none;
 			padding: 1rem;
+			margin-top: 10px;
 		}
 	}
 }

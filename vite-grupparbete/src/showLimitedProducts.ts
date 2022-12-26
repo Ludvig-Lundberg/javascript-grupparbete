@@ -1,6 +1,9 @@
+import { items } from `./main`
 export {};
 
 export const showMoreEl = document.querySelector("#showMoreDiv");
+export const amountEl1 = document.querySelector("#productAmount1");
+export const amountEl2 = document.querySelector("#productAmount2");
 // Används i for loopen
 let s = 0;
 // används för att först visa 20, sedan 20 mer osv.
@@ -16,6 +19,7 @@ export let showFirst20 = async () => {
             return
         }
     }
+    renderAmount();
 };
 showMoreEl?.addEventListener("click", e => {
     if ((e.target as HTMLElement).id === "showMoreButton") {
@@ -23,3 +27,7 @@ showMoreEl?.addEventListener("click", e => {
         showFirst20();
     }
 });
+export const renderAmount = () => {
+    amountEl1!.textContent = `Visar ${showMax} av ${items.data.length} produkter`;
+    amountEl2!.textContent = `Visar ${showMax} av ${items.data.length} produkter`;
+}

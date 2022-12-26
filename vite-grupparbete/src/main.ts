@@ -285,6 +285,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     const newPostCodeTitle = document.querySelector<HTMLInputElement>('#c-Postcode')?.value
     const newCityTitle = document.querySelector<HTMLInputElement>('#c-City')?.value
 
+    // localStorage för formuläret
     let storageFormArray = [{
         firstName: newFirstNameTitle,
         lastName: newLastNameTitle,
@@ -294,8 +295,6 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         postCode: newPostCodeTitle,
         city: newCityTitle
     }]
-
-    // localStorage för formuläret
     localStorage.setItem("form", JSON.stringify(storageFormArray));
 
     let newDetails: IDetails[] = []

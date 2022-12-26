@@ -1,5 +1,6 @@
 import { ICartitem, IItem, IOrder, IResponse } from './interfaces'
 import { createOrder, fetchItems } from './api'
+import { showFirst20, showMoreEl } from './showLimitedProducts'
 import './style.css'
 
 // HTML elements
@@ -95,6 +96,7 @@ let toggleFormFunc = () => {
     gridEl.classList.toggle("d-none");
     document.querySelector("#form")?.classList.toggle("d-none");
     continueShoppingEl?.classList.toggle("d-none");
+    showMoreEl?.classList.toggle("d-none");
     activeCartEl?.classList.add("d-none");
 }
 cartPayButton?.addEventListener("click", toggleFormFunc);
@@ -208,10 +210,10 @@ cartEl?.addEventListener("click", function () {
 })
 
 
-const getItems = async () => {
+export const getItems = async () => {
     items = await fetchItems()
 
-    renderDom()
+    renderDom();
     return items
 
 }
@@ -223,7 +225,7 @@ const renderDom = (() => {
 
     renderItems.innerHTML += items.data.map(item =>
         `
-        <div id="${item.id}" class="card col-6 col-md-4 col-lg-3 col-xl-2">
+        <div id="${item.id}" class="card col-6 col-md-4 col-lg-3 col-xl-3 d-none">
             <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">
             <div id="Cardsbox" class="card-body">
                 <h5 class="card-title">${item.name}</h5>
@@ -236,6 +238,7 @@ const renderDom = (() => {
         `
     ).join('')
 
+    showFirst20();
 })
 // eventlistener som kollar om man trycker på "Lägg till i varukorgen"
 renderItems?.addEventListener("click", e => {
@@ -341,7 +344,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
 })
 let toggleRemoveForm = () => {
     document.querySelector("#form")?.classList.toggle("d-none");
-    
+
 }
 document.querySelector('#form')?.addEventListener('submit', toggleRemoveForm);
 

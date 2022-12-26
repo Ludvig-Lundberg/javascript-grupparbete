@@ -1,4 +1,4 @@
-@import"information_box";
+//@import"information_box";
 
 header {
 	border-bottom: 1px solid black;
@@ -186,6 +186,17 @@ main {
 					}
 				}
 			}
+		}
+	}
+
+	#showMoreDiv {
+		width: fit-content;
+		margin: 2rem;
+		#showMoreButton {
+			border: 1px solid black;
+			border-radius: 15px;
+			background: none;
+			padding: 1rem;
 		}
 	}
 }

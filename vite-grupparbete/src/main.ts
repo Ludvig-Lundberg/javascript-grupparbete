@@ -243,6 +243,7 @@ const renderDom = (() => {
 })
 // eventlistener som kollar om man trycker på "Lägg till i varukorgen"
 renderItems?.addEventListener("click", e => {
+    let productIndex;
     const target = e.target as HTMLElement;
     if (target.tagName === "BUTTON" && target.classList.contains("addButton")) {
         let price: string = target.parentElement?.querySelector("#priceTitles")?.textContent!,
@@ -252,9 +253,9 @@ renderItems?.addEventListener("click", e => {
             item_name: string = target.parentElement?.querySelector("h5")?.textContent!;
         // kollar om det redan finns det typen av varan då 'qty ++;' och returerar, slutar alltså hela funktionen. Annars pushar den in ett nytt object.
         for (let i = 0; i < cartArray.length; i++) {
-            if(cartArray.some(e => e.id === productId)) {
-                let o = cartArray.findIndex(e => e.id === productId);
-                cartArray[o].qty ++;
+            if (cartArray.some(h => h.product_id === productId)) {
+                productIndex = cartArray.findIndex(e => e.product_id === productId);
+                cartArray[productIndex].qty ++;
                 renderCart();
                 return;
             }

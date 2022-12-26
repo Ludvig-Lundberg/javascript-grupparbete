@@ -284,6 +284,20 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     const newAdressTitle = document.querySelector<HTMLInputElement>('#c-Adress')?.value
     const newPostCodeTitle = document.querySelector<HTMLInputElement>('#c-Postcode')?.value
     const newCityTitle = document.querySelector<HTMLInputElement>('#c-City')?.value
+
+    let storageFormArray = [{
+        firstName: newFirstNameTitle,
+        lastName: newLastNameTitle,
+        email: newEmailTitle,
+        phone: newPhoneNumberTitle,
+        adress: newAdressTitle,
+        postCode: newPostCodeTitle,
+        city: newCityTitle
+    }]
+
+    // localStorage för formuläret
+    localStorage.setItem("form", JSON.stringify(storageFormArray));
+
     let newDetails: IDetails[] = []
     console.log("Sent", newDetails)
     if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newAdressTitle && !newPostCodeTitle && !newCityTitle) {
@@ -326,6 +340,21 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
 const storageCart = localStorage.getItem("cart");
 if (storageCart !== null) {
         cartArray = JSON.parse(storageCart!);
+}
+// localStorage för formuläret
+const storageForm = localStorage.getItem("form");
+let storageFormArrayJS;
+if (storageForm !== null) {
+    storageFormArrayJS = JSON.parse(storageForm!);
+
+    document.querySelector<HTMLInputElement>('#firstName')!.value   = storageFormArrayJS[0].firstName
+    document.querySelector<HTMLInputElement>('#lastName')!.value    = storageFormArrayJS[0].lastName
+    document.querySelector<HTMLInputElement>('#c-Email')!.value     = storageFormArrayJS[0].email
+    document.querySelector<HTMLInputElement>('#c-Phone')!.value     = storageFormArrayJS[0].phone
+    document.querySelector<HTMLInputElement>('#c-Adress')!.value    = storageFormArrayJS[0].adress
+    document.querySelector<HTMLInputElement>('#c-Postcode')!.value  = storageFormArrayJS[0].postCode
+    document.querySelector<HTMLInputElement>('#c-City')!.value      = storageFormArrayJS[0].city
+
 }
 
 renderCart();

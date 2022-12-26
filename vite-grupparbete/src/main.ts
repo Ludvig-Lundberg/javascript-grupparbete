@@ -196,7 +196,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     // console.log("Skickat in", newCollectTitles)
     
     const confirmationEl = document.querySelector('#confirmation')! as HTMLElement;
-    //const mostrecentProducts = localStorage.getItem("cart")!;
+    
 
     let cartItems = cartArray
         .map(e => 

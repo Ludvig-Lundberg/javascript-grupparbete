@@ -1,4 +1,4 @@
-import { items } from `./main`
+import { items } from './main'
 export {};
 
 export const showMoreEl = document.querySelector("#showMoreDiv");

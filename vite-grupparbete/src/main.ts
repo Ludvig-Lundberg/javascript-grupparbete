@@ -10,7 +10,7 @@ const gridEl = document.querySelector("#grid") as HTMLElement
 let items: {data: Array<IItem>}
 
 // test POST req
-const testCart : Array<ICartitem> = [{
+/* const testCart : Array<ICartitem> = [{
     product_id: 5216,
     qty: 2,
     item_price: 12,
@@ -21,26 +21,29 @@ const testCart : Array<ICartitem> = [{
     qty: 3,
     item_price: 8,
     item_total: 24
-}]
+}] */
 
-const testOrder : IOrder = {
-    customer_first_name: "Arden",
-    customer_last_name: "H",
-    customer_address: "Hemma 2B",
-    customer_postcode: "211 76",
-    customer_city: "Malmö",
-    customer_email: "email@here.com",
+/* const testOrder : IOrder = {
+    customer_first_name: "Gotte",
+    customer_last_name: "Grisen",
+    customer_address: "Karamellvägen 42",
+    customer_postcode: "111 22",
+    customer_city: "Sötdal",
+    customer_email: "gottegrisen@godis.se",
     order_total: 48,
     order_items: testCart
-}
+} */
+
+let orderObj : IOrder
 
 let orderResponse : IResponse
 
 
 const getOrderRes = async () => {
-    orderResponse = await createOrder(testOrder)
+    orderResponse = await createOrder(orderObj)
 
     console.log(orderResponse)
+    console.log("Order ID:" + orderResponse.data.id + " " + "Order Date:" + orderResponse.data.order_date)
     return orderResponse
 
 }
@@ -254,7 +257,7 @@ renderItems?.addEventListener("click", e => {
         }
         cartArray.push({
             item_name: item_name,
-            id: productId,
+            product_id: productId,
             qty: 1,
             item_price: item_price,
             item_total: item_price
@@ -263,7 +266,7 @@ renderItems?.addEventListener("click", e => {
     }
 });
 
-interface IDetails {
+/* interface IDetails {
     customer_firstname?: string,
     customer_lastname?: string,
     customer_email: any,
@@ -271,19 +274,19 @@ interface IDetails {
     customer_adress: any,
     customer_postcode: any,
     customer_city?: string,
-}
+} */
 
 document.querySelector('#form')?.addEventListener('submit', async e => {
     e.preventDefault()
     console.log("clicking")
 
-    const newFirstNameTitle = document.querySelector<HTMLInputElement>('#firstName')?.value
-    const newLastNameTitle = document.querySelector<HTMLInputElement>('#lastName')?.value
-    const newEmailTitle = document.querySelector<HTMLInputElement>('#c-Email')?.value
+    const newFirstNameTitle = document.querySelector<HTMLInputElement>('#firstName')!.value
+    const newLastNameTitle = document.querySelector<HTMLInputElement>('#lastName')!.value
+    const newEmailTitle = document.querySelector<HTMLInputElement>('#c-Email')!.value
     const newPhoneNumberTitle = document.querySelector<HTMLInputElement>('#c-Phone')?.value
-    const newAdressTitle = document.querySelector<HTMLInputElement>('#c-Adress')?.value
-    const newPostCodeTitle = document.querySelector<HTMLInputElement>('#c-Postcode')?.value
-    const newCityTitle = document.querySelector<HTMLInputElement>('#c-City')?.value
+    const newAdressTitle = document.querySelector<HTMLInputElement>('#c-Adress')!.value
+    const newPostCodeTitle = document.querySelector<HTMLInputElement>('#c-Postcode')!.value
+    const newCityTitle = document.querySelector<HTMLInputElement>('#c-City')!.value
     let newDetails: IDetails[] = []
     console.log("Sent", newDetails)
     if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newAdressTitle && !newPostCodeTitle && !newCityTitle) {
@@ -296,7 +299,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         
     }
     
-    const newCollectTitles: IDetails = {
+/*     const newCollectTitles: IDetails = {
         customer_firstname: newFirstNameTitle,
         customer_lastname: newLastNameTitle,
         customer_email: newEmailTitle,
@@ -305,6 +308,18 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         customer_postcode: newPostCodeTitle,
         customer_city: newCityTitle,
 
+    } */
+
+    orderObj = {
+        customer_first_name: newFirstNameTitle,
+        customer_last_name: newLastNameTitle,
+        customer_address: newAdressTitle,
+        customer_postcode: newPostCodeTitle,
+        customer_city: newCityTitle,
+        customer_email: newEmailTitle,
+        customer_phone: newPhoneNumberTitle,
+        order_total: totalCost,
+        order_items: cartArray
     }
 
     console.log("Skickat in", newCollectTitles)
@@ -320,14 +335,16 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         e.preventDefault()
         return window.location.assign("index.html")
     })
+
+    getOrderRes()
 })
 
 // localStorage för cart
-const storageCart = localStorage.getItem("cart");
+const storageCart = localStorage.getItem("cart")
 if (storageCart !== null) {
-        cartArray = JSON.parse(storageCart!);
+        cartArray = JSON.parse(storageCart!)
 }
 
-renderCart();
-getItems();
+renderCart()
+getItems()
 // getOrderRes() // skickar iväg testorder till api

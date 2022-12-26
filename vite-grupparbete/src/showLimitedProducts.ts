@@ -12,6 +12,7 @@ export let showFirst20 = async () => {
             showItem.classList.remove("d-none")
         } else {
             showMoreEl?.classList.add("d-none");
+            showMoreEl?.setAttribute("id", "hide");
             return
         }
     }

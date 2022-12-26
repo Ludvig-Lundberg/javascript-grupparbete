@@ -1,6 +1,6 @@
 import { ICartitem, IItem, IOrder, IResponse } from './interfaces'
 import { createOrder, fetchItems } from './api'
-import { showFirst20, showMoreEl } from './showLimitedProducts'
+import { amountEl1, showFirst20, showMoreEl } from './showLimitedProducts'
 import './style.css'
 
 // HTML elements
@@ -8,7 +8,7 @@ const infoDiv = document.querySelector("#fade-background") as HTMLElement
 const gridEl = document.querySelector("#grid") as HTMLElement
 
 // arrays
-let items: {data: Array<IItem>}
+export let items: {data: Array<IItem>}
 
 // test POST req
 /* const testCart : Array<ICartitem> = [{
@@ -98,6 +98,7 @@ let toggleFormFunc = () => {
     continueShoppingEl?.classList.toggle("d-none");
     showMoreEl?.classList.toggle("d-none");
     activeCartEl?.classList.add("d-none");
+    amountEl1?.classList.toggle("d-none");
 }
 cartPayButton?.addEventListener("click", toggleFormFunc);
 
@@ -222,7 +223,6 @@ export const getItems = async () => {
 const renderItems = document.querySelector('#grid')!;
 
 const renderDom = (() => {
-
     renderItems.innerHTML += items.data.map(item =>
         `
         <div id="${item.id}" class="card col-6 col-md-4 col-lg-3 col-xl-3 d-none">
@@ -242,6 +242,7 @@ const renderDom = (() => {
 })
 // eventlistener som kollar om man trycker på "Lägg till i varukorgen"
 renderItems?.addEventListener("click", e => {
+    let productIndex;
     const target = e.target as HTMLElement;
     if (target.tagName === "BUTTON" && target.classList.contains("addButton")) {
         let price: string = target.parentElement?.querySelector("#priceTitles")?.textContent!,
@@ -251,9 +252,9 @@ renderItems?.addEventListener("click", e => {
             item_name: string = target.parentElement?.querySelector("h5")?.textContent!;
         // kollar om det redan finns det typen av varan då 'qty ++;' och returerar, slutar alltså hela funktionen. Annars pushar den in ett nytt object.
         for (let i = 0; i < cartArray.length; i++) {
-            if(cartArray.some(e => e.id === productId)) {
-                let o = cartArray.findIndex(e => e.id === productId);
-                cartArray[o].qty ++;
+            if (cartArray.some(h => h.product_id === productId)) {
+                productIndex = cartArray.findIndex(e => e.product_id === productId);
+                cartArray[productIndex].qty ++;
                 renderCart();
                 return;
             }

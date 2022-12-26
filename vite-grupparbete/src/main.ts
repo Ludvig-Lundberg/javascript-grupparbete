@@ -323,6 +323,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     }
 
     console.log("Skickat in", newCollectTitles)
+    
     const confirmationEl = document.querySelector('#confirmation')!;
     confirmationEl!.innerHTML = `
     <h2>Beställningen är slutförd!</h2>
@@ -338,11 +339,32 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
 
     getOrderRes()
 })
+let toggleRemoveForm = () => {
+    document.querySelector("#form")?.classList.toggle("d-none");
+    
+}
+document.querySelector('#form')?.addEventListener('submit', toggleRemoveForm);
 
 // localStorage för cart
 const storageCart = localStorage.getItem("cart")
 if (storageCart !== null) {
-        cartArray = JSON.parse(storageCart!)
+        cartArray = JSON.parse(storageCart!);
+}
+
+// localStorage för formuläret
+const storageForm = localStorage.getItem("form");
+let storageFormArrayJS;
+if (storageForm !== null) {
+    storageFormArrayJS = JSON.parse(storageForm!);
+
+    document.querySelector<HTMLInputElement>('#firstName')!.value   = storageFormArrayJS[0].firstName
+    document.querySelector<HTMLInputElement>('#lastName')!.value    = storageFormArrayJS[0].lastName
+    document.querySelector<HTMLInputElement>('#c-Email')!.value     = storageFormArrayJS[0].email
+    document.querySelector<HTMLInputElement>('#c-Phone')!.value     = storageFormArrayJS[0].phone
+    document.querySelector<HTMLInputElement>('#c-Adress')!.value    = storageFormArrayJS[0].adress
+    document.querySelector<HTMLInputElement>('#c-Postcode')!.value  = storageFormArrayJS[0].postCode
+    document.querySelector<HTMLInputElement>('#c-City')!.value      = storageFormArrayJS[0].city
+
 }
 
 renderCart()

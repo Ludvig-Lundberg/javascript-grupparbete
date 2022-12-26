@@ -287,8 +287,8 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     const newAdressTitle = document.querySelector<HTMLInputElement>('#c-Adress')!.value
     const newPostCodeTitle = document.querySelector<HTMLInputElement>('#c-Postcode')!.value
     const newCityTitle = document.querySelector<HTMLInputElement>('#c-City')!.value
-    let newDetails: IDetails[] = []
-    console.log("Sent", newDetails)
+    // let newDetails: IDetails[] = []
+    // console.log("Sent", newDetails)
     if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newAdressTitle && !newPostCodeTitle && !newCityTitle) {
         console.log("empty input");
         return
@@ -322,7 +322,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         order_items: cartArray
     }
 
-    console.log("Skickat in", newCollectTitles)
+    // console.log("Skickat in", newCollectTitles)
     
     const confirmationEl = document.querySelector('#confirmation')!;
     confirmationEl!.innerHTML = `

@@ -196,11 +196,13 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     // console.log("Skickat in", newCollectTitles)
     
     const confirmationEl = document.querySelector('#confirmation')! as HTMLElement;
-    const mostrecentProducts = JSON.parse(localStorage.getItem("cart")!);
+    //const mostrecentProducts = localStorage.getItem("cart")!;
 
     let cartItems = cartArray
         .map(e => 
-        `<li>${e.item_name}</li>`
+        `<li>${e.item_name}</li>
+        <li>Pris: ${e.item_price}kr</li>
+        `
         )
         .join("")
 
@@ -208,7 +210,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     <h2>Beställningen är slutförd!</h2>
     <p>Din order:</p>
         <ul>
-            ${cartItems}
+            ${cartItems} Totala priset: ${totalCost}kr
         </ul>
     <button id="submitAgain" type="submit">Stäng</button>
     <p>Tack för du handlade hos oss!</p>

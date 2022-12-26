@@ -7,6 +7,7 @@ import './style.css'
 const infoDiv = document.querySelector("#fade-background") as HTMLElement
 const gridEl = document.querySelector("#grid") as HTMLElement
 const checkoutCart = document.querySelector("#checkout-cart") as HTMLElement
+const checkoutCartList = document.querySelector("#checkout-cart-list") as HTMLElement
 
 // arrays
 export let items: {data: Array<IItem>}
@@ -101,7 +102,7 @@ let toggleFormFunc = () => {
     activeCartEl?.classList.add("d-none");
     amountEl1?.classList.toggle("d-none");
 }
-cartPayButton?.addEventListener("click", toggleFormFunc);
+cartPayButton?.addEventListener("click", toggleFormFunc)
 
 continueShoppingEl?.addEventListener("click", toggleFormFunc);
 
@@ -272,7 +273,24 @@ renderItems?.addEventListener("click", e => {
 })
 
 const renderCheckoutCart = async () => {
-    
+
+    await cartArray.map( e => { 
+
+        checkoutCartList.innerHTML += 
+        `<li>
+            <span class="cartItem1">${e.item_name}</span>
+            <br>
+            <span class="cartItem2">${e.qty} st <i class="fa-solid fa-trash-can removeButton float-right"></i></span>
+            <br>
+            <span class="cartItem3">
+                <i class="fa-solid fa-circle-plus plusButton float-left"></i>
+                <i class="fa-solid fa-circle-minus minusButton float-left"></i>
+                ${(e.item_price) * (e.qty)} kr
+            </span>
+            </li>`
+
+    })
+
 }
 
 /* interface IDetails {
@@ -378,6 +396,7 @@ if (storageForm !== null) {
 
 }
 
+renderCheckoutCart()
 renderCart()
 getItems()
 // getOrderRes() // skickar iväg testorder till api

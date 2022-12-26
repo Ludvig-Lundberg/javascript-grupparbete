@@ -341,7 +341,8 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
 })
 let toggleRemoveForm = () => {
     document.querySelector("#form")?.classList.toggle("d-none");
-    
+    cartArray = []
+    renderCart()
 }
 document.querySelector('#form')?.addEventListener('submit', toggleRemoveForm);
 

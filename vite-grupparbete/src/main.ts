@@ -150,7 +150,9 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
 
     let cartItems = cartArray
         .map(e => 
-        `<li>${e.item_name}</li>`
+        `<li>${e.item_name}</li>
+        <li>Pris: ${e.item_price}kr</li>
+        `
         )
         .join("")
 

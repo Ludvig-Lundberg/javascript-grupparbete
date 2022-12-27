@@ -208,7 +208,5 @@ if (storageForm !== null) {
 
 }
 
-renderCheckoutCart()
 renderCart()
 getItems()
-// getOrderRes() // skickar iväg testorder till api

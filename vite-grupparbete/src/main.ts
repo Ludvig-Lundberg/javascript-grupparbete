@@ -35,7 +35,7 @@ const getOrderRes = async () => {
 export const getItems = async () => {
     items = await fetchItems()
 
-    renderDom();
+    renderDom()
     return items
 
 }
@@ -56,7 +56,7 @@ const renderDom = (() => {
         `
     ).join('')
 
-    showFirst20();
+    showFirst20()
 })
 
 // document.querySelector("#form")?.classList.add("d-none")

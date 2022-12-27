@@ -36,15 +36,15 @@ header {
 		position: absolute;
 		right: 0px;
 		padding: 0px 1.5rem 5px 1.5rem;
-		width: 25rem;
+		width: 100vw;
 		top: 75px;
+		height: 100vh;
 		z-index: 1;
 		background-color: white;
 		border: 1px solid black;
 		border-top: none;
 		border-bottom-left-radius: 15px;
 		text-align: center;
-		max-height: 90vh;
 		overflow-y: scroll;
 		overflow-x: hidden;
 		
@@ -93,6 +93,7 @@ header {
 			width: 100%;
 			text-align: left;
 			margin-top: 2px;
+			margin-bottom: 75px;
 			
 			#totalCost {
 				font-size: 1.5rem;
@@ -228,32 +229,48 @@ div#Cardsbox {
         //display: none;
     }
 	
-	@media screen and (max-width: 480px) {
-		header {
-			#activeCart {
-				width: 75vw;
-				min-width: 16rem;
-				
+@media screen and (max-width: 480px) {
+	header {
+		#activeCart {
+			width: 100vw;
 				#cartList {
+				
+				li {
+					padding-left: 0px;
 					
-					li {
-						padding-left: 0px;
-						
-						i {
-							font-size: 1.2rem;
-						}
-						.spanItem3{
-							font-size: 1.2rem;
-						}
+					i {
+						font-size: 1.2rem;
+					}
+					.spanItem3{
+						font-size: 1.2rem;
 					}
 				}
 			}
 		}
 	}
-	@media screen and (max-width: 1024px) {
-		header {
-			#activeCart {
-				max-height: 80vh;
-			}
+}
+
+@media screen and (min-width: 480px) {
+	header {
+		#activeCart {
+			width: 75vw;
 		}
 	}
+}
+
+@media screen and (min-width: 600px) {
+	header {
+		#activeCart {
+			width: 50vw;
+		}
+	}
+}
+
+@media screen and (min-width: 768px) {
+	header {
+		#activeCart {
+			max-width: 50vw;
+			width: 25rem;
+		}
+	}
+}

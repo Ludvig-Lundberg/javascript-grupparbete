@@ -124,6 +124,19 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     const newPostCodeTitle = document.querySelector<HTMLInputElement>('#c-Postcode')!.value
     const newCityTitle = document.querySelector<HTMLInputElement>('#c-City')!.value
 
+    let storageFormArray = [{
+        firstName: newFirstNameTitle,
+        lastName: newLastNameTitle,
+        email: newEmailTitle,
+        phone: newPhoneNumberTitle,
+        adress: newAdressTitle,
+        postCode: newPostCodeTitle,
+        city: newCityTitle
+    }]
+
+    // localStorage för formuläret
+    localStorage.setItem("form", JSON.stringify(storageFormArray));
+
     if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newAdressTitle && !newPostCodeTitle && !newCityTitle) {
         console.log("empty input");
         return

@@ -68,6 +68,10 @@ export const toggleFormFunc = async () => {
     amountEl1?.classList.toggle("d-none")
 }
 
+export const toggleCheckoutCart = async () => {
+    checkoutCart.classList.toggle("d-none")
+}
+
 const toggleRemoveForm = () => {
     document.querySelector("#form")?.classList.toggle("d-none")
     emptyCart()
@@ -75,7 +79,10 @@ const toggleRemoveForm = () => {
 }
 
 // EventListeners
-continueShoppingEl.addEventListener("click", toggleFormFunc)
+continueShoppingEl.addEventListener("click", () => {
+    toggleFormFunc()
+    toggleCheckoutCart()
+})
 gridEl.addEventListener("click", async e => {
     const target = e.target as HTMLElement
 
@@ -155,6 +162,8 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         )
         .join("")
 
+    toggleCheckoutCart()
+
     const writeConfirmation = async () => {
 
         await getOrderRes()
@@ -166,11 +175,11 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
             <ul>
                 ${cartItems} Totala kostnaden: ${totalCost}kr
             </ul>
-        <button id="submitAgain" type="submit">Stäng</button>
+        <button id="close-confirm" type="button">Stäng</button>
         <p>Tack för du handlade hos oss!</p>
         `
-        const submitAgainEl = document.querySelector('#submitAgain') as HTMLElement
-        submitAgainEl?.addEventListener('click', e => {
+        const closeConfirmEl = document.querySelector('#close-confirm') as HTMLElement
+        closeConfirmEl.addEventListener('click', e => {
             e.preventDefault()
             return window.location.assign("index.html")
         })
@@ -182,6 +191,8 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
 })
 
 // document.querySelector('#form')?.addEventListener('submit', toggleRemoveForm)
+
+
 
 // localStorage för formuläret
 const storageForm = localStorage.getItem("form");

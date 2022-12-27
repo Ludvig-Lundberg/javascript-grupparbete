@@ -1,4 +1,4 @@
-import { toggleFormFunc } from "./main";
+import { toggleFormFunc, toggleCheckoutCart } from "./main";
 
 
 // Globala variablar och konstanter
@@ -103,7 +103,8 @@ cartEl?.addEventListener("click", function () {
 })
 
 cartPayButton?.addEventListener("click", async () => {
-    await toggleFormFunc();
+    await toggleCheckoutCart()
+    await toggleFormFunc()
 });
 
 

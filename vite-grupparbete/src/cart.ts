@@ -1,15 +1,16 @@
-import { toggleFormFunc, toggleCheckoutCart } from "./main";
+import { toggleFormFunc, toggleCheckoutCart, checkoutCartList } from "./main";
+import { ICartItem } from "./interfaces";
 
 
 // Globala variablar och konstanter
-export let cartArray: Array<any> = [],
-            totalCost = 0;
+export let cartArray: Array<ICartItem> = [],
+    totalCost = 0;
 
 export const cartListEl = document.querySelector("#cartList"),
-            cartPayButton = document.querySelector("#cartPay"),
-            cartNumber = document.querySelector("#cartNumber"),
-            activeCartEl = document.querySelector("#activeCart");
-            
+    cartPayButton = document.querySelector("#cartPay"),
+    cartNumber = document.querySelector("#cartNumber"),
+    activeCartEl = document.querySelector("#activeCart");
+
 
 // Lokala variablar och konstanter
 let productName: any;
@@ -35,7 +36,7 @@ document.querySelector('#grid')!.addEventListener("click", e => {
         for (let i = 0; i < cartArray.length; i++) {
             if (cartArray.some(h => h.product_id === productId)) {
                 productIndex = cartArray.findIndex(e => e.product_id === productId);
-                cartArray[productIndex].qty ++;
+                cartArray[productIndex].qty++;
                 renderCart();
                 return;
             }
@@ -54,15 +55,15 @@ document.querySelector('#grid')!.addEventListener("click", e => {
 // Eventlistener för shopping cart 
 cartListEl?.addEventListener("click", e => {
     if ((e.target as HTMLElement).tagName === "I") {
-        
+
         // Lägger till +1
     } if ((e.target as HTMLElement).classList.contains("plusButton")) {
         productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent;
 
         let i = 0;
         for (; i < cartArray.length; i++) {
-            if (cartArray[i].item_name.includes(productName)) {
-                cartArray[i].qty ++;
+            if (cartArray[i].item_name?.includes(productName)) {
+                cartArray[i].qty++;
                 renderCart();
                 return;
             }
@@ -70,11 +71,11 @@ cartListEl?.addEventListener("click", e => {
         // Tar bort -1
     } else if ((e.target as HTMLElement).classList.contains("minusButton")) {
         productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent;
-        
+
         let i = 0;
         for (; i < cartArray.length; i++) {
-            if (cartArray[i].item_name.includes(productName)) {
-                cartArray[i].qty --;
+            if (cartArray[i].item_name?.includes(productName)) {
+                cartArray[i].qty--;
                 if (cartArray[i].qty === 0) {
                     cartArray.splice(i, 1);
                 }
@@ -85,10 +86,10 @@ cartListEl?.addEventListener("click", e => {
         // Tar bort hela varan
     } else if ((e.target as HTMLElement).classList.contains("removeButton")) {
         productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent;
-        
+
         let i = 0;
         for (; i < cartArray.length; i++) {
-            if (cartArray[i].item_name.includes(productName)) {
+            if (cartArray[i].item_name?.includes(productName)) {
                 cartArray.splice(i, 1);
                 renderCart();
                 return;
@@ -104,18 +105,96 @@ cartEl?.addEventListener("click", function () {
 
 cartPayButton?.addEventListener("click", async () => {
     await toggleCheckoutCart()
+    await renderCheckoutCart()
+
+    checkoutCartList.innerHTML += `Totalt: ${totalCost} kr`
+
+    checkoutCartList.addEventListener("click", async e => {
+        const target = e.target as HTMLElement
+
+        const cartItemIdMinus = Number(target.dataset.cartItemMinus)
+
+        const cartItemIdPlus = Number(target.dataset.cartItemPlus)
+
+        const cartItemId = Number(target.id)
+
+        const cartDataItemID = target.dataset.cartItem!
+
+        const clickedItem = cartArray.find(item => item.product_id === Number(cartItemId))!
+
+        console.log(cartItemId, cartDataItemID, clickedItem)
+
+        // console.log(target, target.dataset, clickedItem, target.innerHTML)
+
+        if (target.innerHTML.includes(cartArray[0].item_name!)) {
+            console.log("this worked")
+            /*             cartArray.splice(0, 1)
+                        renderCheckoutCart()
+                        renderCart() */
+        }
+
+        // if (cartItemId === ) {
+
+        // }
+
+        if (target.tagName === "LI" && target.innerHTML.includes(String(clickedItem.product_id))) {
+
+            console.log("you clicked +", target, clickedItem, cartArray)
+            /*             if (target.classList.contains("plusButton")) {
+                            console.log("you clicked +", target, clickedItem, cartArray)
+                            renderCheckoutCart()
+                        } */
+
+            // Lägger till +1
+        } if ((e.target as HTMLElement).classList.contains("plusButton")) {
+            productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent;
+
+            let i = 0;
+            for (; i < cartArray.length; i++) {
+                if (cartArray[i].item_name?.includes(productName)) {
+                    cartArray[i].qty++;
+                    renderCart();
+                    return;
+                }
+            }
+            // Tar bort -1
+        } else if ((e.target as HTMLElement).classList.contains("minusButton")) {
+            productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent;
+
+            let i = 0;
+            for (; i < cartArray.length; i++) {
+                if (cartArray[i].item_name?.includes(productName)) {
+                    cartArray[i].qty--;
+                    if (cartArray[i].qty === 0) {
+                        cartArray.splice(i, 1);
+                    }
+                    renderCart();
+                    return;
+                }
+            }
+            // Tar bort hela varan
+        } else if ((e.target as HTMLElement).classList.contains("removeButton")) {
+            productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent;
+
+            let i = 0;
+            for (; i < cartArray.length; i++) {
+                if (cartArray[i].item_name?.includes(productName)) {
+                    cartArray.splice(i, 1);
+                    renderCart();
+                    return;
+                }
+            }
+        }
+    });
+
     await toggleFormFunc()
-});
-
-
-
-
+})
 
 
 // FUNKTIONER FUNKTIONER FUNKTIONER
 
 // Funktion för att rendera ut DOM:en på 'cart'
-export let renderCart = () => {
+export const renderCart = () => {
     console.log(cartArray);
     // Fyller på localStorage med nytt innehåll
     localStorage.setItem("cart", JSON.stringify(cartArray));
@@ -150,12 +229,12 @@ export let renderCart = () => {
 };
 
 // funktion för att räkna ut total kostnaden för alla sina varor
-export let totalCostFunc = () => {
-                totalCost = 0;
-                for (let i = 0; i < cartArray.length; i++) {
-                        // beräknar totala värdet på varje vara
-                        cartArray[i].item_total = (cartArray[i].item_price) * (cartArray[i].qty);
-                        totalCost += cartArray[i].item_total;
+export const totalCostFunc = () => {
+    totalCost = 0;
+    for (let i = 0; i < cartArray.length; i++) {
+        // beräknar totala värdet på varje vara
+        cartArray[i].item_total = (cartArray[i].item_price) * (cartArray[i].qty);
+        totalCost += cartArray[i].item_total;
     }
 }
 
@@ -164,8 +243,21 @@ export const emptyCart = () => {
     cartArray = [];
 }
 
+const renderCheckoutCart = async () => checkoutCartList.innerHTML = cartArray
+    .map(e =>
+        `<li data-cart-item:"${e.product_id}" id:"${e.product_id}">${e.item_name} <span>${e.item_price} kr</span> ${e.qty} st
+            <i data-cart-item-minus="${e.product_id}" class="fa-solid fa-circle-minus minusButton float-left"></i>
+            <i data-cart-item-plus="${e.product_id}" class="fa-solid fa-circle-plus plusButton float-left"></i>  
+        </li>
+        `
+    )
+    .join("")
+
+
+
+
 // localStorage för cart
 const storageCart = localStorage.getItem("cart")
 if (storageCart !== null) {
-        cartArray = JSON.parse(storageCart!);
+    cartArray = JSON.parse(storageCart!);
 }

@@ -21,10 +21,11 @@ export interface IOrder {
     customer_email: string,
     customer_phone?: string,
     order_total: number,
-    order_items: Array<ICartitem>
+    order_items: Array<ICartItem>
 }
 
-export interface ICartitem {
+export interface ICartItem {
+    item_name?: string,
     product_id: number,
     qty: number,
     item_price: number,

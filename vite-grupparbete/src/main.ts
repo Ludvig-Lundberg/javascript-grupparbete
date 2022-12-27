@@ -1,4 +1,4 @@
-import { ICartitem, IItem, IOrder, IResponse } from './interfaces'
+import { IItem, IOrder, IResponse } from './interfaces'
 import { createOrder, fetchItems } from './api'
 import { amountEl1, showFirst20, showMoreEl } from './showLimitedProducts'
 import { cartArray, emptyCart, renderCart, totalCost, activeCartEl } from './cart'
@@ -8,7 +8,7 @@ import './style.css'
 const infoDiv = document.querySelector("#fade-background") as HTMLElement
 const gridEl = document.querySelector("#grid") as HTMLElement
 const checkoutCart = document.querySelector("#checkout-cart") as HTMLElement
-const checkoutCartList = document.querySelector("#checkout-cart-list") as HTMLElement
+export const checkoutCartList = document.querySelector("#checkout-cart-list") as HTMLElement
 const continueShoppingEl = document.querySelector("#continueShopping") as HTMLElement
 
 
@@ -18,6 +18,9 @@ export let items: {data: Array<IItem>}
 // objects
 let orderObj : IOrder
 let orderResponse : IResponse
+
+// variables
+let cartItems : string
 
 // functions
 
@@ -83,12 +86,13 @@ continueShoppingEl.addEventListener("click", () => {
     toggleFormFunc()
     toggleCheckoutCart()
 })
+
 gridEl.addEventListener("click", async e => {
     const target = e.target as HTMLElement
 
     if (target.tagName === "BUTTON" && target.classList.contains("read-more")) {
 		
-		const itemId = Number(target.dataset.itemIdButton);
+		const itemId = Number(target.dataset.itemIdButton)
 
 		const foundItem = items.data.find(item => item.id === itemId)!
 
@@ -154,7 +158,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     
     const confirmationEl = document.querySelector('#confirmation')! as HTMLElement
 
-    let cartItems = cartArray
+    cartItems = cartArray
         .map(e => 
         `<li>${e.item_name}</li>
         <li>Pris: ${e.item_price}kr</li>
@@ -192,13 +196,11 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
 
 // document.querySelector('#form')?.addEventListener('submit', toggleRemoveForm)
 
-
-
 // localStorage för formuläret
-const storageForm = localStorage.getItem("form");
-let storageFormArrayJS;
+const storageForm = localStorage.getItem("form")
+let storageFormArrayJS
 if (storageForm !== null) {
-    storageFormArrayJS = JSON.parse(storageForm!);
+    storageFormArrayJS = JSON.parse(storageForm!)
 
     document.querySelector<HTMLInputElement>('#firstName')!.value   = storageFormArrayJS[0].firstName
     document.querySelector<HTMLInputElement>('#lastName')!.value    = storageFormArrayJS[0].lastName

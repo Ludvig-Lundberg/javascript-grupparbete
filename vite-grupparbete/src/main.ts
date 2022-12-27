@@ -9,14 +9,17 @@ const infoDiv = document.querySelector("#fade-background") as HTMLElement
 const gridEl = document.querySelector("#grid") as HTMLElement
 const checkoutCart = document.querySelector("#checkout-cart") as HTMLElement
 const checkoutCartList = document.querySelector("#checkout-cart-list") as HTMLElement
+const continueShoppingEl = document.querySelector("#continueShopping") as HTMLElement
+
 
 // arrays
 export let items: {data: Array<IItem>}
 
+// objects
 let orderObj : IOrder
-
 let orderResponse : IResponse
 
+// functions
 
 const getOrderRes = async () => {
     orderResponse = await createOrder(orderObj)
@@ -28,63 +31,6 @@ const getOrderRes = async () => {
 
 }
 
-const continueShoppingEl = document.querySelector("#continueShopping");
-document.querySelector("#form")?.classList.add("d-none");
-export let toggleFormFunc = async () => {
-    gridEl.classList.toggle("d-none");
-    document.querySelector("#form")?.classList.toggle("d-none");
-    continueShoppingEl?.classList.toggle("d-none");
-    showMoreEl?.classList.toggle("d-none");
-    activeCartEl?.classList.add("d-none");
-    amountEl1?.classList.toggle("d-none");
-}
-
-continueShoppingEl?.addEventListener("click", toggleFormFunc);
-
-// EventListeners
-gridEl!.addEventListener("click", async e => {
-    const target = e.target as HTMLElement
-
-    // console.log("e target", e.target)
-
-    if (target.tagName === "BUTTON" && target.classList.contains("read-more")) {
-		
-		const itemId = Number(target.dataset.itemIdButton);     // `data-item-id-button`
-
-        // console.log("item ID", itemId)
-
-		const foundItem = items.data.find(item => item.id === itemId)!
-
-        infoDiv.classList.toggle("d-none")
-        infoDiv.innerHTML = `                
-            <div id="more-information">
-                <button class="btn btn-secondary close-info-btn" id="close-info-btn">Stäng</button>
-                <img src="https://bortakvall.se/${foundItem.images.large}" alt="Bild av ${foundItem.name}">
-                <div id="info-text">
-                    <h3>${foundItem.name}</h3> 
-                    <span id="price">Pris: ${foundItem.price} kronor</span>
-                    <div id="ingredients">
-                        ${foundItem.description}
-                    </div>
-                </div>
-            </div>`
-	}
-
-})
-
-infoDiv?.addEventListener("click", e => {
-
-    const target = e.target as HTMLElement
-
-    if (target.tagName === "DIV" && target.id.includes("fade-background") || target.tagName === "BUTTON") {
-        infoDiv?.classList.toggle("d-none")
-    }
-
-})
-
-
-
-
 export const getItems = async () => {
     items = await fetchItems()
 
@@ -93,10 +39,8 @@ export const getItems = async () => {
 
 }
 
-export const renderItems = document.querySelector('#grid')!;
-
 const renderDom = (() => {
-    renderItems.innerHTML += items.data.map(item =>
+    gridEl.innerHTML += items.data.map(item =>
         `
         <div id="${item.id}" class="card col-6 col-md-4 col-lg-3 col-xl-3 d-none">
             <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">
@@ -114,9 +58,62 @@ const renderDom = (() => {
     showFirst20();
 })
 
+// document.querySelector("#form")?.classList.add("d-none")
+export const toggleFormFunc = async () => {
+    gridEl.classList.toggle("d-none");
+    document.querySelector("#form")?.classList.toggle("d-none")
+    continueShoppingEl?.classList.toggle("d-none")
+    showMoreEl?.classList.toggle("d-none")
+    activeCartEl?.classList.add("d-none")
+    amountEl1?.classList.toggle("d-none")
+}
+
+const toggleRemoveForm = () => {
+    document.querySelector("#form")?.classList.toggle("d-none")
+    emptyCart()
+    renderCart()
+}
+
+// EventListeners
+continueShoppingEl.addEventListener("click", toggleFormFunc)
+gridEl.addEventListener("click", async e => {
+    const target = e.target as HTMLElement
+
+    if (target.tagName === "BUTTON" && target.classList.contains("read-more")) {
+		
+		const itemId = Number(target.dataset.itemIdButton);
+
+		const foundItem = items.data.find(item => item.id === itemId)!
+
+        infoDiv.classList.toggle("d-none")
+        infoDiv.innerHTML = `                
+            <div id="more-information">
+                <button class="btn btn-secondary close-info-btn" id="close-info-btn">Stäng</button>
+                <img src="https://bortakvall.se/${foundItem.images.large}" alt="Bild av ${foundItem.name}">
+                <div id="info-text">
+                    <h3>${foundItem.name}</h3> 
+                    <span id="price">Pris: ${foundItem.price} kronor</span>
+                    <div id="ingredients">
+                        ${foundItem.description}
+                    </div>
+                </div>
+            </div>`
+	}
+})
+
+infoDiv.addEventListener("click", e => {
+
+    const target = e.target as HTMLElement
+
+    if (target.tagName === "DIV" && target.id.includes("fade-background") || target.tagName === "BUTTON") {
+        infoDiv?.classList.toggle("d-none")
+    }
+
+})
+
+
 document.querySelector('#form')?.addEventListener('submit', async e => {
     e.preventDefault()
-    console.log("clicking")
 
     const newFirstNameTitle = document.querySelector<HTMLInputElement>('#firstName')!.value
     const newLastNameTitle = document.querySelector<HTMLInputElement>('#lastName')!.value
@@ -130,11 +127,11 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         console.log("empty input");
         return
     }
-    if (newFirstNameTitle && newLastNameTitle && newEmailTitle && newPhoneNumberTitle && newAdressTitle && newPostCodeTitle && newCityTitle) {
+/*     if (newFirstNameTitle && newLastNameTitle && newEmailTitle && newPhoneNumberTitle && newAdressTitle && newPostCodeTitle && newCityTitle) {
         
     }else if (newFirstNameTitle && newLastNameTitle && newEmailTitle && !newPhoneNumberTitle && newAdressTitle && newPostCodeTitle && newCityTitle) {
         
-    }
+    } */
 
     orderObj = {
         customer_first_name: newFirstNameTitle,
@@ -178,19 +175,13 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
             return window.location.assign("index.html")
         })
     }
-        // getOrderRes()
+
         writeConfirmation()
+        toggleRemoveForm()
 
 })
 
-let toggleRemoveForm = () => {
-    document.querySelector("#form")?.classList.toggle("d-none");
-    emptyCart();
-    renderCart()
-}
-document.querySelector('#form')?.addEventListener('submit', toggleRemoveForm);
-
-
+// document.querySelector('#form')?.addEventListener('submit', toggleRemoveForm)
 
 // localStorage för formuläret
 const storageForm = localStorage.getItem("form");
@@ -208,5 +199,6 @@ if (storageForm !== null) {
 
 }
 
+// active functions
 renderCart()
 getItems()

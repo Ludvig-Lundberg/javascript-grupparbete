@@ -1,6 +1,7 @@
 import { ICartitem, IItem, IOrder, IResponse } from './interfaces'
 import { createOrder, fetchItems } from './api'
 import { amountEl1, showFirst20, showMoreEl } from './showLimitedProducts'
+import { cartArray, emptyCart, renderCart, totalCost, activeCartEl } from './cart'
 import './style.css'
 
 // HTML elements
@@ -12,31 +13,6 @@ const checkoutCartList = document.querySelector("#checkout-cart-list") as HTMLEl
 // arrays
 export let items: {data: Array<IItem>}
 
-// test POST req
-/* const testCart : Array<ICartitem> = [{
-    product_id: 5216,
-    qty: 2,
-    item_price: 12,
-    item_total: 24
-}, 
-{
-    product_id: 6545,
-    qty: 3,
-    item_price: 8,
-    item_total: 24
-}] */
-
-/* const testOrder : IOrder = {
-    customer_first_name: "Gotte",
-    customer_last_name: "Grisen",
-    customer_address: "Karamellvägen 42",
-    customer_postcode: "111 22",
-    customer_city: "Sötdal",
-    customer_email: "gottegrisen@godis.se",
-    order_total: 48,
-    order_items: testCart
-} */
-
 let orderObj : IOrder
 
 let orderResponse : IResponse
@@ -47,54 +23,14 @@ const getOrderRes = async () => {
 
     console.log(orderResponse)
     console.log("Order ID:" + orderResponse.data.id + " " + "Order Date:" + orderResponse.data.order_date)
+
     return orderResponse
 
 }
 
-// // Array som kommer att hålla alla sina varor man valt i korgen
-let cartArray: Array<any> = [];
-const cartListEl = document.querySelector("#cartList");
-const cartPayButton = document.querySelector("#cartPay");
-const cartNumber = document.querySelector("#cartNumber");
-
-// Funktion för att rendera ut DOM:en på 'cart'
-let renderCart = () => {
-    console.log(cartArray);
-    // Fyller på localStorage med nytt innehåll
-    localStorage.setItem("cart", JSON.stringify(cartArray));
-    // först tömmer man sin cart
-    cartListEl!.innerHTML = ``;
-    // kollar om det finns minst 1 vara så att det visas "betala" knapp
-    if (cartArray.length === 0) {
-        cartPayButton?.classList.add("d-none")
-        cartNumber?.classList.add("d-none")
-    } else {
-        cartPayButton?.classList.remove("d-none")
-        cartNumber?.classList.remove("d-none")
-        cartNumber!.innerHTML = `${cartArray.length}`;
-        totalCostFunc();
-        cartListEl!.innerHTML += `
-        <li id="totalCost" class="text-right float-right">Totalt: ${totalCost} kr</li>`
-        // sedan fyller man på igen
-        for (let i = 0; i < cartArray.length; i++) {
-            cartListEl!.innerHTML += `<li>
-            <span class="cartItem1">${cartArray[i].item_name}</span>
-            <br>
-            <span class="cartItem2">${cartArray[i].qty} st <i class="fa-solid fa-trash-can removeButton float-right"></i></span>
-            <br>
-            <span class="cartItem3">
-                <i class="fa-solid fa-circle-plus plusButton float-left"></i>
-                <i class="fa-solid fa-circle-minus minusButton float-left"></i>
-                ${(cartArray[i].item_price) * (cartArray[i].qty)} kr
-            </span>
-            </li>`
-        }
-    }
-};
-
 const continueShoppingEl = document.querySelector("#continueShopping");
 document.querySelector("#form")?.classList.add("d-none");
-let toggleFormFunc = () => {
+export let toggleFormFunc = async () => {
     gridEl.classList.toggle("d-none");
     document.querySelector("#form")?.classList.toggle("d-none");
     continueShoppingEl?.classList.toggle("d-none");
@@ -102,67 +38,8 @@ let toggleFormFunc = () => {
     activeCartEl?.classList.add("d-none");
     amountEl1?.classList.toggle("d-none");
 }
-cartPayButton?.addEventListener("click", toggleFormFunc)
 
 continueShoppingEl?.addEventListener("click", toggleFormFunc);
-
-let totalCost = 0;
-let totalCostFunc = () => {
-    totalCost = 0;
-    for (let i = 0; i < cartArray.length; i++) {
-            // beräknar totala värdet på varje vara
-            cartArray[i].item_total = (cartArray[i].item_price) * (cartArray[i].qty);
-            totalCost += cartArray[i].item_total;
-    }
-}
-
-// Håller föräldren på vilken knapp man trycker på, den visar vilken DOM 'li' som varan är i
-let productName: any;
-// Eventlistener för shopping cart 
-cartListEl?.addEventListener("click", e => {
-    if ((e.target as HTMLElement).tagName === "I") {
-        
-        // Lägger till +1
-    } if ((e.target as HTMLElement).classList.contains("plusButton")) {
-        productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent;
-
-        let i = 0;
-        for (; i < cartArray.length; i++) {
-            if (cartArray[i].item_name.includes(productName)) {
-                cartArray[i].qty ++;
-                renderCart();
-                return;
-            }
-        }
-        // Tar bort -1
-    } else if ((e.target as HTMLElement).classList.contains("minusButton")) {
-        productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent;
-        
-        let i = 0;
-        for (; i < cartArray.length; i++) {
-            if (cartArray[i].item_name.includes(productName)) {
-                cartArray[i].qty --;
-                if (cartArray[i].qty === 0) {
-                    cartArray.splice(i, 1);
-                }
-                renderCart();
-                return;
-            }
-        }
-        // Tar bort hela varan
-    } else if ((e.target as HTMLElement).classList.contains("removeButton")) {
-        productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent;
-        
-        let i = 0;
-        for (; i < cartArray.length; i++) {
-            if (cartArray[i].item_name.includes(productName)) {
-                cartArray.splice(i, 1);
-                renderCart();
-                return;
-            }
-        }
-    }
-});
 
 // EventListeners
 gridEl!.addEventListener("click", async e => {
@@ -205,12 +82,7 @@ infoDiv?.addEventListener("click", e => {
 
 })
 
-const cartEl = document.querySelector("#cart");
-const activeCartEl = document.querySelector("#activeCart");
-// visa och dölj sin varukorg
-cartEl?.addEventListener("click", function () {
-    activeCartEl?.classList.toggle("d-none");
-})
+
 
 
 export const getItems = async () => {
@@ -221,8 +93,7 @@ export const getItems = async () => {
 
 }
 
-// ÄNDRA INTE NAMN, används också för att lägga till saker i varukorgen
-const renderItems = document.querySelector('#grid')!;
+export const renderItems = document.querySelector('#grid')!;
 
 const renderDom = (() => {
     renderItems.innerHTML += items.data.map(item =>
@@ -242,66 +113,6 @@ const renderDom = (() => {
 
     showFirst20();
 })
-// eventlistener som kollar om man trycker på "Lägg till i varukorgen"
-renderItems?.addEventListener("click", e => {
-    let productIndex;
-    const target = e.target as HTMLElement;
-    if (target.tagName === "BUTTON" && target.classList.contains("addButton")) {
-        let price: string = target.parentElement?.querySelector("#priceTitles")?.textContent!,
-            productId: number = Number(target.parentElement?.parentElement?.getAttribute("id")),
-            // ta bort allt förutom siffrorna
-            item_price: number = Number(price?.replace(/\D/g, '')),
-            item_name: string = target.parentElement?.querySelector("h5")?.textContent!;
-        // kollar om det redan finns det typen av varan då 'qty ++;' och returerar, slutar alltså hela funktionen. Annars pushar den in ett nytt object.
-        for (let i = 0; i < cartArray.length; i++) {
-            if (cartArray.some(h => h.product_id === productId)) {
-                productIndex = cartArray.findIndex(e => e.product_id === productId);
-                cartArray[productIndex].qty ++;
-                renderCart();
-                return;
-            }
-        }
-        cartArray.push({
-            item_name: item_name,
-            product_id: productId,
-            qty: 1,
-            item_price: item_price,
-            item_total: item_price
-        })
-        renderCart()
-    }
-})
-
-const renderCheckoutCart = async () => {
-
-    await cartArray.map( e => { 
-
-        checkoutCartList.innerHTML += 
-        `<li>
-            <span class="cartItem1">${e.item_name}</span>
-            <br>
-            <span class="cartItem2">${e.qty} st <i class="fa-solid fa-trash-can removeButton float-right"></i></span>
-            <br>
-            <span class="cartItem3">
-                <i class="fa-solid fa-circle-plus plusButton float-left"></i>
-                <i class="fa-solid fa-circle-minus minusButton float-left"></i>
-                ${(e.item_price) * (e.qty)} kr
-            </span>
-            </li>`
-
-    })
-
-}
-
-/* interface IDetails {
-    customer_firstname?: string,
-    customer_lastname?: string,
-    customer_email: any,
-    customer_phonenumber: any,
-    customer_adress: any,
-    customer_postcode: any,
-    customer_city?: string,
-} */
 
 document.querySelector('#form')?.addEventListener('submit', async e => {
     e.preventDefault()
@@ -314,8 +125,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     const newAdressTitle = document.querySelector<HTMLInputElement>('#c-Adress')!.value
     const newPostCodeTitle = document.querySelector<HTMLInputElement>('#c-Postcode')!.value
     const newCityTitle = document.querySelector<HTMLInputElement>('#c-City')!.value
-    // let newDetails: IDetails[] = []
-    // console.log("Sent", newDetails)
+
     if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newAdressTitle && !newPostCodeTitle && !newCityTitle) {
         console.log("empty input");
         return
@@ -325,17 +135,6 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     }else if (newFirstNameTitle && newLastNameTitle && newEmailTitle && !newPhoneNumberTitle && newAdressTitle && newPostCodeTitle && newCityTitle) {
         
     }
-    
-/*     const newCollectTitles: IDetails = {
-        customer_firstname: newFirstNameTitle,
-        customer_lastname: newLastNameTitle,
-        customer_email: newEmailTitle,
-        customer_phonenumber: newPhoneNumberTitle,
-        customer_adress: newAdressTitle,
-        customer_postcode: newPostCodeTitle,
-        customer_city: newCityTitle,
-
-    } */
 
     orderObj = {
         customer_first_name: newFirstNameTitle,
@@ -348,37 +147,50 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         order_total: totalCost,
         order_items: cartArray
     }
-
-    // console.log("Skickat in", newCollectTitles)
     
-    const confirmationEl = document.querySelector('#confirmation')!;
-    confirmationEl!.innerHTML = `
-    <h2>Beställningen är slutförd!</h2>
-    <p>Tack för du handlade hos oss!</p>
-    <button id="submitAgain" type="submit">Stäng</button>
-    `;
+    const confirmationEl = document.querySelector('#confirmation')! as HTMLElement
 
-    const submitAgainEl = document.querySelector('#submitAgain') as HTMLElement
-    submitAgainEl?.addEventListener('click', e => {
-        e.preventDefault()
-        return window.location.assign("index.html")
-    })
+    let cartItems = cartArray
+        .map(e => 
+        `<li>${e.item_name}</li>
+        <li>Pris: ${e.item_price}kr</li>
+        `
+        )
+        .join("")
 
-    getOrderRes()
+    const writeConfirmation = async () => {
+
+        await getOrderRes()
+
+        confirmationEl!.innerHTML = `
+        <h2>Beställningen är slutförd!</h2>
+        <p>Din order skickades in: ${orderResponse.data.order_date} och har fått IDt ${orderResponse.data.id}.
+        <p>Din order:</p>
+            <ul>
+                ${cartItems} Totala kostnaden: ${totalCost}kr
+            </ul>
+        <button id="submitAgain" type="submit">Stäng</button>
+        <p>Tack för du handlade hos oss!</p>
+        `
+        const submitAgainEl = document.querySelector('#submitAgain') as HTMLElement
+        submitAgainEl?.addEventListener('click', e => {
+            e.preventDefault()
+            return window.location.assign("index.html")
+        })
+    }
+        // getOrderRes()
+        writeConfirmation()
+
 })
 
 let toggleRemoveForm = () => {
     document.querySelector("#form")?.classList.toggle("d-none");
-    cartArray = []
+    emptyCart();
     renderCart()
 }
 document.querySelector('#form')?.addEventListener('submit', toggleRemoveForm);
 
-// localStorage för cart
-const storageCart = localStorage.getItem("cart")
-if (storageCart !== null) {
-        cartArray = JSON.parse(storageCart!);
-}
+
 
 // localStorage för formuläret
 const storageForm = localStorage.getItem("form");

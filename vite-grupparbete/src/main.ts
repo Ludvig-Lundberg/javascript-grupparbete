@@ -165,21 +165,19 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         <p>Din order skickades in: ${orderResponse.data.order_date} och har fått IDt ${orderResponse.data.id}.
         <p>Din order:</p>
             <ul>
-                ${cartItems}
+                ${cartItems} Totala kostnaden: ${totalCost}kr
             </ul>
         <button id="submitAgain" type="submit">Stäng</button>
         <p>Tack för du handlade hos oss!</p>
-        `}
-
-
-    const submitAgainEl = document.querySelector('#submitAgain') as HTMLElement
-    submitAgainEl?.addEventListener('click', e => {
-        e.preventDefault()
-        return window.location.assign("index.html")
-    })
-
-    // getOrderRes()
-    writeConfirmation()
+        `
+        const submitAgainEl = document.querySelector('#submitAgain') as HTMLElement
+        submitAgainEl?.addEventListener('click', e => {
+            e.preventDefault()
+            return window.location.assign("index.html")
+        })
+    }
+        // getOrderRes()
+        writeConfirmation()
 
 })
 

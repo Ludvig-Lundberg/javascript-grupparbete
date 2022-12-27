@@ -1,15 +1,16 @@
-import { ICartItem, IItem, IOrder, IResponse } from './interfaces'
+import { IItem, IOrder, IResponse } from './interfaces'
 import { createOrder, fetchItems } from './api'
 import { amountEl1, showFirst20, showMoreEl } from './showLimitedProducts'
 import { cartArray, emptyCart, renderCart, totalCost, activeCartEl } from './cart'
 import './style.css'
 
 // HTML elements
-const infoDiv = document.querySelector("#fade-background") as HTMLElement
-const gridEl = document.querySelector("#grid") as HTMLElement
 const checkoutCart = document.querySelector("#checkout-cart") as HTMLElement
 export const checkoutCartList = document.querySelector("#checkout-cart-list") as HTMLElement
 const continueShoppingEl = document.querySelector("#continueShopping") as HTMLElement
+const gridEl = document.querySelector("#grid") as HTMLElement
+const homeLinkEl = document.querySelector("#home-link") as HTMLElement
+const infoDiv = document.querySelector("#fade-background") as HTMLElement
 
 
 // arrays
@@ -70,6 +71,7 @@ export const toggleFormFunc = async () => {
 
 export const toggleCheckoutCart = async () => {
     checkoutCart.classList.toggle("d-none")
+    document.querySelector("h2")?.classList.toggle("d-none")
 }
 
 const toggleRemoveForm = () => {
@@ -83,6 +85,7 @@ continueShoppingEl.addEventListener("click", () => {
     toggleFormFunc()
     toggleCheckoutCart()
 })
+
 gridEl.addEventListener("click", async e => {
     const target = e.target as HTMLElement
 
@@ -106,6 +109,15 @@ gridEl.addEventListener("click", async e => {
                 </div>
             </div>`
 	}
+})
+
+homeLinkEl.addEventListener("click", () => {
+
+    if (!checkoutCart.classList.contains("d-none")) {
+        toggleFormFunc()
+        toggleCheckoutCart()
+    }
+
 })
 
 infoDiv.addEventListener("click", e => {
@@ -180,7 +192,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         `
         const closeConfirmEl = document.querySelector('#close-confirm') as HTMLElement
         closeConfirmEl.addEventListener('click', e => {
-            e.preventDefault()
+            // e.preventDefault()
             return window.location.assign("index.html")
         })
     }

@@ -161,13 +161,13 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         await getOrderRes()
 
         confirmationEl!.innerHTML = `
+        <button id="submitAgain" type="submit">Stäng</button>
         <h2>Beställningen är slutförd!</h2>
         <p>Din order skickades in: ${orderResponse.data.order_date} och har fått IDt ${orderResponse.data.id}.
         <p>Din order:</p>
             <ul>
                 ${cartItems} Totala kostnaden: ${totalCost}kr
             </ul>
-        <button id="submitAgain" type="submit">Stäng</button>
         <p>Tack för du handlade hos oss!</p>
         `
         const submitAgainEl = document.querySelector('#submitAgain') as HTMLElement

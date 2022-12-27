@@ -4,7 +4,7 @@ import { ICartItem } from "./interfaces"
 
 // Globala variablar och konstanter
 export let cartArray: Array<ICartItem> = [],
-            totalCost = 0;
+            totalCost = 0
 
 export const cartListEl = document.querySelector("#cartList"),
             cartPayButton = document.querySelector("#cartPay"),
@@ -94,7 +94,7 @@ cartListEl?.addEventListener("click", e => {
             }
         }
     }
-});
+})
 
 // visa och dölj sin varukorg
 cartEl?.addEventListener("click", function () {
@@ -174,5 +174,5 @@ export const totalCostFunc = () => {
 // localStorage för cart
 const storageCart = localStorage.getItem("cart")
 if (storageCart !== null) {
-        cartArray = JSON.parse(storageCart!)
+    cartArray = JSON.parse(storageCart!)
 }

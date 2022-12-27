@@ -11,31 +11,6 @@ const gridEl = document.querySelector("#grid") as HTMLElement
 // arrays
 export let items: {data: Array<IItem>}
 
-// test POST req
-/* const testCart : Array<ICartitem> = [{
-    product_id: 5216,
-    qty: 2,
-    item_price: 12,
-    item_total: 24
-}, 
-{
-    product_id: 6545,
-    qty: 3,
-    item_price: 8,
-    item_total: 24
-}] */
-
-/* const testOrder : IOrder = {
-    customer_first_name: "Gotte",
-    customer_last_name: "Grisen",
-    customer_address: "Karamellvägen 42",
-    customer_postcode: "111 22",
-    customer_city: "Sötdal",
-    customer_email: "gottegrisen@godis.se",
-    order_total: 48,
-    order_items: testCart
-} */
-
 let orderObj : IOrder
 
 let orderResponse : IResponse
@@ -46,6 +21,7 @@ const getOrderRes = async () => {
 
     console.log(orderResponse)
     console.log("Order ID:" + orderResponse.data.id + " " + "Order Date:" + orderResponse.data.order_date)
+
     return orderResponse
 
 }
@@ -136,17 +112,6 @@ const renderDom = (() => {
     showFirst20();
 })
 
-
-/* interface IDetails {
-    customer_firstname?: string,
-    customer_lastname?: string,
-    customer_email: any,
-    customer_phonenumber: any,
-    customer_adress: any,
-    customer_postcode: any,
-    customer_city?: string,
-} */
-
 document.querySelector('#form')?.addEventListener('submit', async e => {
     e.preventDefault()
     console.log("clicking")
@@ -158,8 +123,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     const newAdressTitle = document.querySelector<HTMLInputElement>('#c-Adress')!.value
     const newPostCodeTitle = document.querySelector<HTMLInputElement>('#c-Postcode')!.value
     const newCityTitle = document.querySelector<HTMLInputElement>('#c-City')!.value
-    // let newDetails: IDetails[] = []
-    // console.log("Sent", newDetails)
+
     if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newAdressTitle && !newPostCodeTitle && !newCityTitle) {
         console.log("empty input");
         return
@@ -169,17 +133,6 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     }else if (newFirstNameTitle && newLastNameTitle && newEmailTitle && !newPhoneNumberTitle && newAdressTitle && newPostCodeTitle && newCityTitle) {
         
     }
-    
-/*     const newCollectTitles: IDetails = {
-        customer_firstname: newFirstNameTitle,
-        customer_lastname: newLastNameTitle,
-        customer_email: newEmailTitle,
-        customer_phonenumber: newPhoneNumberTitle,
-        customer_adress: newAdressTitle,
-        customer_postcode: newPostCodeTitle,
-        customer_city: newCityTitle,
-
-    } */
 
     orderObj = {
         customer_first_name: newFirstNameTitle,
@@ -192,11 +145,8 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         order_total: totalCost,
         order_items: cartArray
     }
-
-    // console.log("Skickat in", newCollectTitles)
     
-    const confirmationEl = document.querySelector('#confirmation')! as HTMLElement;
-    const mostrecentProducts = JSON.parse(localStorage.getItem("cart")!);
+    const confirmationEl = document.querySelector('#confirmation')! as HTMLElement
 
     let cartItems = cartArray
         .map(e => 
@@ -204,24 +154,33 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         )
         .join("")
 
-    confirmationEl!.innerHTML = `
-    <h2>Beställningen är slutförd!</h2>
-    <p>Din order:</p>
-        <ul>
-            ${cartItems}
-        </ul>
-    <button id="submitAgain" type="submit">Stäng</button>
-    <p>Tack för du handlade hos oss!</p>
-    `
-    
+    const writeConfirmation = async () => {
+
+        await getOrderRes()
+
+        confirmationEl!.innerHTML = `
+        <h2>Beställningen är slutförd!</h2>
+        <p>Din order skickades in: ${orderResponse.data.order_date} och har fått IDt ${orderResponse.data.id}.
+        <p>Din order:</p>
+            <ul>
+                ${cartItems}
+            </ul>
+        <button id="submitAgain" type="submit">Stäng</button>
+        <p>Tack för du handlade hos oss!</p>
+        `}
+
+
     const submitAgainEl = document.querySelector('#submitAgain') as HTMLElement
     submitAgainEl?.addEventListener('click', e => {
         e.preventDefault()
         return window.location.assign("index.html")
     })
 
-    getOrderRes()
+    // getOrderRes()
+    writeConfirmation()
+
 })
+
 let toggleRemoveForm = () => {
     document.querySelector("#form")?.classList.toggle("d-none");
     emptyCart();

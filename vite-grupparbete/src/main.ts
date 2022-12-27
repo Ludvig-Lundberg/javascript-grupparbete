@@ -1,4 +1,4 @@
-import { ICartitem, IItem, IOrder, IResponse } from './interfaces'
+import { ICartItem, IItem, IOrder, IResponse } from './interfaces'
 import { createOrder, fetchItems } from './api'
 import { amountEl1, showFirst20, showMoreEl } from './showLimitedProducts'
 import { cartArray, emptyCart, renderCart, totalCost, activeCartEl } from './cart'
@@ -8,7 +8,7 @@ import './style.css'
 const infoDiv = document.querySelector("#fade-background") as HTMLElement
 const gridEl = document.querySelector("#grid") as HTMLElement
 const checkoutCart = document.querySelector("#checkout-cart") as HTMLElement
-const checkoutCartList = document.querySelector("#checkout-cart-list") as HTMLElement
+export const checkoutCartList = document.querySelector("#checkout-cart-list") as HTMLElement
 const continueShoppingEl = document.querySelector("#continueShopping") as HTMLElement
 
 

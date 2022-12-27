@@ -1,8 +1,9 @@
-import { toggleFormFunc, toggleCheckoutCart } from "./main";
+import { toggleFormFunc, toggleCheckoutCart, checkoutCartList } from "./main"
+import { ICartItem } from "./interfaces"
 
 
 // Globala variablar och konstanter
-export let cartArray: Array<any> = [],
+export let cartArray: Array<ICartItem> = [],
             totalCost = 0;
 
 export const cartListEl = document.querySelector("#cartList"),
@@ -12,11 +13,9 @@ export const cartListEl = document.querySelector("#cartList"),
             
 
 // Lokala variablar och konstanter
-let productName: any;
+let productName: any
 
 const cartEl = document.querySelector("#cart");
-
-
 
 
 // EVENTLISTENERS EVENTLISTENERS EVENTLISTENERS
@@ -30,11 +29,11 @@ document.querySelector('#grid')!.addEventListener("click", e => {
             productId: number = Number(target.parentElement?.parentElement?.getAttribute("id")),
             // ta bort allt förutom siffrorna
             item_price: number = Number(price?.replace(/\D/g, '')),
-            item_name: string = target.parentElement?.querySelector("h5")?.textContent!;
+            item_name: string = target.parentElement?.querySelector("h5")?.textContent!
         // kollar om det redan finns det typen av varan då 'qty ++;' och returerar, slutar alltså hela funktionen. Annars pushar den in ett nytt object.
         for (let i = 0; i < cartArray.length; i++) {
             if (cartArray.some(h => h.product_id === productId)) {
-                productIndex = cartArray.findIndex(e => e.product_id === productId);
+                productIndex = cartArray.findIndex(e => e.product_id === productId)
                 cartArray[productIndex].qty ++;
                 renderCart();
                 return;
@@ -46,8 +45,8 @@ document.querySelector('#grid')!.addEventListener("click", e => {
             qty: 1,
             item_price: item_price,
             item_total: item_price
-        });
-        renderCart();
+        })
+        renderCart()
     }
 });
 
@@ -61,7 +60,7 @@ cartListEl?.addEventListener("click", e => {
 
         let i = 0;
         for (; i < cartArray.length; i++) {
-            if (cartArray[i].item_name.includes(productName)) {
+            if (cartArray[i].item_name?.includes(productName)) {
                 cartArray[i].qty ++;
                 renderCart();
                 return;
@@ -73,7 +72,7 @@ cartListEl?.addEventListener("click", e => {
         
         let i = 0;
         for (; i < cartArray.length; i++) {
-            if (cartArray[i].item_name.includes(productName)) {
+            if (cartArray[i].item_name?.includes(productName)) {
                 cartArray[i].qty --;
                 if (cartArray[i].qty === 0) {
                     cartArray.splice(i, 1);
@@ -88,7 +87,7 @@ cartListEl?.addEventListener("click", e => {
         
         let i = 0;
         for (; i < cartArray.length; i++) {
-            if (cartArray[i].item_name.includes(productName)) {
+            if (cartArray[i].item_name?.includes(productName)) {
                 cartArray.splice(i, 1);
                 renderCart();
                 return;
@@ -104,15 +103,21 @@ cartEl?.addEventListener("click", function () {
 
 cartPayButton?.addEventListener("click", async () => {
     await toggleCheckoutCart()
+    await renderCheckoutCart()
+
+    checkoutCartList.innerHTML += `Totalt: ${totalCost} kr`
+
     await toggleFormFunc()
 });
 
 
 
-
-
-
 // FUNKTIONER FUNKTIONER FUNKTIONER
+
+// funktion för att tömma cartArray
+export const emptyCart = () => {
+    cartArray = [];
+}
 
 // Funktion för att rendera ut DOM:en på 'cart'
 export let renderCart = () => {
@@ -149,23 +154,26 @@ export let renderCart = () => {
     }
 };
 
+const renderCheckoutCart = async () => checkoutCartList.innerHTML = cartArray
+    .map(e =>
+        `<li data-cart-item:"${e.product_id}">${e.item_name} <span>${e.item_price * e.qty} kr</span> ${e.qty} st
+        </li>
+        `
+    )
+    .join("")
+
 // funktion för att räkna ut total kostnaden för alla sina varor
-export let totalCostFunc = () => {
+export const totalCostFunc = () => {
                 totalCost = 0;
                 for (let i = 0; i < cartArray.length; i++) {
                         // beräknar totala värdet på varje vara
-                        cartArray[i].item_total = (cartArray[i].item_price) * (cartArray[i].qty);
-                        totalCost += cartArray[i].item_total;
+                        cartArray[i].item_total = (cartArray[i].item_price) * (cartArray[i].qty)
+                        totalCost += cartArray[i].item_total
     }
-}
-
-// funktion för att tömma cartArray
-export const emptyCart = () => {
-    cartArray = [];
 }
 
 // localStorage för cart
 const storageCart = localStorage.getItem("cart")
 if (storageCart !== null) {
-        cartArray = JSON.parse(storageCart!);
+        cartArray = JSON.parse(storageCart!)
 }

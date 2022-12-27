@@ -10,7 +10,59 @@ header {
 	background-color: white;
 	
 	h1 {
-		margin: 0px;
+		margin: 0px 0px 0px 1rem;
+		font-family: 'Noto Serif Georgian', serif;
+		transition: all 0.5s;
+		
+		a {
+			text-decoration: none;
+			color: rgb(69, 69, 69);
+			font-family: 'Noto Serif Georgian', serif;
+			transition: all 0.5s;
+			cursor: pointer;
+
+			&:hover {
+				color: black;
+			}
+			
+			i {
+				opacity: 0;
+				animation: h1Animation 0.5s 0s 1 alternate;
+				position: relative;
+				animation-fill-mode: backwards;
+				font-size: 2rem;
+				transform: translateY(-3px);
+				@keyframes h1Animation {
+					0% {
+						right: 10px;
+						color: black;
+						opacity: 1;
+					} 
+					100% {
+						right: 0px;
+						opacity: 0;
+					}
+				}
+			}
+			&:hover {
+				i {
+					animation: h1AnimationReverse 0.5s 0s 1 alternate;
+					position: relative;
+					animation-fill-mode: forwards;
+					@keyframes h1AnimationReverse {
+						0% {
+							right: 0px;
+							opacity: 0;
+						} 
+						100% {
+							right: 10px;
+							color: black;
+							opacity: 1;
+						}
+					}
+				}
+			}
+		}
 	}
 	#cart {
 		margin-right: 1.5rem;
@@ -37,15 +89,15 @@ header {
 		position: absolute;
 		right: 0px;
 		padding: 0px 1.5rem 5px 1.5rem;
-		width: 25rem;
+		width: 100vw;
 		top: 75px;
+		height: 100vh;
 		z-index: 1;
 		background-color: white;
 		border: 1px solid black;
 		border-top: none;
 		border-bottom-left-radius: 15px;
 		text-align: center;
-		max-height: 90vh;
 		overflow-y: scroll;
 		overflow-x: hidden;
 		
@@ -94,6 +146,7 @@ header {
 			width: 100%;
 			text-align: left;
 			margin-top: 2px;
+			margin-bottom: 75px;
 			
 			#totalCost {
 				font-size: 1.5rem;
@@ -219,32 +272,48 @@ div#Cardsbox {
 		margin-inline: auto;
 	}
 	
-	@media screen and (max-width: 480px) {
-		header {
-			#activeCart {
-				width: 75vw;
-				min-width: 16rem;
-				
+@media screen and (max-width: 480px) {
+	header {
+		#activeCart {
+			width: 100vw;
 				#cartList {
+				
+				li {
+					padding-left: 0px;
 					
-					li {
-						padding-left: 0px;
-						
-						i {
-							font-size: 1.2rem;
-						}
-						.spanItem3{
-							font-size: 1.2rem;
-						}
+					i {
+						font-size: 1.2rem;
+					}
+					.spanItem3{
+						font-size: 1.2rem;
 					}
 				}
 			}
 		}
 	}
-	@media screen and (max-width: 1024px) {
-		header {
-			#activeCart {
-				max-height: 80vh;
-			}
+}
+
+@media screen and (min-width: 480px) {
+	header {
+		#activeCart {
+			width: 75vw;
 		}
 	}
+}
+
+@media screen and (min-width: 600px) {
+	header {
+		#activeCart {
+			width: 50vw;
+		}
+	}
+}
+
+@media screen and (min-width: 768px) {
+	header {
+		#activeCart {
+			max-width: 50vw;
+			width: 25rem;
+		}
+	}
+}

@@ -191,14 +191,16 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     }
     
     let cartItems = cartArray
-        .map(e => 
-        `<li>${e.item_name}</li>
-        <li>Pris: ${e.item_price}kr</li>
-        `
+        .map(e =>
+            `<li data-cart-item:"${e.product_id}">${e.item_name}<span><span>${e.qty} st</span><span>${e.item_price * e.qty} kr</span></span>
+            </li>
+            `
         )
         .join("")
 
     toggleCheckoutCart()
+
+    confirmationEl.classList.toggle("d-none")
 
     const writeConfirmation = async () => {
 
@@ -207,13 +209,15 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         await getOrderRes()
 
         confirmationEl.innerHTML = `
-        <button id="close-confirm" type="button">Stäng</button>
-        <h2>Beställningen är slutförd!</h2>
-        <p>Din order skickades in: ${orderResponse.data.order_date} och har fått IDt ${orderResponse.data.id}.
-        <p>Din order:</p>
+        <button id="close-confirm" class="btn" type="button">Stäng</button>
+        <h4>Beställningen är slutförd!</h4>
+        <p>Din order skickades in: ${orderResponse.data.order_date} och har fått order-id ${orderResponse.data.id}.
+        <h5>Din order:</h5>
             <ul>
-                ${cartItems} Totala kostnaden: ${totalCost}kr
+                <li>Namn<span><span>Antal</span><span>Pris</span></span></li>
+                ${cartItems}
             </ul>
+        Totala kostnaden: ${totalCost} kr
         <p>Tack för du handlade hos oss!</p>
         `
         const closeConfirmEl = document.querySelector('#close-confirm') as HTMLElement

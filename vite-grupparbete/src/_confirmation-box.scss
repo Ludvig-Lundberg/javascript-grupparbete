@@ -1,20 +1,61 @@
 #confirmation {
-    font-family: 'Kalam', cursive;
-    position: relative;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 0;
-    text-align: center;
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 12px;
+    padding: 10px;
+    margin: 0 0 20px 0;
+    font-size: 1rem;
+
+    p {
+        width: 70%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    ul {
+        width: 94%;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        padding: 0 0 10px;
+        margin: 0 0 5px 0;
+
+        li {
+            background-color: rgb(194, 192, 192);
+            padding: 0.4rem;
+            margin: 2px 0;
+            display: flex;
+            justify-content: space-between;
+
+            span {
+                display: flex;
+                justify-content: center;
+                width: 20%;
+
+                span {
+                    width: 50%;
+                }
+            }
+
+            &:nth-child(1) {
+                background-color: white;
+                padding: 0.2rem 0.4rem;
+                font-weight: 500;
+                letter-spacing: 0.05rem;
+            }
+        }
+    }
+
     #close-confirm {
-        border-style:outset;
-        background-color: rgb(177, 200, 200);
+        background-color: black;
         display: flex;
         margin-left: auto;
         color: ivory;
+
         &:hover {
-            color:#f6e65c;
+            background: rgb(244, 119, 9);
         }
     }
 }

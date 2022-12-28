@@ -10,15 +10,19 @@
 
     h4 {
         text-transform: uppercase;
-        font-size: 1.2rem;
+        font-size: 1.4rem;
+        font-weight: 600;
         letter-spacing: 0.05rem;
-    }
-
-    p {
-        font-size: 1.5rem;
         border-bottom: 1px solid black;
         width: 100%;
         text-align: center;
+        padding: 0.3rem 0;
+    }
+
+    p {
+        font-style: italic;
+        font-size: 0.9rem;
+        padding-top: 0.2rem;
     }
 }
 
@@ -65,10 +69,14 @@
     margin: 0 0 20px 0;
 
     #formTitle {
-        font-size: 1.5rem;
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        font-weight: 600;
+        letter-spacing: 0.05rem;
         border-bottom: 1px solid black;
         width: 100%;
         text-align: center;
+        padding: 0.3rem 0;
     }
 }
 

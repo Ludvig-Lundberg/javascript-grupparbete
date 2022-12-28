@@ -1,28 +1,39 @@
 @import"information-box", "confirmation-box", "cart";
 
 
+body {
+	background-color: rgb(51, 51, 51);
+}
+
 header {
 	border-bottom: 1px solid black;
 	margin-bottom: 1rem;
 	position: sticky;
 	top: 0px;
 	z-index: 1;
-	background-color: white;
+	background-color: rgb(32, 34, 37);
 
 	h1 {
-		margin: 0px 0px 0px 1rem;
+		margin: 0px;
+		padding-left: 1rem;
 		font-family: 'Noto Serif Georgian', serif;
 		transition: all 0.5s;
-		
+		color: lightgray;
+		background-image: url("./images/MixedCandy.jpg");
+  		-webkit-background-clip: text;
+  		-webkit-text-fill-color: transparent;
+		background-position: left;
+		-webkit-text-stroke: 0.5px lightgray;
+
 		a {
 			text-decoration: none;
-			color: rgb(69, 69, 69);
+			color: lightgray;
 			font-family: 'Noto Serif Georgian', serif;
 			transition: all 0.5s;
 			cursor: pointer;
 
 			&:hover {
-				color: black;
+				color: white;
 			}
 			
 			i {
@@ -35,7 +46,7 @@ header {
 				@keyframes h1Animation {
 					0% {
 						right: 10px;
-						color: black;
+						color: white;
 						opacity: 1;
 					} 
 					100% {
@@ -56,7 +67,7 @@ header {
 						} 
 						100% {
 							right: 10px;
-							color: black;
+							color: white;
 							opacity: 1;
 						}
 					}
@@ -71,9 +82,10 @@ header {
 		border: none;
 		font-size: 2rem;
 		padding: 5px;
+		color: lightgray;
 		
 		&:hover {
-			color: rgb(62, 62, 255);
+			color: white;
 		}
 		#cartNumber {
 			font-size: 1rem;
@@ -89,15 +101,15 @@ header {
 	#activeCart {
 		position: absolute;
 		right: 0px;
-		padding: 0px 1.5rem 5px 1.5rem;
+		padding: 0px 0px 5px 0px;
 		width: 100vw;
 		top: 75px;
 		height: 100vh;
 		z-index: 1;
-		background-color: white;
+		background-color: rgb(51, 51, 51);
+		color: lightgray;
 		border: 1px solid black;
 		border-top: none;
-		border-bottom-left-radius: 15px;
 		text-align: center;
 		overflow-y: scroll;
 		overflow-x: hidden;
@@ -105,18 +117,19 @@ header {
 		div {
 			position: sticky;
 			top: 0px;
-			background-color: white;
 			z-index: 1;
 			padding-bottom: 5px;
-			border-bottom: 1px solid black;
+			border-bottom: 1px solid rgb(140, 140, 140);
+			background-color: rgb(51, 51, 51);
 			
 			#listSpan {
 				font-size: 2rem;
-				color: rgb(62, 62, 255);
+				color: white;
 			}
 			#cartPay {
 				background: rgb(10, 163, 10);
 				border: none;
+				margin-left: 1rem;
 				font-size: 1.5rem;
 				padding: 2px 1rem;
 				color: white;
@@ -148,14 +161,16 @@ header {
 			text-align: left;
 			margin-top: 2px;
 			margin-bottom: 75px;
+			padding: 0px 1.5rem;
 			
 			#totalCost {
 				font-size: 1.5rem;
-				color: green;
+				color: rgb(0, 179, 0);
 				text-align: right;
+
 			}
 			li {
-				border-bottom: 0.5px solid rgb(167, 167, 167);
+				border-bottom: 0.5px solid rgb(140, 140, 140);
 				padding: 2px 0px 2px 1rem;
 				min-width: 100px;
 				
@@ -166,21 +181,45 @@ header {
 					bottom: 7px;
 					padding: 5px;
 					float: left;
+					color: rgb(51, 51, 51);
+					padding: 0px;
+					border-radius: 50%;
 				}
 				.plusButton {
-					color: green;
+					background-color: rgb(0, 179, 0);
+					font-size: 1.5rem;
+					border: 1px solid rgb(0, 179, 0);
+
+					&:hover {
+						background-color: rgb(51, 51, 51);
+						color: rgb(0, 179, 0);
+					}
 				}
 				.minusButton {
-					color: red;
+					background-color: red;
+					font-size: 1.5rem;
+					margin-left: 10px;
+					border: 1px solid red;
+
+					&:hover {
+						background-color: rgb(51, 51, 51);
+						color: red;
+					}
 				}
 				.removeButton {
 					float: right;
+					color: white;
+
+					&:hover {
+						color: red;
+					}
 				}
 				.cartItem1 {
 					text-align: left;
 					font-size: 1.2rem;
 					width: 100%;
 					display: inline-block;
+					color: white;
 				}
 				.cartItem2 {
 					text-align: left;
@@ -191,7 +230,7 @@ header {
 				}
 				.cartItem3 {
 					text-align: right;
-					color: green;
+					color: rgb(0, 179, 0);
 					font-size: 1.5rem;
 					width: 100%;
 					display: inline-block;
@@ -315,6 +354,9 @@ div.Cardsbox {
 
 @media screen and (min-width: 480px) {
 	header {
+		h1 {
+			font-size: 2.5rem;
+		}
 		#activeCart {
 			width: 75vw;
 		}

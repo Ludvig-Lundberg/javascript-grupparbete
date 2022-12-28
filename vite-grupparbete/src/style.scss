@@ -112,19 +112,15 @@ header {
 			top: 0px;
 			background-color: white;
 			z-index: 1;
-			padding-bottom: 5px;
+			padding-bottom: 10px;
+			border-bottom: 1px solid black;
 
 			
 			#listSpan {
 				font-size: 2rem;
 				color: rgb(62, 62, 255);
 			}
-		} 
-
-		div:nth-child(1) {
-			border-bottom: 1px solid black;
 		}
-
 
 		#cartList {
 			list-style: none;
@@ -132,7 +128,7 @@ header {
 			width: 100%;
 			text-align: left;
 			margin-top: 2px;
-			margin-bottom: 15px;
+			margin-bottom: 80px;
 			
 			#totalCost {
 				font-size: 1.5rem;

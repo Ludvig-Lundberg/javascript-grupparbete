@@ -1,4 +1,4 @@
-import { toggleFormFunc, toggleCheckoutCart, checkoutCart, checkoutCartList } from "./main"
+import { toggleFormFunc, toggleCheckoutCart, checkoutCartList } from "./main"
 import { ICartItem } from "./interfaces"
 
 
@@ -155,18 +155,12 @@ export const renderCart = () => {
     }
 };
 
-/* const renderCheckoutCart = async () => checkoutCartList.innerHTML += cartArray
-    .map(e =>
-        `<li data-cart-item:"${e.product_id}">${e.item_name}<span><span>${e.qty} st</span><span>${e.item_price * e.qty} kr</span></span>
-        </li>
-        `
-    )
-    .join("") */
 
+// renderar ut nuvarande shopping cart till en lista på "checkout" sidan
 const renderCheckoutCart = async () => {
 
     checkoutCartList.innerHTML = `
-    <li>Namn<span>Antal</span><span>Pris</span></li>`
+    <li>Namn<span><span>Antal</span><span>Pris</span></span></li>`
 
     checkoutCartList.innerHTML += cartArray
     .map(e =>

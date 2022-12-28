@@ -5,7 +5,7 @@ import { cartArray, emptyCart, renderCart, totalCost, activeCartEl } from './car
 import './style.css'
 
 // HTML elements
-export const checkoutCart = document.querySelector("#checkout-cart") as HTMLElement
+const checkoutCart = document.querySelector("#checkout-cart") as HTMLElement
 export const checkoutCartList = document.querySelector("#checkout-cart-list") as HTMLElement
 const confirmationEl = document.querySelector("#confirmation") as HTMLElement
 const continueShoppingEl = document.querySelector("#continueShopping") as HTMLElement
@@ -23,6 +23,14 @@ let orderResponse : IResponse
 
 // functions
 
+export const getItems = async () => {
+    items = await fetchItems()
+
+    renderDom()
+    return items
+
+}
+
 const getOrderRes = async () => {
     orderResponse = await createOrder(orderObj)
 
@@ -30,14 +38,6 @@ const getOrderRes = async () => {
     console.log("Order ID:" + orderResponse.data.id + " " + "Order Date:" + orderResponse.data.order_date)
 
     return orderResponse
-
-}
-
-export const getItems = async () => {
-    items = await fetchItems()
-
-    renderDom()
-    return items
 
 }
 
@@ -158,7 +158,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     }]
 
     // localStorage för formuläret
-    localStorage.setItem("form", JSON.stringify(storageFormArray));
+    localStorage.setItem("form", JSON.stringify(storageFormArray))
 
     if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newAdressTitle && !newPostCodeTitle && !newCityTitle) {
         console.log("empty input");

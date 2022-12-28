@@ -20,7 +20,6 @@ const cartEl = document.querySelector("#cart")
 
 // EVENTLISTENERS EVENTLISTENERS EVENTLISTENERS
 
-// eventlistener som kollar om man trycker på "Lägg till i varukorgen"
 document.querySelector("#empty-cart")!.addEventListener("click", () => {
     emptyCart()
     renderCart()
@@ -28,10 +27,12 @@ document.querySelector("#empty-cart")!.addEventListener("click", () => {
 
 })
 
+// eventlistener som kollar om man trycker på "Lägg till i varukorgen"
 document.querySelector('#grid')!.addEventListener("click", e => {
     let productIndex;
     const target = e.target as HTMLElement;
     if (target.tagName === "BUTTON" && target.classList.contains("addButton")) {
+        document.querySelector("#empty-cart")!.classList.remove("d-none")
         let price: string = target.parentElement?.querySelector(".priceTitles")?.textContent!,
             productId: number = Number(target.parentElement?.parentElement?.getAttribute("id")),
             // ta bort allt förutom siffrorna

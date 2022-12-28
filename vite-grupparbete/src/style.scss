@@ -1,7 +1,7 @@
 @import"information-box", "confirmation-box", "cart";
 
 body {
-    background-color: #b2b2b2;
+    background: linear-gradient(300deg,#b2b2b2, #afeeee);
     color: black;
     font-family: 'Raleway', sans-serif;
 }
@@ -12,7 +12,7 @@ header {
 	position: sticky;
 	top: 0px;
 	z-index: 1;
-    background-color: #767676;
+    background: linear-gradient(300deg,#767676, #5e9898);
 
 	h1 {
 		margin: 0px 0px 0px 1rem;
@@ -21,6 +21,8 @@ header {
 		
 		a {
 			text-decoration: none;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: #fafad2;
 			color: rgb(69, 69, 69);
 			font-family: 'Noto Serif Georgian', serif;
 			transition: all 0.5s;
@@ -76,7 +78,9 @@ header {
 		border: none;
 		font-size: 2rem;
 		padding: 5px;
-		
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: #fafad2;
+
 		&:hover {
 			color: rgb(62, 62, 255);
 		}

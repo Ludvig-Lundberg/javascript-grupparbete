@@ -1,7 +1,7 @@
 @import"information-box", "confirmation-box", "cart", "checkout";
 
 body {
-    background-color: #b2b2b2;
+    background-color: #26aadb;
     color: black;
     font-family: 'Raleway', sans-serif;
 }
@@ -14,31 +14,39 @@ body {
 	}
 }
 
+@media screen and (max-width: 768px) {
+	.fa-house {
+		display: none;
+	}
+	
+}
+
 nav {
-	border-bottom: 1px solid black;
+	// border-bottom: 2px solid rgb(9, 213, 244);
 	margin-bottom: 1rem;
 	position: sticky;
 	top: 0px;
 	z-index: 1;
-    background-color: #767676;
+    background-color: #0d0d0d;
 
 	h1 {
 		margin: 0px 0px 0px 1rem;
-		font-family: 'Noto Serif Georgian', serif;
+		font-family: 'Limelight', cursive;
+		letter-spacing: 0.15rem;
 		transition: all 0.5s;
 		
 		a {
 			text-decoration: none;
-			color: rgb(69, 69, 69);
-			font-family: 'Noto Serif Georgian', serif;
+			color: white;
 			transition: all 0.5s;
 			cursor: pointer;
 
 			&:hover {
-				color: black;
+				color: rgb(244, 119, 9);
 			}
 			
 			i {
+				padding-left: 1rem;
 				opacity: 0;
 				animation: h1Animation 0.5s 0s 1 alternate;
 				position: relative;
@@ -48,7 +56,7 @@ nav {
 				@keyframes h1Animation {
 					0% {
 						right: 10px;
-						color: black;
+						color: rgb(244, 119, 9);
 						opacity: 1;
 					} 
 					100% {
@@ -57,6 +65,7 @@ nav {
 					}
 				}
 			}
+			
 			&:hover {
 				i {
 					animation: h1AnimationReverse 0.5s 0s 1 alternate;
@@ -69,7 +78,7 @@ nav {
 						} 
 						100% {
 							right: 10px;
-							color: black;
+							color: rgb(244, 119, 9);
 							opacity: 1;
 						}
 					}
@@ -83,6 +92,7 @@ main {
 	#hide {
 		display: none;
 	}
+
 	#continueShopping {
 		background: none;
 		border: none;

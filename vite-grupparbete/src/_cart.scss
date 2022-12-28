@@ -3,29 +3,31 @@
     right: 0px;
     padding: 0px 1.5rem 5px 1.5rem;
     width: 100vw;
-    top: 75px;
+    top: 74px;
     height: 100vh;
     z-index: 1;
     background-color: white;
     border: 1px solid black;
     border-top: none;
-    border-bottom-left-radius: 15px;
     text-align: center;
     overflow-y: scroll;
     overflow-x: hidden;
 
     div {
         position: sticky;
-        top: 0px;
+        top: 0;
         background-color: white;
         z-index: 1;
         padding-bottom: 10px;
-        border-bottom: 1px solid black;
+        
+        &:nth-child(2) {
+            border-bottom: 2px solid black;
+        }
 
 
         #listSpan {
             font-size: 2rem;
-            color: rgb(62, 62, 255);
+            color: rgb(244, 119, 9);
         }
     }
 
@@ -39,8 +41,8 @@
 
         #totalCost {
             font-size: 1.5rem;
-            color: green;
             text-align: right;
+            color: rgb(244, 119, 9);
         }
 
         li {
@@ -55,14 +57,12 @@
                 bottom: 7px;
                 padding: 5px;
                 float: left;
-            }
+                color: black;
 
-            .plusButton {
-                color: green;
-            }
-
-            .minusButton {
-                color: red;
+                &:hover {
+                    color: rgb(244, 119, 9);
+                    cursor: pointer;
+                }
             }
 
             .cartItem1 {
@@ -78,12 +78,13 @@
 
                 span {
                     display: flex;
+                    align-items: center;
                 }
             }
 
             .cartItem3 {
                 text-align: right;
-                color: green;
+                color: rgb(244, 119, 9);
                 font-size: 1.5rem;
                 width: 100%;
                 display: inline-block;
@@ -98,16 +99,17 @@
     border: none;
     font-size: 2rem;
     padding: 5px;
+    color: white;
 
     &:hover {
-        color: rgb(62, 62, 255);
+        color: rgb(244, 119, 9);
     }
 
     #cartNumber {
         font-size: 1rem;
         color: white;
         background-color: red;
-        padding: 4px;
+        padding: 4px 6px;
         border-radius: 50%;
         position: relative;
         bottom: 1.5rem;
@@ -116,11 +118,14 @@
 }
 
 #cartPay {
-    background: rgb(10, 163, 10);
+    background: rgb(244, 119, 9);
     padding: 0.4rem 0.7rem;
     color: white;
 
     &:hover {
+        background: black;
+        border: 2px solid black;
+
         i {
             animation: cartAnimation 1s 0s infinite alternate;
             position: relative;
@@ -195,8 +200,14 @@
 
 #empty-cart {
     padding: 0.4rem 0.7rem;
-    background-color: red;
+    background-color: black;
     color: white;
+
+    &:hover {
+        background-color: white;
+        border: 2px solid black;
+        color: black;
+    }
 }
 
 #total-cost {

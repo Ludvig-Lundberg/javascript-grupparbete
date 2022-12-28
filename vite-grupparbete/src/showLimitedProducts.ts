@@ -16,6 +16,7 @@ export let showFirst20 = async () => {
         } else {
             showMoreEl?.classList.add("d-none");
             showMoreEl?.setAttribute("id", "hide");
+            renderAmount();
             return
         }
     }
@@ -28,6 +29,10 @@ showMoreEl?.addEventListener("click", e => {
     }
 });
 export const renderAmount = () => {
-    amountEl1!.textContent = `Visar ${showMax} av ${items.data.length} produkter`;
+    if (showMax < items.data.length) {
+        amountEl1!.textContent = `Visar ${showMax} av ${items.data.length} produkter`;
+    } else {
+        amountEl1!.textContent = `Visar ${items.data.length} av ${items.data.length} produkter`;
+    }
     amountEl2!.textContent = `Visar ${showMax} av ${items.data.length} produkter`;
 }

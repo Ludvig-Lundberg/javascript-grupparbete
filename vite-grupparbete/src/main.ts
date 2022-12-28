@@ -142,6 +142,19 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     const newPostCodeTitle = document.querySelector<HTMLInputElement>('#c-Postcode')!.value
     const newCityTitle = document.querySelector<HTMLInputElement>('#c-City')!.value
 
+    let storageFormArray = [{
+        firstName: newFirstNameTitle,
+        lastName: newLastNameTitle,
+        email: newEmailTitle,
+        phone: newPhoneNumberTitle,
+        adress: newAdressTitle,
+        postCode: newPostCodeTitle,
+        city: newCityTitle
+    }]
+
+    // localStorage för formuläret
+    localStorage.setItem("form", JSON.stringify(storageFormArray));
+
     if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newAdressTitle && !newPostCodeTitle && !newCityTitle) {
         console.log("empty input");
         return
@@ -181,13 +194,13 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         await getOrderRes()
 
         confirmationEl!.innerHTML = `
+        <button id="close-confirm" type="button">Stäng</button>
         <h2>Beställningen är slutförd!</h2>
         <p>Din order skickades in: ${orderResponse.data.order_date} och har fått IDt ${orderResponse.data.id}.
         <p>Din order:</p>
             <ul>
                 ${cartItems} Totala kostnaden: ${totalCost}kr
             </ul>
-        <button id="close-confirm" type="button">Stäng</button>
         <p>Tack för du handlade hos oss!</p>
         `
         const closeConfirmEl = document.querySelector('#close-confirm') as HTMLElement

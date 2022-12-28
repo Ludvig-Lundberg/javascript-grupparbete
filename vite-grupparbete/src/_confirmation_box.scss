@@ -1,0 +1,19 @@
+#confirmation {
+    font-family: 'Kalam', cursive;
+    position: relative;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+    text-align: center;
+    #close-confirm {
+        border-style:outset;
+        background-color: rgb(177, 200, 200);
+        display: flex;
+        margin-left: auto;
+        color: ivory;
+        &:hover {
+            color:#f6e65c;
+        }
+    }
+}

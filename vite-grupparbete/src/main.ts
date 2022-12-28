@@ -191,6 +191,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
 
     const writeConfirmation = async () => {
 
+        document.querySelector("h2")?.classList.toggle("d-none")
         await getOrderRes()
 
         confirmationEl!.innerHTML = `

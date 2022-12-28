@@ -1,5 +1,10 @@
 @import"information-box", "confirmation-box", "cart";
 
+body {
+    background-color: #b2b2b2;
+    color: black;
+    font-family: 'Raleway', sans-serif;
+}
 
 header {
 	border-bottom: 1px solid black;
@@ -7,7 +12,7 @@ header {
 	position: sticky;
 	top: 0px;
 	z-index: 1;
-	background-color: white;
+    background-color: #767676;
 
 	h1 {
 		margin: 0px 0px 0px 1rem;
@@ -280,16 +285,13 @@ main {
 }
 div.Cardsbox {
 	display: block;
-	// p:nth-child() {
-		//     display: block;
-		// }
-		
 	}
 	div.hideDescription {
 		display: none;
 	}
 	#btn {
 		margin-inline: auto;
+        color: black;
 	}
 	
 @media screen and (max-width: 480px) {

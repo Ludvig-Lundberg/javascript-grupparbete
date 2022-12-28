@@ -1,4 +1,4 @@
-import { toggleFormFunc, toggleCheckoutCart, checkoutCartList } from "./main"
+import { toggleFormFunc, toggleCheckoutCart, checkoutCart, checkoutCartList } from "./main"
 import { ICartItem } from "./interfaces"
 
 
@@ -103,9 +103,10 @@ cartEl?.addEventListener("click", function () {
 
 cartPayButton?.addEventListener("click", async () => {
     await toggleCheckoutCart()
+    // if ()
     await renderCheckoutCart()
 
-    checkoutCartList.innerHTML += `Totalt: ${totalCost} kr`
+    checkoutCart.innerHTML += `<span id="total-cost">Totalt: ${totalCost} kr</span>`
 
     await toggleFormFunc()
 })
@@ -153,9 +154,9 @@ export let renderCart = () => {
     }
 };
 
-const renderCheckoutCart = async () => checkoutCartList.innerHTML = cartArray
+const renderCheckoutCart = async () => checkoutCartList.innerHTML += cartArray
     .map(e =>
-        `<li data-cart-item:"${e.product_id}">${e.item_name} <span>${e.item_price * e.qty} kr</span> ${e.qty} st
+        `<li data-cart-item:"${e.product_id}">${e.item_name}<span><span>${e.qty} st</span><span>${e.item_price * e.qty} kr</span></span>
         </li>
         `
     )

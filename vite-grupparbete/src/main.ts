@@ -5,8 +5,9 @@ import { cartArray, emptyCart, renderCart, totalCost, activeCartEl } from './car
 import './style.css'
 
 // HTML elements
-const checkoutCart = document.querySelector("#checkout-cart") as HTMLElement
+export const checkoutCart = document.querySelector("#checkout-cart") as HTMLElement
 export const checkoutCartList = document.querySelector("#checkout-cart-list") as HTMLElement
+const confirmationEl = document.querySelector("#confirmation") as HTMLElement
 const continueShoppingEl = document.querySelector("#continueShopping") as HTMLElement
 const gridEl = document.querySelector("#grid") as HTMLElement
 const homeLinkEl = document.querySelector("#home-link") as HTMLElement
@@ -118,6 +119,10 @@ homeLinkEl.addEventListener("click", () => {
         toggleCheckoutCart()
     }
 
+    if (confirmationEl.innerText.length > 0) {
+        window.location.assign("index.html")
+    }
+
 })
 
 infoDiv.addEventListener("click", e => {
@@ -177,8 +182,6 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         order_items: cartArray
     }
     
-    const confirmationEl = document.querySelector('#confirmation')! as HTMLElement
-
     let cartItems = cartArray
         .map(e => 
         `<li>${e.item_name}</li>
@@ -192,9 +195,10 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     const writeConfirmation = async () => {
 
         document.querySelector("h2")?.classList.toggle("d-none")
+        continueShoppingEl.classList.toggle("d-none")
         await getOrderRes()
 
-        confirmationEl!.innerHTML = `
+        confirmationEl.innerHTML = `
         <button id="close-confirm" type="button">Stäng</button>
         <h2>Beställningen är slutförd!</h2>
         <p>Din order skickades in: ${orderResponse.data.order_date} och har fått IDt ${orderResponse.data.id}.
@@ -205,7 +209,8 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         <p>Tack för du handlade hos oss!</p>
         `
         const closeConfirmEl = document.querySelector('#close-confirm') as HTMLElement
-        closeConfirmEl.addEventListener('click', e => {
+
+        closeConfirmEl.addEventListener('click', () => {
             // e.preventDefault()
             return window.location.assign("index.html")
         })

@@ -2,7 +2,7 @@
 
 
 body {
-	background-color: rgb(66, 66, 66);
+	background-color: rgb(91, 91, 91);
 }
 
 header {
@@ -12,7 +12,7 @@ header {
 	top: 0px;
 	z-index: 1;
 	background-color: rgb(32, 34, 37);
-
+	
 	h1 {
 		margin: 0px;
 		padding-left: 1rem;
@@ -20,19 +20,18 @@ header {
 		transition: all 0.5s;
 		color: lightgray;
 		background-image: url("./images/MixedCandy.jpg");
-  		background-clip: text;
+		background-clip: text;
 		-webkit-background-clip: text;
-  		-webkit-text-fill-color: transparent;
+		-webkit-text-fill-color: transparent;
 		background-position: left;
 		-webkit-text-stroke: 0.5px lightgray;
-
+		
 		a {
 			text-decoration: none;
 			color: lightgray;
 			font-family: 'Noto Serif Georgian', serif;
 			transition: all 0.5s;
-			cursor: pointer;
-
+			
 			&:hover {
 				color: white;
 			}
@@ -46,7 +45,7 @@ header {
 				transform: translateY(-3px);
 				@keyframes h1Animation {
 					0% {
-						right: 10px;
+						right: 8px;
 						color: white;
 						opacity: 1;
 					} 
@@ -67,7 +66,7 @@ header {
 							opacity: 0;
 						} 
 						100% {
-							right: 10px;
+							right: 8px;
 							color: white;
 							opacity: 1;
 						}
@@ -76,7 +75,7 @@ header {
 			}
 		}
 	}
-
+	
 	#cart {
 		margin-right: 1.5rem;
 		background: none;
@@ -168,7 +167,7 @@ header {
 				font-size: 1.5rem;
 				color: rgb(0, 179, 0);
 				text-align: right;
-
+				
 			}
 			li {
 				border-bottom: 0.5px solid rgb(140, 140, 140);
@@ -190,7 +189,7 @@ header {
 					background-color: rgb(0, 179, 0);
 					font-size: 1.5rem;
 					border: 1px solid rgb(0, 179, 0);
-
+					
 					&:hover {
 						background-color: rgb(66, 66, 66);
 						color: rgb(0, 179, 0);
@@ -201,7 +200,7 @@ header {
 					font-size: 1.5rem;
 					margin-left: 10px;
 					border: 1px solid red;
-
+					
 					&:hover {
 						background-color: rgb(66, 66, 66);
 						color: red;
@@ -210,7 +209,7 @@ header {
 				.removeButton {
 					float: right;
 					color: white;
-
+					
 					&:hover {
 						color: red;
 					}
@@ -242,6 +241,13 @@ header {
 }
 
 main {
+	
+	h2 {
+		color: white;
+	}
+	.amountOfProduct {
+		color: lightgray
+	}
 	#hide {
 		display: none;
 	}
@@ -286,37 +292,76 @@ main {
 			}
 		}
 	}
-
+	
 	#showMoreDiv {
+		color: lightgray;
 		width: fit-content;
 		margin: 2rem;
 		text-align: center;
 		#showMoreButton {
-			border: 1px solid black;
+			border: 1px solid lightgray;
 			border-radius: 15px;
 			background: none;
 			padding: 1rem;
 			margin-top: 10px;
+			color: lightgray;
+			transition: all 0.5s;
+			animation: showMoreAnimation 0.5s 0s 1 alternate;
+			animation-fill-mode: backwards;
+			
+			@keyframes showMoreAnimation {
+				0% {
+					color: white;
+					margin-top: 15px;
+				} 
+				100% {
+					color: lightgray;
+				}
+			}
+			
+			&:hover {
+				animation: showMoreAnimationReverse 0.5s 0s 1 alternate;
+				position: relative;
+				animation-fill-mode: forwards;
+				@keyframes showMoreAnimationReverse {
+					0% {
+						color: lightgray;
+					} 
+					100% {
+						color: white;
+						margin-top: 15px;
+					}
+				}
+			}
+		}
+	}
+
+	#grid {
+		gap: 1px;
+		box-sizing: border-box;
+
+		div {
+			background-color: red;
 		}
 	}
 	section {
-
+		
 		#checkout-cart {
 			p {
 				font-size: 1.5rem;
 			}
 		}
 	}
-
+	
 	#form {
-
+		
 		#formTitle {
 			font-size: 1.5rem;
 			display: block;
 			color: black;
 		}
 	}
-
+	
 }
 div.Cardsbox {
 	display: block;
@@ -332,51 +377,51 @@ div.Cardsbox {
 		margin-inline: auto;
 	}
 	
-@media screen and (max-width: 480px) {
-	header {
-		#activeCart {
-			width: 100vw;
+	@media screen and (max-width: 480px) {
+		header {
+			#activeCart {
+				width: 100vw;
 				#cartList {
-				
-				li {
-					padding-left: 0px;
 					
-					i {
-						font-size: 1.2rem;
-					}
-					.spanItem3{
-						font-size: 1.2rem;
+					li {
+						padding-left: 0px;
+						
+						i {
+							font-size: 1.2rem;
+						}
+						.spanItem3{
+							font-size: 1.2rem;
+						}
 					}
 				}
 			}
 		}
 	}
-}
-
-@media screen and (min-width: 480px) {
-	header {
-		h1 {
-			font-size: 2.5rem;
-		}
-		#activeCart {
-			width: 75vw;
-		}
-	}
-}
-
-@media screen and (min-width: 600px) {
-	header {
-		#activeCart {
-			width: 50vw;
+	
+	@media screen and (min-width: 480px) {
+		header {
+			h1 {
+				font-size: 2.5rem;
+			}
+			#activeCart {
+				width: 75vw;
+			}
 		}
 	}
-}
-
-@media screen and (min-width: 768px) {
-	header {
-		#activeCart {
-			max-width: 50vw;
-			width: 25rem;
+	
+	@media screen and (min-width: 600px) {
+		header {
+			#activeCart {
+				width: 50vw;
+			}
 		}
 	}
-}
+	
+	@media screen and (min-width: 768px) {
+		header {
+			#activeCart {
+				max-width: 50vw;
+				width: 25rem;
+			}
+		}
+	}

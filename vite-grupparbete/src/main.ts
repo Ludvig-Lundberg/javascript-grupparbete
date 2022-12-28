@@ -44,7 +44,7 @@ const getOrderRes = async () => {
 const renderDom = (() => {
     gridEl.innerHTML += items.data.map(item =>
         `
-        <div id="${item.id}" class="card col-6 col-md-4 col-lg-3 col-xl-3 d-none">
+        <div id="${item.id}" class="card col-5 col-md-3 col-lg-2 col-xl-2 d-none">
             <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">
             <div class="card-body cardsBox">
                 <h3 class="card-title">${item.name}</h3>

@@ -243,6 +243,7 @@ header {
 
 main {
 	background-color: rgb(91, 91, 91);
+	padding-top: 1rem;
 	section {
 	h2 {
 		color: white;
@@ -372,7 +373,7 @@ main {
 					align-self: flex-start;
 				}
 				.priceTitles {
-					margin: 0px 0px 8px 0px;
+					margin: 0px 0px 6px 0px;
 					color: rgb(66, 66, 66);
 				}
 				button {
@@ -461,14 +462,6 @@ div.hideDescription {
 					margin: auto;
 					width: 90%;
 				}
-				#grid {
-					.card {
-						img {
-							width: 90%;
-							height: auto;
-						}
-					}
-				}
 			}
 		}
 	}
@@ -478,6 +471,18 @@ div.hideDescription {
 		header {
 			#activeCart {
 				width: 50vw;
+			}
+		}
+		#main {
+			section {
+				#grid {
+					.card {
+						img {
+							width: 85%;
+							height: auto;
+						}
+					}
+				}
 			}
 		}
 	}
@@ -492,7 +497,17 @@ div.hideDescription {
 			}
 			#main {
 				width: 90%;
-				padding: 0px;
+				padding: 1rem 0px 0px 0px;
+				section {
+					#grid {
+						.card {
+							img {
+								width: 85%;
+								height: auto;
+							}
+						}
+					}
+				}
 			}
 		}
 	}

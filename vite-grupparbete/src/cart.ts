@@ -169,12 +169,7 @@ export const renderCart = () => {
             </li>`
         }
     }
-};
-
-/* <i class="fa-solid fa-circle-minus minusButton float-left"></i>
-<span class="cartItem2">${cartArray[i].qty} st <i class="fa-solid fa-trash-can removeButton float-right"></i></span>
-<i class="fa-solid fa-circle-plus plusButton float-left"></i> */
-
+}
 
 // renderar ut nuvarande shopping cart till en lista på "checkout" sidan
 const renderCheckoutCart = async () => {

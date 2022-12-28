@@ -1,20 +1,35 @@
-import { ICartitem, IItem, IOrder, IResponse } from './interfaces'
+import { IItem, IOrder, IResponse } from './interfaces'
 import { createOrder, fetchItems } from './api'
 import { amountEl1, showFirst20, showMoreEl } from './showLimitedProducts'
 import { cartArray, emptyCart, renderCart, totalCost, activeCartEl } from './cart'
 import './style.css'
 
 // HTML elements
-const infoDiv = document.querySelector("#fade-background") as HTMLElement
+const checkoutCart = document.querySelector("#checkout-cart") as HTMLElement
+export const checkoutCartList = document.querySelector("#checkout-cart-list") as HTMLElement
+const confirmationEl = document.querySelector("#confirmation") as HTMLElement
+const continueShoppingEl = document.querySelector("#continueShopping") as HTMLElement
 const gridEl = document.querySelector("#grid") as HTMLElement
+const homeLinkEl = document.querySelector("#home-link") as HTMLElement
+const infoDiv = document.querySelector("#fade-background") as HTMLElement
+
 
 // arrays
 export let items: {data: Array<IItem>}
 
+// objects
 let orderObj : IOrder
-
 let orderResponse : IResponse
 
+// functions
+
+export const getItems = async () => {
+    items = await fetchItems()
+
+    renderDom()
+    return items
+
+}
 
 const getOrderRes = async () => {
     orderResponse = await createOrder(orderObj)
@@ -26,30 +41,58 @@ const getOrderRes = async () => {
 
 }
 
-const continueShoppingEl = document.querySelector("#continueShopping");
-document.querySelector("#form")?.classList.add("d-none");
-export let toggleFormFunc = async () => {
-    gridEl.classList.toggle("d-none");
-    document.querySelector("#form")?.classList.toggle("d-none");
-    continueShoppingEl?.classList.toggle("d-none");
-    showMoreEl?.classList.toggle("d-none");
-    activeCartEl?.classList.add("d-none");
-    amountEl1?.classList.toggle("d-none");
+const renderDom = (() => {
+    gridEl.innerHTML += items.data.map(item =>
+        `
+        <div id="${item.id}" class="card col-6 col-md-4 col-lg-3 col-xl-3 d-none">
+            <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">
+            <div id="Cardsbox" class="card-body">
+                <h5 class="card-title">${item.name}</h5>
+                <div id="priceTitles">${item.price}kr per skopa</div>
+                <div id="hideDescription">${item.description}</div>
+                <button class="btn btn-primary addButton">Lägg till i varukorgen</button>
+                <button class="btn btn-secondary read-more" data-item-id-button="${item.id}">Läs mer</button>
+            </div>
+        </div>
+        `
+    ).join('')
+
+    showFirst20()
+})
+
+// document.querySelector("#form")?.classList.add("d-none")
+export const toggleFormFunc = async () => {
+    gridEl.classList.toggle("d-none")
+    document.querySelector("#form")?.classList.toggle("d-none")
+    continueShoppingEl?.classList.toggle("d-none")
+    showMoreEl?.classList.toggle("d-none")
+    activeCartEl?.classList.add("d-none")
+    amountEl1?.classList.toggle("d-none")
 }
 
-continueShoppingEl?.addEventListener("click", toggleFormFunc);
+export const toggleCheckoutCart = async () => {
+    checkoutCart.classList.toggle("d-none")
+    document.querySelector("h2")?.classList.toggle("d-none")
+}
+
+const toggleRemoveForm = () => {
+    document.querySelector("#form")?.classList.toggle("d-none")
+    emptyCart()
+    renderCart()
+}
 
 // EventListeners
-gridEl!.addEventListener("click", async e => {
-    const target = e.target as HTMLElement
+continueShoppingEl.addEventListener("click", () => {
+    toggleFormFunc()
+    toggleCheckoutCart()
+})
 
-    // console.log("e target", e.target)
+gridEl.addEventListener("click", async e => {
+    const target = e.target as HTMLElement
 
     if (target.tagName === "BUTTON" && target.classList.contains("read-more")) {
 		
-		const itemId = Number(target.dataset.itemIdButton);     // `data-item-id-button`
-
-        // console.log("item ID", itemId)
+		const itemId = Number(target.dataset.itemIdButton);
 
 		const foundItem = items.data.find(item => item.id === itemId)!
 
@@ -67,10 +110,22 @@ gridEl!.addEventListener("click", async e => {
                 </div>
             </div>`
 	}
+})
+
+homeLinkEl.addEventListener("click", () => {
+
+    if (!checkoutCart.classList.contains("d-none")) {
+        toggleFormFunc()
+        toggleCheckoutCart()
+    }
+
+    if (confirmationEl.innerText.length > 0) {
+        window.location.assign("index.html")
+    }
 
 })
 
-infoDiv?.addEventListener("click", e => {
+infoDiv.addEventListener("click", e => {
 
     const target = e.target as HTMLElement
 
@@ -81,40 +136,8 @@ infoDiv?.addEventListener("click", e => {
 })
 
 
-
-
-export const getItems = async () => {
-    items = await fetchItems()
-
-    renderDom();
-    return items
-
-}
-
-export const renderItems = document.querySelector('#grid')!;
-
-const renderDom = (() => {
-    renderItems.innerHTML += items.data.map(item =>
-        `
-        <div id="${item.id}" class="card col-6 col-md-4 col-lg-3 col-xl-3 d-none">
-            <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">
-            <div id="Cardsbox" class="card-body">
-                <h5 class="card-title">${item.name}</h5>
-                <div id="priceTitles">${item.price}kr per skopa</div>
-                <div id="hideDescription">${item.description}</div>
-                <button class="btn btn-primary addButton">Lägg till i varukorgen</button>
-                <button class="btn btn-secondary read-more" data-item-id-button="${item.id}">Läs mer</button>
-            </div>
-        </div>
-        `
-    ).join('')
-
-    showFirst20();
-})
-
 document.querySelector('#form')?.addEventListener('submit', async e => {
     e.preventDefault()
-    console.log("clicking")
 
     const newFirstNameTitle = document.querySelector<HTMLInputElement>('#firstName')!.value
     const newLastNameTitle = document.querySelector<HTMLInputElement>('#lastName')!.value
@@ -135,17 +158,17 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     }]
 
     // localStorage för formuläret
-    localStorage.setItem("form", JSON.stringify(storageFormArray));
+    localStorage.setItem("form", JSON.stringify(storageFormArray))
 
     if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newAdressTitle && !newPostCodeTitle && !newCityTitle) {
         console.log("empty input");
         return
     }
-    if (newFirstNameTitle && newLastNameTitle && newEmailTitle && newPhoneNumberTitle && newAdressTitle && newPostCodeTitle && newCityTitle) {
+/*     if (newFirstNameTitle && newLastNameTitle && newEmailTitle && newPhoneNumberTitle && newAdressTitle && newPostCodeTitle && newCityTitle) {
         
     }else if (newFirstNameTitle && newLastNameTitle && newEmailTitle && !newPhoneNumberTitle && newAdressTitle && newPostCodeTitle && newCityTitle) {
         
-    }
+    } */
 
     orderObj = {
         customer_first_name: newFirstNameTitle,
@@ -159,8 +182,6 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         order_items: cartArray
     }
     
-    const confirmationEl = document.querySelector('#confirmation')! as HTMLElement
-
     let cartItems = cartArray
         .map(e => 
         `<li>${e.item_name}</li>
@@ -169,12 +190,16 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         )
         .join("")
 
+    toggleCheckoutCart()
+
     const writeConfirmation = async () => {
 
+        document.querySelector("h2")?.classList.toggle("d-none")
+        continueShoppingEl.classList.toggle("d-none")
         await getOrderRes()
 
-        confirmationEl!.innerHTML = `
-        <button id="submitAgain" type="submit">Stäng</button>
+        confirmationEl.innerHTML = `
+        <button id="close-confirm" type="button">Stäng</button>
         <h2>Beställningen är slutförd!</h2>
         <p>Din order skickades in: ${orderResponse.data.order_date} och har fått IDt ${orderResponse.data.id}.
         <p>Din order:</p>
@@ -183,23 +208,20 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
             </ul>
         <p>Tack för du handlade hos oss!</p>
         `
-        const submitAgainEl = document.querySelector('#submitAgain') as HTMLElement
-        submitAgainEl?.addEventListener('click', e => {
-            e.preventDefault()
+        const closeConfirmEl = document.querySelector('#close-confirm') as HTMLElement
+
+        closeConfirmEl.addEventListener('click', () => {
+            // e.preventDefault()
             return window.location.assign("index.html")
         })
     }
-        // getOrderRes()
+
         writeConfirmation()
+        toggleRemoveForm()
 
 })
 
-let toggleRemoveForm = () => {
-    document.querySelector("#form")?.classList.toggle("d-none");
-    emptyCart();
-    renderCart()
-}
-document.querySelector('#form')?.addEventListener('submit', toggleRemoveForm);
+// document.querySelector('#form')?.addEventListener('submit', toggleRemoveForm)
 
 
 
@@ -219,6 +241,6 @@ if (storageForm !== null) {
 
 }
 
+// active functions
 renderCart()
 getItems()
-// getOrderRes() // skickar iväg testorder till api

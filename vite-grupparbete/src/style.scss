@@ -1,5 +1,5 @@
-@import"information-box";
-@import"confirmation_box";
+@import"information-box", "confirmation-box", "cart";
+
 
 header {
 	border-bottom: 1px solid black;
@@ -8,62 +8,17 @@ header {
 	top: 0px;
 	z-index: 1;
 	background-color: white;
-	
-	h1 {
-		margin: 0px 0px 0px 1rem;
-		font-family: 'Noto Serif Georgian', serif;
-		transition: all 0.5s;
-		
-		a {
-			text-decoration: none;
-			color: rgb(69, 69, 69);
-			font-family: 'Noto Serif Georgian', serif;
-			transition: all 0.5s;
-			cursor: pointer;
 
-			&:hover {
-				color: black;
-			}
-			
-			i {
-				opacity: 0;
-				animation: h1Animation 0.5s 0s 1 alternate;
-				position: relative;
-				animation-fill-mode: backwards;
-				font-size: 2rem;
-				transform: translateY(-3px);
-				@keyframes h1Animation {
-					0% {
-						right: 10px;
-						color: black;
-						opacity: 1;
-					} 
-					100% {
-						right: 0px;
-						opacity: 0;
-					}
-				}
-			}
-			&:hover {
-				i {
-					animation: h1AnimationReverse 0.5s 0s 1 alternate;
-					position: relative;
-					animation-fill-mode: forwards;
-					@keyframes h1AnimationReverse {
-						0% {
-							right: 0px;
-							opacity: 0;
-						} 
-						100% {
-							right: 10px;
-							color: black;
-							opacity: 1;
-						}
-					}
-				}
-			}
+	#home-link {
+		text-decoration: none;
+		color: black;
+		margin: 0 0 0 10px;
+
+		i {
+			margin: 0 0.5rem 0 0;
 		}
 	}
+
 	#cart {
 		margin-right: 1.5rem;
 		background: none;
@@ -199,6 +154,7 @@ header {
 		}
 	}
 }
+
 main {
 	#hide {
 		display: none;

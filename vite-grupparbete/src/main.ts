@@ -4,7 +4,7 @@ import { amountEl1, showFirst20, showMoreEl } from './showLimitedProducts'
 import { cartArray, emptyCart, renderCart, totalCost, activeCartEl } from './cart'
 import './style.css'
 
-// HTML elements
+//* HTML elements *//
 const checkoutCart = document.querySelector("#checkout-cart") as HTMLElement
 export const checkoutCartList = document.querySelector("#checkout-cart-list") as HTMLElement
 const confirmationEl = document.querySelector("#confirmation") as HTMLElement
@@ -14,30 +14,18 @@ const homeLinkEl = document.querySelector("#home-link") as HTMLElement
 const infoDiv = document.querySelector("#fade-background") as HTMLElement
 
 
-// arrays
+//* Arrays *//
 export let items: {data: Array<IItem>}
 
-// objects
+//* Objects *//
 let orderObj : IOrder
 let orderResponse : IResponse
 
-// functions
+//* Functions *//
 
 export const getItems = async () => {
     items = await fetchItems()
 
-    items.data.sort((aItem,bItem)=> {
-        if (aItem.name.toUpperCase() < bItem.name.toUpperCase()) {
-            return -1;
-        }
-    
-        if (aItem.name.toUpperCase() > bItem.name.toUpperCase()) {
-            return 1;
-        }
-    
-        return 0;
-    })
-    console.log(items)
     renderDom()
     return items
 
@@ -54,6 +42,19 @@ const getOrderRes = async () => {
 }
 
 const renderDom = (() => {
+
+    items.data.sort((aItem,bItem)=> {
+        if (aItem.name.toUpperCase() < bItem.name.toUpperCase()) {
+            return -1;
+        }
+    
+        if (aItem.name.toUpperCase() > bItem.name.toUpperCase()) {
+            return 1;
+        }
+    
+        return 0;
+    })
+
     gridEl.innerHTML += items.data.map(item =>
         `
         <div id="${item.id}" class="card col-6 col-md-4 col-lg-3 col-xl-3 d-none">
@@ -72,7 +73,6 @@ const renderDom = (() => {
     showFirst20()
 })
 
-// document.querySelector("#form")?.classList.add("d-none")
 export const toggleFormFunc = async () => {
     gridEl.classList.toggle("d-none")
     document.querySelector("#form")?.classList.toggle("d-none")
@@ -93,7 +93,7 @@ const toggleRemoveForm = () => {
     renderCart()
 }
 
-// EventListeners
+//* EventListeners *//
 continueShoppingEl.addEventListener("click", () => {
     toggleFormFunc()
     toggleCheckoutCart()
@@ -169,18 +169,13 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         city: newCityTitle
     }]
 
-    // localStorage för formuläret
+    //* localStorage för formuläret *//
     localStorage.setItem("form", JSON.stringify(storageFormArray))
 
     if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newAdressTitle && !newPostCodeTitle && !newCityTitle) {
         console.log("empty input");
         return
     }
-/*     if (newFirstNameTitle && newLastNameTitle && newEmailTitle && newPhoneNumberTitle && newAdressTitle && newPostCodeTitle && newCityTitle) {
-        
-    }else if (newFirstNameTitle && newLastNameTitle && newEmailTitle && !newPhoneNumberTitle && newAdressTitle && newPostCodeTitle && newCityTitle) {
-        
-    } */
 
     orderObj = {
         customer_first_name: newFirstNameTitle,
@@ -223,7 +218,6 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         const closeConfirmEl = document.querySelector('#close-confirm') as HTMLElement
 
         closeConfirmEl.addEventListener('click', () => {
-            // e.preventDefault()
             return window.location.assign("index.html")
         })
     }
@@ -233,11 +227,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
 
 })
 
-// document.querySelector('#form')?.addEventListener('submit', toggleRemoveForm)
-
-
-
-// localStorage för formuläret
+//* localStorage för formuläret *//
 const storageForm = localStorage.getItem("form");
 let storageFormArrayJS;
 if (storageForm !== null) {
@@ -253,6 +243,6 @@ if (storageForm !== null) {
 
 }
 
-// active functions
+//* Active functions *//
 renderCart()
 getItems()

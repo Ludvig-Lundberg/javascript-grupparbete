@@ -164,11 +164,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         console.log("empty input");
         return
     }
-/*     if (newFirstNameTitle && newLastNameTitle && newEmailTitle && newPhoneNumberTitle && newAdressTitle && newPostCodeTitle && newCityTitle) {
-        
-    }else if (newFirstNameTitle && newLastNameTitle && newEmailTitle && !newPhoneNumberTitle && newAdressTitle && newPostCodeTitle && newCityTitle) {
-        
-    } */
+
 
     orderObj = {
         customer_first_name: newFirstNameTitle,

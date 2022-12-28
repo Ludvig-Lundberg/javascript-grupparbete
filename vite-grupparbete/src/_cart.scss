@@ -1,3 +1,32 @@
+#cartPay {
+    background: rgb(10, 163, 10);
+    padding: 0.4rem 0.7rem;
+    color: white;
+    
+    &:hover {
+        i {
+            animation: cartAnimation 1s 0s infinite alternate;
+            position: relative;
+            
+            @keyframes cartAnimation {
+                0% {
+                    left: 0px;
+                } 
+                100% {
+                    left: 10px;
+                }
+                
+            }
+        }
+    }
+}
+
+#checkout-btns {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 75px;
+}
+
 #checkout-cart {
     h4 {
         text-transform: uppercase;
@@ -42,11 +71,12 @@
 }
 
 #empty-cart {
-    margin-bottom: 75px;
     padding: 0.4rem 0.7rem;
     background-color: red;
     color: white;
 }
+
+
 
 #total-cost {
     font-weight: 500;

@@ -113,39 +113,19 @@ header {
 			background-color: white;
 			z-index: 1;
 			padding-bottom: 5px;
-			border-bottom: 1px solid black;
+
 			
 			#listSpan {
 				font-size: 2rem;
 				color: rgb(62, 62, 255);
 			}
-			#cartPay {
-				background: rgb(10, 163, 10);
-				border: none;
-				font-size: 1.5rem;
-				padding: 2px 1rem;
-				color: white;
-				left: 1rem;
-				border-radius: 10px;
-				
-				&:hover {
-					i {
-						animation: cartAnimation 1s 0s infinite alternate;
-						position: relative;
-						
-						@keyframes cartAnimation {
-							0% {
-								left: 0px;
-							} 
-							100% {
-								left: 10px;
-							}
-							
-						}
-					}
-				}
-			}
 		} 
+
+		div:nth-child(1) {
+			border-bottom: 1px solid black;
+		}
+
+
 		#cartList {
 			list-style: none;
 			padding: 0px;

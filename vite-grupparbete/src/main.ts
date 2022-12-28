@@ -26,6 +26,18 @@ let orderResponse : IResponse
 export const getItems = async () => {
     items = await fetchItems()
 
+    items.data.sort((aItem,bItem)=> {
+        if (aItem.name.toUpperCase() < bItem.name.toUpperCase()) {
+            return -1;
+        }
+    
+        if (aItem.name.toUpperCase() > bItem.name.toUpperCase()) {
+            return 1;
+        }
+    
+        return 0;
+    })
+    console.log(items)
     renderDom()
     return items
 

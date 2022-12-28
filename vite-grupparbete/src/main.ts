@@ -4,7 +4,7 @@ import { amountEl1, showFirst20, showMoreEl } from './showLimitedProducts'
 import { cartArray, emptyCart, renderCart, totalCost, activeCartEl } from './cart'
 import './style.css'
 
-// HTML elements
+//* HTML elements *//
 const checkoutCart = document.querySelector("#checkout-cart") as HTMLElement
 export const checkoutCartList = document.querySelector("#checkout-cart-list") as HTMLElement
 const confirmationEl = document.querySelector("#confirmation") as HTMLElement
@@ -14,14 +14,14 @@ const homeLinkEl = document.querySelector("#home-link") as HTMLElement
 const infoDiv = document.querySelector("#fade-background") as HTMLElement
 
 
-// arrays
+//* Arrays *//
 export let items: {data: Array<IItem>}
 
-// objects
+//* Objects *//
 let orderObj : IOrder
 let orderResponse : IResponse
 
-// functions
+//* Functions *//
 
 export const getItems = async () => {
     items = await fetchItems()
@@ -42,6 +42,19 @@ const getOrderRes = async () => {
 }
 
 const renderDom = (() => {
+
+    items.data.sort((aItem,bItem)=> {
+        if (aItem.name.toUpperCase() < bItem.name.toUpperCase()) {
+            return -1;
+        }
+    
+        if (aItem.name.toUpperCase() > bItem.name.toUpperCase()) {
+            return 1;
+        }
+    
+        return 0;
+    })
+
     gridEl.innerHTML += items.data.map(item =>
         `
         <div id="${item.id}" class="card col-5 col-md-3 col-lg-2 col-xl-2 d-none">
@@ -60,7 +73,6 @@ const renderDom = (() => {
     showFirst20()
 })
 
-// document.querySelector("#form")?.classList.add("d-none")
 export const toggleFormFunc = async () => {
     gridEl.classList.toggle("d-none")
     document.querySelector("#form")?.classList.toggle("d-none")
@@ -81,7 +93,7 @@ const toggleRemoveForm = () => {
     renderCart()
 }
 
-// EventListeners
+//* EventListeners *//
 continueShoppingEl.addEventListener("click", () => {
     toggleFormFunc()
     toggleCheckoutCart()
@@ -99,10 +111,10 @@ gridEl.addEventListener("click", async e => {
         infoDiv.classList.toggle("d-none")
         infoDiv.innerHTML = `                
             <div id="more-information">
-                <button class="btn btn-secondary close-info-btn" id="close-info-btn">Stäng</button>
+                <button class="btn" id="close-info-btn"><i class="fa-solid fa-xmark"></i></button>
                 <img src="https://bortakvall.se/${foundItem.images.large}" alt="Bild av ${foundItem.name}">
                 <div id="info-text">
-                    <h3>${foundItem.name}</h3> 
+                    <h4>${foundItem.name}</h4> 
                     <span id="price">Pris: ${foundItem.price} kronor</span>
                     <div id="ingredients">
                         ${foundItem.description}
@@ -129,7 +141,7 @@ infoDiv.addEventListener("click", e => {
 
     const target = e.target as HTMLElement
 
-    if (target.tagName === "DIV" && target.id.includes("fade-background") || target.tagName === "BUTTON") {
+    if (target.tagName === "DIV" && target.id.includes("fade-background") || target.tagName === "I") {
         infoDiv?.classList.toggle("d-none")
     }
 
@@ -157,18 +169,13 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         city: newCityTitle
     }]
 
-    // localStorage för formuläret
+    //* localStorage för formuläret *//
     localStorage.setItem("form", JSON.stringify(storageFormArray))
 
     if (!newFirstNameTitle && !newLastNameTitle && !newEmailTitle && !newAdressTitle && !newPostCodeTitle && !newCityTitle) {
         console.log("empty input");
         return
     }
-/*     if (newFirstNameTitle && newLastNameTitle && newEmailTitle && newPhoneNumberTitle && newAdressTitle && newPostCodeTitle && newCityTitle) {
-        
-    }else if (newFirstNameTitle && newLastNameTitle && newEmailTitle && !newPhoneNumberTitle && newAdressTitle && newPostCodeTitle && newCityTitle) {
-        
-    } */
 
     orderObj = {
         customer_first_name: newFirstNameTitle,
@@ -211,7 +218,6 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         const closeConfirmEl = document.querySelector('#close-confirm') as HTMLElement
 
         closeConfirmEl.addEventListener('click', () => {
-            // e.preventDefault()
             return window.location.assign("index.html")
         })
     }
@@ -221,11 +227,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
 
 })
 
-// document.querySelector('#form')?.addEventListener('submit', toggleRemoveForm)
-
-
-
-// localStorage för formuläret
+//* localStorage för formuläret *//
 const storageForm = localStorage.getItem("form");
 let storageFormArrayJS;
 if (storageForm !== null) {
@@ -241,6 +243,6 @@ if (storageForm !== null) {
 
 }
 
-// active functions
+//* Active functions *//
 renderCart()
 getItems()

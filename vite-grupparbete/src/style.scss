@@ -152,7 +152,7 @@ header {
 			width: 100%;
 			text-align: left;
 			margin-top: 2px;
-			margin-bottom: 75px;
+			margin-bottom: 15px;
 			
 			#totalCost {
 				font-size: 1.5rem;
@@ -188,11 +188,12 @@ header {
 					display: inline-block;
 				}
 				.cartItem2 {
-					text-align: left;
-					font-weight: lighter;
-					font-size: 1.1rem;
-					width: 100%;
-					display: inline-block;
+					display: flex;
+					justify-content: space-between;
+				
+					span {
+						display: flex;
+					}
 				}
 				.cartItem3 {
 					text-align: right;

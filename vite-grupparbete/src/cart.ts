@@ -21,6 +21,13 @@ const cartEl = document.querySelector("#cart")
 // EVENTLISTENERS EVENTLISTENERS EVENTLISTENERS
 
 // eventlistener som kollar om man trycker på "Lägg till i varukorgen"
+document.querySelector("#empty-cart")!.addEventListener("click", () => {
+    emptyCart()
+    renderCart()
+    document.querySelector("#empty-cart")!.classList.add("d-none")
+
+})
+
 document.querySelector('#grid')!.addEventListener("click", e => {
     let productIndex;
     const target = e.target as HTMLElement;
@@ -35,7 +42,7 @@ document.querySelector('#grid')!.addEventListener("click", e => {
             if (cartArray.some(h => h.product_id === productId)) {
                 productIndex = cartArray.findIndex(e => e.product_id === productId)
                 cartArray[productIndex].qty ++
-                renderCart();
+                renderCart()
                 return;
             }
         }
@@ -56,7 +63,7 @@ cartListEl?.addEventListener("click", e => {
         
         // Lägger till +1
     } if ((e.target as HTMLElement).classList.contains("plusButton")) {
-        productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent
+        productName = (e.target as HTMLElement).parentElement!.parentElement?.parentElement!.querySelector(".cartItem1")?.textContent
 
         let i = 0;
         for (; i < cartArray.length; i++) {
@@ -68,7 +75,7 @@ cartListEl?.addEventListener("click", e => {
         }
         // Tar bort -1
     } else if ((e.target as HTMLElement).classList.contains("minusButton")) {
-        productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent
+        productName = (e.target as HTMLElement).parentElement!.parentElement?.parentElement!.querySelector(".cartItem1")?.textContent
         
         let i = 0
         for (; i < cartArray.length; i++) {
@@ -83,7 +90,7 @@ cartListEl?.addEventListener("click", e => {
         }
         // Tar bort hela varan
     } else if ((e.target as HTMLElement).classList.contains("removeButton")) {
-        productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent
+        productName = (e.target as HTMLElement).parentElement!.parentElement?.parentElement!.querySelector(".cartItem1")?.textContent
         
         let i = 0;
         for (; i < cartArray.length; i++) {
@@ -99,6 +106,10 @@ cartListEl?.addEventListener("click", e => {
 // visa och dölj sin varukorg
 cartEl?.addEventListener("click", function () {
     activeCartEl?.classList.toggle("d-none")
+    
+    if (cartArray.length > 0) {
+        document.querySelector("#empty-cart")!.classList.remove("d-none")
+    }
 })
 
 cartPayButton?.addEventListener("click", async () => {
@@ -142,18 +153,27 @@ export const renderCart = () => {
         for (let i = 0; i < cartArray.length; i++) {
             cartListEl!.innerHTML += `<li>
             <span class="cartItem1">${cartArray[i].item_name}</span>
-            <br>
-            <span class="cartItem2">${cartArray[i].qty} st <i class="fa-solid fa-trash-can removeButton float-right"></i></span>
-            <br>
+            <span class="cartItem2">
+                <span>
+                    <i class="fa-solid fa-circle-minus minusButton"></i>
+                    ${cartArray[i].qty} st
+                    <i class="fa-solid fa-circle-plus plusButton"></i>
+                </span>
+                <span>
+                    <i class="fa-solid fa-trash-can removeButton"></i>
+                </span>
+            </span>
             <span class="cartItem3">
-                <i class="fa-solid fa-circle-plus plusButton float-left"></i>
-                <i class="fa-solid fa-circle-minus minusButton float-left"></i>
                 ${(cartArray[i].item_price) * (cartArray[i].qty)} kr
             </span>
             </li>`
         }
     }
 };
+
+/* <i class="fa-solid fa-circle-minus minusButton float-left"></i>
+<span class="cartItem2">${cartArray[i].qty} st <i class="fa-solid fa-trash-can removeButton float-right"></i></span>
+<i class="fa-solid fa-circle-plus plusButton float-left"></i> */
 
 
 // renderar ut nuvarande shopping cart till en lista på "checkout" sidan

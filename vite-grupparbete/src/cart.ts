@@ -102,15 +102,16 @@ cartEl?.addEventListener("click", function () {
 })
 
 cartPayButton?.addEventListener("click", async () => {
+
     await toggleCheckoutCart()
-    // if ()
     await renderCheckoutCart()
 
-    checkoutCart.innerHTML += `<span id="total-cost">Totalt: ${totalCost} kr</span>`
+    const totalCostCheckout = document.querySelector("#total-cost") as HTMLElement
+
+    totalCostCheckout.innerText = `Totalt: ${totalCost} kr`
 
     await toggleFormFunc()
 })
-
 
 // FUNKTIONER FUNKTIONER FUNKTIONER
 
@@ -120,7 +121,7 @@ export const emptyCart = () => {
 }
 
 // Funktion för att rendera ut DOM:en på 'cart'
-export let renderCart = () => {
+export const renderCart = () => {
     console.log(cartArray)
     // Fyller på localStorage med nytt innehåll
     localStorage.setItem("cart", JSON.stringify(cartArray))
@@ -154,13 +155,26 @@ export let renderCart = () => {
     }
 };
 
-const renderCheckoutCart = async () => checkoutCartList.innerHTML += cartArray
+/* const renderCheckoutCart = async () => checkoutCartList.innerHTML += cartArray
     .map(e =>
         `<li data-cart-item:"${e.product_id}">${e.item_name}<span><span>${e.qty} st</span><span>${e.item_price * e.qty} kr</span></span>
         </li>
         `
     )
-    .join("")
+    .join("") */
+
+const renderCheckoutCart = async () => {
+
+    checkoutCartList.innerHTML = `
+    <li>Namn<span>Antal</span><span>Pris</span></li>`
+
+    checkoutCartList.innerHTML += cartArray
+    .map(e =>
+        `<li data-cart-item:"${e.product_id}">${e.item_name}<span><span>${e.qty} st</span><span>${e.item_price * e.qty} kr</span></span>
+        </li>
+        `
+    )
+    .join("")}
 
 // funktion för att räkna ut total kostnaden för alla sina varor
 export const totalCostFunc = () => {

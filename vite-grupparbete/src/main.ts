@@ -62,7 +62,7 @@ const renderDom = (() => {
 
 // document.querySelector("#form")?.classList.add("d-none")
 export const toggleFormFunc = async () => {
-    gridEl.classList.toggle("d-none");
+    gridEl.classList.toggle("d-none")
     document.querySelector("#form")?.classList.toggle("d-none")
     continueShoppingEl?.classList.toggle("d-none")
     showMoreEl?.classList.toggle("d-none")

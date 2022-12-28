@@ -6,8 +6,7 @@ body {
 	background-image: url("./images/background.jpg");
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-
-
+	background-size: cover;
 header {
 	border-bottom: 1px solid black;
 	position: sticky;
@@ -167,7 +166,7 @@ header {
 			
 			#totalCost {
 				font-size: 1.5rem;
-				color: rgb(0, 179, 0);
+				color: white;
 				text-align: right;
 				
 			}
@@ -232,7 +231,7 @@ header {
 				}
 				.cartItem3 {
 					text-align: right;
-					color: rgb(0, 179, 0);
+					color: white;
 					font-size: 1.5rem;
 					width: 100%;
 					display: inline-block;
@@ -242,14 +241,19 @@ header {
 	}
 }
 
-#main {
+main {
 	background-color: rgb(91, 91, 91);
+	section {
 	h2 {
 		color: white;
+		padding-left: 5vw;
+		margin: auto;
+		width: 90%;
 	}
 	.amountOfProduct {
 		color: lightgray;
 		margin-bottom: 5px;
+		text-align: center;
 	}
 	#hide {
 		display: none;
@@ -379,6 +383,7 @@ header {
 			}
 		}
 	}
+}
 	section {
 		
 		#checkout-cart {
@@ -427,6 +432,16 @@ div.hideDescription {
 				}
 			}
 		}
+		#main {
+			section {
+				h2 {
+					color: white;
+					padding-left: 5vw;
+					margin: auto;
+					width: 90%;
+				}
+			}
+		}
 	}
 	
 	@media screen and (min-width: 480px) {
@@ -438,12 +453,20 @@ div.hideDescription {
 				width: 75vw;
 			}
 		}
-		main {
-			#grid {
-				.card {
-					img {
-						width: 90%;
-						height: auto;
+		#main {
+			section {
+				h2 {
+					color: white;
+					padding-left: 5vw;
+					margin: auto;
+					width: 90%;
+				}
+				#grid {
+					.card {
+						img {
+							width: 90%;
+							height: auto;
+						}
 					}
 				}
 			}

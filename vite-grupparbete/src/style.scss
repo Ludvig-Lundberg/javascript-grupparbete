@@ -269,14 +269,14 @@ main {
 	}
 
 }
-div#Cardsbox {
+div.Cardsbox {
 	display: block;
 	// p:nth-child() {
 		//     display: block;
 		// }
 		
 	}
-	div#hideDescription {
+	div.hideDescription {
 		display: none;
 	}
 	#btn {

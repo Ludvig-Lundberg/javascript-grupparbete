@@ -25,11 +25,11 @@ document.querySelector('#grid')!.addEventListener("click", e => {
     let productIndex;
     const target = e.target as HTMLElement;
     if (target.tagName === "BUTTON" && target.classList.contains("addButton")) {
-        let price: string = target.parentElement?.querySelector("#priceTitles")?.textContent!,
+        let price: string = target.parentElement?.querySelector(".priceTitles")?.textContent!,
             productId: number = Number(target.parentElement?.parentElement?.getAttribute("id")),
             // ta bort allt förutom siffrorna
             item_price: number = Number(price?.replace(/\D/g, '')),
-            item_name: string = target.parentElement?.querySelector("h5")?.textContent!
+            item_name: string = target.parentElement?.querySelector("h3")?.textContent!
         // kollar om det redan finns det typen av varan då 'qty ++;' och returerar, slutar alltså hela funktionen. Annars pushar den in ett nytt object.
         for (let i = 0; i < cartArray.length; i++) {
             if (cartArray.some(h => h.product_id === productId)) {

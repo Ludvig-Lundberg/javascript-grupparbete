@@ -46,10 +46,10 @@ const renderDom = (() => {
         `
         <div id="${item.id}" class="card col-6 col-md-4 col-lg-3 col-xl-3 d-none">
             <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">
-            <div id="Cardsbox" class="card-body">
-                <h5 class="card-title">${item.name}</h5>
-                <div id="priceTitles">${item.price}kr per skopa</div>
-                <div id="hideDescription">${item.description}</div>
+            <div class="card-body cardsBox">
+                <h3 class="card-title">${item.name}</h3>
+                <div class="priceTitles">${item.price}kr per skopa</div>
+                <div class="hideDescription">${item.description}</div>
                 <button class="btn btn-primary addButton">Lägg till i varukorgen</button>
                 <button class="btn btn-secondary read-more" data-item-id-button="${item.id}">Läs mer</button>
             </div>

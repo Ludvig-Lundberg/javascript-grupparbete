@@ -6,21 +6,6 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
-@media screen and (min-width: 768px) {
-
-	header {
-		height: 300px;
-		background: url(images/candy-hero-img.jpg) no-repeat center;
-	}
-}
-
-@media screen and (max-width: 768px) {
-	.fa-house {
-		display: none;
-	}
-	
-}
-
 nav {
 	// border-bottom: 2px solid rgb(9, 213, 244);
 	margin-bottom: 1rem;
@@ -101,7 +86,7 @@ main {
 		max-width: fit-content;
 		float: left;
 		margin-bottom: 1rem;
-		color: rgb(105, 105, 105);
+		color: black;
 		
 		i {
 			animation: formAnimation 0.5s 0s 1 alternate;
@@ -110,7 +95,7 @@ main {
 			@keyframes formAnimation {
 				0% {
 					right: 10px;
-					color: black;
+					color: white;
 				} 
 				100% {
 					right: 0px;
@@ -128,7 +113,7 @@ main {
 					} 
 					100% {
 						right: 10px;
-						color: black;
+						color: white;
 					}
 				}
 			}
@@ -139,12 +124,19 @@ main {
 		width: fit-content;
 		margin: 2rem;
 		text-align: center;
+
 		#showMoreButton {
-			border: 1px solid black;
+			background-color: white;
+			border: none;
 			border-radius: 15px;
-			background: none;
 			padding: 1rem;
 			margin-top: 10px;
+			font-weight: 600;
+
+			&:hover {
+				background-color: rgb(244, 119, 9);
+				color: white;
+			}
 		}
 	}
 }
@@ -158,4 +150,42 @@ div.Cardsbox {
 	#btn {
 		margin-inline: auto;
         color: black;
+}
+
+#product-header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-weight: 600;
+
+	h2 {
+		font-weight: 600;
+		padding-top: 0.2rem;
+	}
+
+	div {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		padding: 10px 0;
+
+		span {
+			padding: 0 10px;
+		}
+	}
+}
+
+@media screen and (min-width: 768px) {
+
+	header {
+		height: 300px;
+		background: url(images/candy-hero-img.jpg) no-repeat center;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	
+	.fa-house {
+		display: none;
+	}
 }

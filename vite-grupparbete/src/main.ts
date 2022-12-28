@@ -80,6 +80,7 @@ export const toggleFormFunc = async () => {
     showMoreEl?.classList.toggle("d-none")
     activeCartEl?.classList.add("d-none")
     amountEl1?.classList.toggle("d-none")
+    document.querySelector("#amount-in-stock")?.classList.toggle("d-none")
 }
 
 export const toggleCheckoutCart = async () => {

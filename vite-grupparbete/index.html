@@ -52,9 +52,12 @@
 	</nav>
 	<main class="container">
 		<section title="product section">
-			<div class="row">
+			<div id="product-header">
 				<h2>Våra Produkter</h2>
-				<span id="productAmount1" class="amountOfProduct"></span>
+				<div>
+					<span id="amount-in-stock">Vi har x av 113 produkter i lager</span>
+					<span id="productAmount1" class="amountOfProduct"></span>
+				</div>
 				<button id="continueShopping" class="d-none">
 					<i class="fa-solid fa-arrow-left"></i>
 					Handla vidare
@@ -74,7 +77,7 @@
 		</section>
 		<section title="checkout section" class="checkout-section">
 			<div class="d-none" id="checkout-cart">
-				<p>Dina varor:</p>
+				<p>Dina varor</p>
 				<ul id="checkout-cart-list">
 				</ul>
 				<span id="total-cost"></span>

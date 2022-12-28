@@ -111,10 +111,10 @@ gridEl.addEventListener("click", async e => {
         infoDiv.classList.toggle("d-none")
         infoDiv.innerHTML = `                
             <div id="more-information">
-                <button class="btn btn-secondary close-info-btn" id="close-info-btn">Stäng</button>
+                <button class="btn" id="close-info-btn"><i class="fa-solid fa-xmark"></i></button>
                 <img src="https://bortakvall.se/${foundItem.images.large}" alt="Bild av ${foundItem.name}">
                 <div id="info-text">
-                    <h3>${foundItem.name}</h3> 
+                    <h4>${foundItem.name}</h4> 
                     <span id="price">Pris: ${foundItem.price} kronor</span>
                     <div id="ingredients">
                         ${foundItem.description}
@@ -141,7 +141,7 @@ infoDiv.addEventListener("click", e => {
 
     const target = e.target as HTMLElement
 
-    if (target.tagName === "DIV" && target.id.includes("fade-background") || target.tagName === "BUTTON") {
+    if (target.tagName === "DIV" && target.id.includes("fade-background") || target.tagName === "I") {
         infoDiv?.classList.toggle("d-none")
     }
 

@@ -445,56 +445,60 @@ div.hideDescription {
 	margin-inline: auto;
 }
 	@media screen and (max-width: 480px) {
-		header {
-			#activeCart {
-				width: 100vw;
-				#cartList {
-					
-					li {
-						padding-left: 0px;
+		body {
+			header {
+				#activeCart {
+					width: 100vw;
+					#cartList {
 						
-						i {
-							font-size: 1.2rem;
-						}
-						.spanItem3{
-							font-size: 1.2rem;
+						li {
+							padding-left: 0px;
+							
+							i {
+								font-size: 1.2rem;
+							}
+							.spanItem3{
+								font-size: 1.2rem;
+							}
 						}
 					}
 				}
 			}
-		}
-		#main {
-			section {
-				h2 {
-					color: white;
-					padding-left: 5vw;
-					margin: auto;
-					width: 90%;
-				}
-				#grid {
-					padding-left: 0px;
-					padding-right: 0px;
+			#main {
+				section {
+					h2 {
+						color: white;
+						padding-left: 5vw;
+						margin: auto;
+						width: 90%;
+					}
+					#grid {
+						padding-left: 0px;
+						padding-right: 0px;
+					}
 				}
 			}
 		}
 	}
 	
 	@media screen and (min-width: 480px) {
-		header {
-			h1 {
-				font-size: 2.5rem;
+		body {
+			header {
+				h1 {
+					font-size: 2.5rem;
+				}
+				#activeCart {
+					width: 75vw;
+				}
 			}
-			#activeCart {
-				width: 75vw;
-			}
-		}
-		#main {
-			section {
-				h2 {
-					color: white;
-					padding-left: 5vw;
-					margin: auto;
-					width: 90%;
+			#main {
+				section {
+					h2 {
+						color: white;
+						padding-left: 5vw;
+						margin: auto;
+						width: 90%;
+					}
 				}
 			}
 		}
@@ -502,18 +506,20 @@ div.hideDescription {
 	
 	
 	@media screen and (min-width: 576px) {
-		header {
-			#activeCart {
-				width: 50vw;
+		body {
+			header {
+				#activeCart {
+					width: 75vw;
+				}
 			}
-		}
-		#main {
-			section {
-				#grid {
-					.card {
-						img {
-							width: 80%;
-							height: auto;
+			#main {
+				section {
+					#grid {
+						.card {
+							img {
+								width: 80%;
+								height: auto;
+							}
 						}
 					}
 				}

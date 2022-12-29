@@ -36,7 +36,7 @@ header {
 			&:hover {
 				color: white;
 			}
-			
+
 			i {
 				opacity: 0;
 				animation: h1Animation 0.5s 0s 1 alternate;
@@ -44,28 +44,33 @@ header {
 				animation-fill-mode: backwards;
 				font-size: 2rem;
 				transform: translateY(-3px);
+
 				@keyframes h1Animation {
 					0% {
 						right: 8px;
 						color: white;
 						opacity: 1;
-					} 
+					}
+
 					100% {
 						right: 0px;
 						opacity: 0;
 					}
 				}
 			}
+
 			&:hover {
 				i {
 					animation: h1AnimationReverse 0.5s 0s 1 alternate;
 					position: relative;
 					animation-fill-mode: forwards;
+
 					@keyframes h1AnimationReverse {
 						0% {
 							right: 0px;
 							opacity: 0;
-						} 
+						}
+
 						100% {
 							right: 8px;
 							color: white;
@@ -88,6 +93,7 @@ header {
 		&:hover {
 			color: white;
 		}
+
 		#cartNumber {
 			font-size: 1rem;
 			color: white;
@@ -99,6 +105,7 @@ header {
 			right: 10px;
 		}
 	}
+
 	#activeCart {
 		position: absolute;
 		right: 0px;
@@ -114,7 +121,7 @@ header {
 		text-align: center;
 		overflow-y: scroll;
 		overflow-x: hidden;
-		
+
 		div {
 			position: sticky;
 			top: 0px;
@@ -127,6 +134,7 @@ header {
 				font-size: 2rem;
 				color: white;
 			}
+
 			#cartPay {
 				background: rgb(10, 163, 10);
 				border: none;
@@ -136,25 +144,27 @@ header {
 				color: white;
 				left: 1rem;
 				border-radius: 10px;
-				
+
 				&:hover {
 					i {
 						animation: cartAnimation 1s 0s infinite alternate;
 						position: relative;
-						
+
 						@keyframes cartAnimation {
 							0% {
 								left: 0px;
-							} 
+							}
+
 							100% {
 								left: 10px;
 							}
-							
+
 						}
 					}
 				}
 			}
-		} 
+		}
+
 		#cartList {
 			list-style: none;
 			padding: 0px;
@@ -170,11 +180,12 @@ header {
 				text-align: right;
 				
 			}
+
 			li {
 				border-bottom: 0.5px solid rgb(140, 140, 140);
 				padding: 2px 0px 2px 1rem;
 				min-width: 100px;
-				
+
 				i {
 					background: none;
 					border: none;
@@ -186,6 +197,7 @@ header {
 					padding: 0px;
 					border-radius: 50%;
 				}
+
 				.plusButton {
 					background-color: rgb(0, 179, 0);
 					font-size: 1.5rem;
@@ -196,6 +208,7 @@ header {
 						color: rgb(0, 179, 0);
 					}
 				}
+
 				.minusButton {
 					background-color: red;
 					font-size: 1.5rem;
@@ -215,6 +228,7 @@ header {
 						color: red;
 					}
 				}
+
 				.cartItem1 {
 					text-align: left;
 					font-size: 1.2rem;
@@ -222,6 +236,7 @@ header {
 					display: inline-block;
 					color: white;
 				}
+
 				.cartItem2 {
 					text-align: left;
 					font-weight: lighter;
@@ -229,6 +244,7 @@ header {
 					width: 100%;
 					display: inline-block;
 				}
+
 				.cartItem3 {
 					text-align: right;
 					color: white;
@@ -259,6 +275,7 @@ main {
 	#hide {
 		display: none;
 	}
+
 	#continueShopping {
 		background: none;
 		border: none;
@@ -268,30 +285,35 @@ main {
 		float: left;
 		margin-bottom: 1rem;
 		color: rgb(105, 105, 105);
-		
+
 		i {
 			animation: formAnimation 0.5s 0s 1 alternate;
 			position: relative;
 			animation-fill-mode: backwards;
+
 			@keyframes formAnimation {
 				0% {
 					right: 10px;
 					color: black;
-				} 
+				}
+
 				100% {
 					right: 0px;
 				}
 			}
 		}
+
 		&:hover {
 			i {
 				animation: formAnimationHover 0.5s 0s 1 alternate;
 				position: relative;
 				animation-fill-mode: forwards;
+
 				@keyframes formAnimationHover {
 					0% {
 						right: 0px;
-					} 
+					}
+
 					100% {
 						right: 10px;
 						color: black;
@@ -306,6 +328,7 @@ main {
 		width: fit-content;
 		margin: 2rem;
 		text-align: center;
+
 		#showMoreButton {
 			border: 1px solid lightgray;
 			border-radius: 15px;

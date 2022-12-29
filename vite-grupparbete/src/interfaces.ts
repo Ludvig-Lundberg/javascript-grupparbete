@@ -9,7 +9,7 @@ export interface IItem {
         large: string
     },
     stock_status: string,
-    stock_quantity: null
+    stock_quantity: number
   }
 
 export interface IOrder {
@@ -29,7 +29,8 @@ export interface ICartItem {
     product_id: number,
     qty: number,
     item_price: number,
-    item_total: number
+    item_total: number,
+    stock_qty?: number
 }
 
 export interface IReturnItem {

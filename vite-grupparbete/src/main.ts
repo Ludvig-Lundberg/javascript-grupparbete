@@ -1,6 +1,6 @@
 import { IItem, IOrder, IResponse } from './interfaces'
 import { createOrder, fetchItems } from './api'
-import { amountEl1, showFirst20, showMoreEl } from './showLimitedProducts'
+import { amountEl1, showFirst20, showMoreEl, instockFunc } from './showLimitedProducts'
 import { cartArray, emptyCart, renderCart, totalCost, activeCartEl } from './cart'
 import './style.css'
 
@@ -26,6 +26,9 @@ let orderResponse : IResponse
 export const getItems = async () => {
     items = await fetchItems()
 
+    
+
+    instockFunc();
     renderDom()
     return items
 
@@ -55,20 +58,36 @@ const renderDom = (() => {
         return 0;
     })
 
-    gridEl.innerHTML += items.data.map(item =>
-        `
-        <div id="${item.id}" class="card col-5 col-md-3 col-lg-2 col-xl-2 d-none">
+    gridEl.innerHTML += items.data.map(item => {
+
+        if(item.stock_status === "outofstock") {
+            
+            return `<div id="${item.id}" class="card col-6 col-md-4 col-lg-3 col-xl-3 d-none">
+                <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">
+                <div class="card-body cardsBox">
+                <h3 class="card-title">${item.name}</h3>
+                <div class="priceTitles">${item.price} kr per skopa</div>
+                <div class="item-qty">Lagerstatus: Den här varan är tyvärr slut</div>
+                <div class="hideDescription">${item.description}</div>
+                    <button class="btn btn-primary addButton disabled">Lägg till i varukorgen</button>
+                    <button class="btn btn-secondary read-more" data-item-id-button="${item.id}">Läs mer</button>
+                </div>
+            </div>
+        `}
+
+        return `<div id="${item.id}" class="card col-6 col-md-4 col-lg-3 col-xl-3 d-none">
             <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">
             <div class="card-body cardsBox">
                 <h3 class="card-title">${item.name}</h3>
-                <div class="priceTitles">${item.price}kr per skopa</div>
+                <div class="priceTitles">${item.price} kr per skopa</div>
+                <div class="item-qty">Lagerstatus: ${item.stock_quantity} st</div>
                 <div class="hideDescription">${item.description}</div>
                 <button class="btn btn-primary addButton">Lägg till i varukorgen</button>
                 <button class="btn btn-secondary read-more" data-item-id-button="${item.id}">Läs mer</button>
             </div>
         </div>
         `
-    ).join('')
+    }).join('')
 
     showFirst20()
 })

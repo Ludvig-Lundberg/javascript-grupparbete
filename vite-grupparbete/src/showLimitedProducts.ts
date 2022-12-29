@@ -4,8 +4,6 @@ export {};
 export const showMoreEl = document.querySelector("#showMoreDiv");
 export const amountEl1 = document.querySelector("#productAmount1");
 export const amountEl2 = document.querySelector("#productAmount2");
-export let instockArray: any = []
-
 // Används i for loopen
 let s = 0;
 // används för att först visa 20, sedan 20 mer osv.
@@ -30,21 +28,11 @@ showMoreEl?.addEventListener("click", e => {
         showFirst20();
     }
 });
-export const instockFunc = () => {
-    items.data.map(item => {
-        if (item.stock_status === "instock") {
-            instockArray.push({
-                name: item.name,
-                instock: true
-            })
-        }
-    })
-}
 export const renderAmount = () => {
     if (showMax < items.data.length) {
-        amountEl1!.textContent = `Visar ${showMax} av ${items.data.length} produkter varav ${instockArray.length} finns i lager`;
+        amountEl1!.textContent = `Visar ${showMax} av ${items.data.length} produkter`;
     } else {
-        amountEl1!.textContent = `Visar ${items.data.length} av ${items.data.length} produkter varav ${instockArray.length} finns i lager`;
+        amountEl1!.textContent = `Visar ${items.data.length} av ${items.data.length} produkter`;
     }
-    amountEl2!.textContent = `Visar ${showMax} av ${items.data.length} produkter varav ${instockArray.length} finns i lager`;
+    amountEl2!.textContent = `Visar ${showMax} av ${items.data.length} produkter`;
 }

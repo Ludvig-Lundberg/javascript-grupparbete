@@ -9,7 +9,6 @@
     align-items: center;
     justify-content: center;
     background-color: rgba($color: #000000, $alpha: 0.4);
-
     #more-information {
         position: relative;
         z-index: 2;
@@ -57,63 +56,47 @@
         }
     }
 }
-
-
-
-
 @media screen and (min-width: 410px) {
-
     #more-information {
         height: 70%;
     }
-
 }
-
 @media screen and (min-width: 460px) {
-
     #info-text {
         margin: 15px 0 18px;
     }
-
     #more-information {
         height: 80%;
-
         img {
             max-width: 280px;
         }
     }
-
 }
-
 @media screen and (min-width: 768px) {
 
     #more-information {
         img {
+            max-width: 500px;
+            height: 350px;
             max-width: 300px;
             height: auto;
             border-radius: 3%;
         }
     }
 }
-
 @media screen and (min-width: 992px) {
-
     #close-info-btn {
         display: none;
     }
-
     #info-text {
         width: 90%;
     }
-
     #ingredients {
         font-size: 0.9rem;
         line-height: 1.3rem;
     }
-
     #more-information {
         border-radius: 0;
-
         img {
             width: 100%;
             max-width: 100%;

@@ -27,7 +27,7 @@
 
         #listSpan {
             font-size: 2rem;
-            color: rgb(244, 119, 9);
+            color: $secondary-color;
         }
     }
 
@@ -42,7 +42,7 @@
         #totalCost {
             font-size: 1.5rem;
             text-align: right;
-            color: rgb(244, 119, 9);
+            color: $secondary-color;
         }
 
         li {
@@ -60,7 +60,7 @@
                 color: black;
 
                 &:hover {
-                    color: rgb(244, 119, 9);
+                    color: $secondary-color;
                     cursor: pointer;
                 }
             }
@@ -84,7 +84,7 @@
 
             .cartItem3 {
                 text-align: right;
-                color: rgb(244, 119, 9);
+                color: $secondary-color;
                 font-size: 1.5rem;
                 width: 100%;
                 display: inline-block;
@@ -102,7 +102,7 @@
     color: white;
 
     &:hover {
-        color: rgb(244, 119, 9);
+        color: $secondary-color;
     }
 
     #cartNumber {
@@ -118,7 +118,7 @@
 }
 
 #cartPay {
-    background: rgb(244, 119, 9);
+    background: $secondary-color;
     padding: 0.4rem 0.7rem;
     color: white;
 

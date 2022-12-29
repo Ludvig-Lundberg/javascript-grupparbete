@@ -1,4 +1,4 @@
-@import"information-box", "confirmation-box", "cart", "checkout";
+@import"information-box", "confirmation-box", "cart", "checkout", "config";
 
 body {
     background-color: #26aadb;
@@ -27,7 +27,7 @@ nav {
 			cursor: pointer;
 
 			&:hover {
-				color: rgb(244, 119, 9);
+				color: $secondary-color;
 			}
 			
 			i {
@@ -41,7 +41,7 @@ nav {
 				@keyframes h1Animation {
 					0% {
 						right: 10px;
-						color: rgb(244, 119, 9);
+						color: $secondary-color;
 						opacity: 1;
 					} 
 					100% {
@@ -63,7 +63,7 @@ nav {
 						} 
 						100% {
 							right: 10px;
-							color: rgb(244, 119, 9);
+							color: $secondary-color;
 							opacity: 1;
 						}
 					}
@@ -134,7 +134,7 @@ main {
 			font-weight: 600;
 
 			&:hover {
-				background-color: rgb(244, 119, 9);
+				background-color: $secondary-color;
 				color: white;
 			}
 		}

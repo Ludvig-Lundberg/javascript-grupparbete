@@ -60,7 +60,7 @@ const renderDom = (() => {
 
     gridEl.innerHTML += items.data.map(item => {
 
-        if(item.stock_quantity === null) {
+        if(item.stock_status === "outofstock") {
             
             return `<div id="${item.id}" class="card col-6 col-md-4 col-lg-3 col-xl-3 d-none">
                 <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">

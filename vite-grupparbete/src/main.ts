@@ -62,7 +62,7 @@ const renderDom = (() => {
         if (item.stock_status === "instock") {
             gridEl.innerHTML += `
             <div id="${item.id}" class="card col-6 col-md-4 col-lg-3 col-xl-3 d-none">
-                <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">
+                <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap" draggable="false">
                 <div class="card-body cardsBox">
                     <h3 class="card-title">${item.name}</h3>
                     <div class="priceTitles">${item.price}kr per skopa</div>
@@ -75,7 +75,7 @@ const renderDom = (() => {
         } else {
             gridEl.innerHTML += `
             <div id="${item.id}" class="card col-6 col-md-4 col-lg-3 col-xl-3 d-none">
-                <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">
+                <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap" draggable="false">
                 <div class="card-body cardsBox">
                     <h3 class="card-title">${item.name}</h3>
                     <div class="priceTitles">${item.price}kr per skopa</div>

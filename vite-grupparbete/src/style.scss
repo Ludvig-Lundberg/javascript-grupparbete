@@ -351,7 +351,7 @@ main {
 			padding: 0px;
 			border: 1px solid lightgray;
 			background-color: white;
-			height: 350px;
+			margin-bottom: 10px;
 
 			img {
 				width: 130px;
@@ -361,13 +361,13 @@ main {
 
 			.card-body {
 				border: none;
-				padding: 0px 2px;
+				padding: 0px 4px;
 				display: flex;
 				flex-direction: column;
 				justify-content: flex-end;
 
 				.card-title {
-					font-size: 1.3rem;
+					font-size: 1.2rem;
 					margin: 0px;
 					justify-self: flex-start;
 					align-self: flex-start;
@@ -375,6 +375,9 @@ main {
 				.priceTitles {
 					margin: 0px 0px 6px 0px;
 					color: rgb(66, 66, 66);
+				}
+				.item-not-instock {
+					color: red;
 				}
 				button {
 					width: 100%;
@@ -441,6 +444,10 @@ div.hideDescription {
 					margin: auto;
 					width: 90%;
 				}
+				#grid {
+					padding-left: 0px;
+					padding-right: 0px;
+				}
 			}
 		}
 	}
@@ -478,7 +485,7 @@ div.hideDescription {
 				#grid {
 					.card {
 						img {
-							width: 85%;
+							width: 80%;
 							height: auto;
 						}
 					}
@@ -502,7 +509,7 @@ div.hideDescription {
 					#grid {
 						.card {
 							img {
-								width: 85%;
+								width: 80%;
 								height: auto;
 							}
 						}

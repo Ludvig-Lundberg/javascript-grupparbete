@@ -1,6 +1,6 @@
 import { IItem, IOrder, IResponse } from './interfaces'
 import { createOrder, fetchItems } from './api'
-import { amountEl1, showFirst20, showMoreEl } from './showLimitedProducts'
+import { amountEl1, showFirst20, showMoreEl, instockFunc } from './showLimitedProducts'
 import { cartArray, emptyCart, renderCart, totalCost, activeCartEl } from './cart'
 import './style.css'
 
@@ -26,6 +26,9 @@ let orderResponse : IResponse
 export const getItems = async () => {
     items = await fetchItems()
 
+    
+
+    instockFunc();
     renderDom()
     return items
 

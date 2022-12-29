@@ -44,7 +44,9 @@ document.querySelector('#grid')!.addEventListener("click", e => {
             product_id: productId,
             qty: 1,
             item_price: item_price,
-            item_total: item_price
+            stock_qty: 5,
+            item_total: item_price,
+            stock_status: "outofstock"
         })
         renderCart()
     }
@@ -60,10 +62,19 @@ cartListEl?.addEventListener("click", e => {
 
         let i = 0;
         for (; i < cartArray.length; i++) {
+            // if (cartArray[i].item_name?.includes(productName)) {
+            //     cartArray[i].qty ++
+            //     renderCart()
+            //     return;
+            // }
             if (cartArray[i].item_name?.includes(productName)) {
-                cartArray[i].qty ++
-                renderCart()
-                return;
+                if (cartArray[i].qty <= cartArray[i].stock_qty) {   
+                    cartArray[i].qty ++
+                    renderCart()
+                    return
+                } else if (cartArray[i].qty > cartArray[i].stock_qty) {
+                    return
+                }
             }
         }
         // Tar bort -1

@@ -137,18 +137,25 @@ export const renderCart = () => {
         cartNumber!.innerHTML = `${cartArray.length}`
         totalCostFunc()
         cartListEl!.innerHTML += `
-        <li id="totalCost" class="text-right float-right">Totalt: ${totalCost} kr</li>`
+        <li id="totalCost" class="text-right float-right d-block">Totalt: ${totalCost} kr</li>`
         // sedan fyller man på igen
         for (let i = 0; i < cartArray.length; i++) {
             cartListEl!.innerHTML += `<li>
             <span class="cartItem1">${cartArray[i].item_name}</span>
             <br>
-            <span class="cartItem2">${cartArray[i].qty} st <i class="fa-solid fa-trash-can removeButton float-right"></i></span>
+            <span class="cartItem2">
+                ${cartArray[i].qty} st 
+            </span>
             <br>
             <span class="cartItem3">
+                ${(cartArray[i].item_price) * (cartArray[i].qty)} kr
+            </span>
+            <span class="cartItem4">
                 <i class="fa-solid fa-circle-plus plusButton float-left"></i>
                 <i class="fa-solid fa-circle-minus minusButton float-left"></i>
-                ${(cartArray[i].item_price) * (cartArray[i].qty)} kr
+            </span>
+            <span class="cartItem5">
+                <i class="fa-solid fa-circle-xmark removeButton"></i>
             </span>
             </li>`
         }

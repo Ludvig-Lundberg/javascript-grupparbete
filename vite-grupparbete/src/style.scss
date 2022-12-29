@@ -223,12 +223,12 @@ header {
 					padding-right: 10px;
 
 					.plusButton {
-						background-color: rgb(0, 179, 0);
-						color: white;
+						background-color: white;
+						color: #0aa30a;
+						transition: all 0.2s;
 						
 						&:hover {
-							color: rgb(0, 179, 0);
-							background-color: white;
+							color: #088008;
 						}
 					}
 					.minusButton {
@@ -403,6 +403,15 @@ main {
 					width: 100%;
 					align-self: flex-end;
 					margin-bottom: 3px;
+				}
+				.addButton {
+					background-color: #0aa30a;
+					border-color: #0aa30a;
+
+					&:hover {
+						background-color: #088008;
+						border-color: #088008;
+					}
 				}
 			}
 		}

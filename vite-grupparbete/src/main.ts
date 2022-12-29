@@ -78,7 +78,7 @@ const renderDom = (() => {
             <div class="card-body cardsBox">
                 <h3 class="card-title">${item.name}</h3>
                 <div class="priceTitles">${item.price} kr per skopa</div>
-                <span class="item-stock">Lagerstatus:</span> <span class="item-qty">${item.stock_quantity}</span> <span class="item-stock">st</span>
+                <span class="item-qty">Lagerstatus: ${item.stock_quantity}st</span>
                 <div class="hideDescription">${item.description}</div>
                 <button class="btn btn-primary addButton">Lägg till i varukorgen</button>
                 <button class="btn btn-secondary read-more" data-item-id-button="${item.id}">Läs mer</button>

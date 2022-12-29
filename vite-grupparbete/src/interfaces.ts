@@ -30,8 +30,7 @@ export interface ICartItem {
     qty: number,
     item_price: number,
     item_total: number,
-    stock_qty: number,
-    stock_status: string,
+    stock_qty: number
 }
 
 export interface IReturnItem {

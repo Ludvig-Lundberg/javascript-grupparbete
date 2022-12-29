@@ -26,8 +26,6 @@ let orderResponse : IResponse
 export const getItems = async () => {
     items = await fetchItems()
 
-    
-
     instockFunc();
     renderDom()
     return items

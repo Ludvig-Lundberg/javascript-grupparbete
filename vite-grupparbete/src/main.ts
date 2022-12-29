@@ -63,7 +63,7 @@ const renderDom = (() => {
         if(item.stock_status === "outofstock") {
             
             return `<div id="${item.id}" class="card col-5 col-md-3 col-lg-2 col-xl-2 d-none">
-                <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">
+                <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap" draggable="false">
                 <div class="card-body cardsBox">
                 <h3 class="card-title">${item.name}</h3>
                 <div class="priceTitles">${item.price} kr per skopa</div>
@@ -76,7 +76,7 @@ const renderDom = (() => {
         `}
 
         return `<div id="${item.id}" class="card col-5 col-md-3 col-lg-2 col-xl-2 d-none">
-            <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap">
+            <img class="card-img-top" src="https://bortakvall.se/${item.images.thumbnail}" alt="Card image cap" draggable="false">
             <div class="card-body cardsBox">
                 <h3 class="card-title">${item.name}</h3>
                 <div class="priceTitles">${item.price} kr per skopa</div>

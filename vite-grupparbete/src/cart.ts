@@ -29,14 +29,20 @@ document.querySelector('#grid')!.addEventListener("click", e => {
             productId: number = Number(target.parentElement?.parentElement?.getAttribute("id")),
             // ta bort allt förutom siffrorna
             item_price: number = Number(price?.replace(/\D/g, '')),
-            item_name: string = target.parentElement?.querySelector("h3")?.textContent!
+            item_name: string = target.parentElement?.querySelector("h3")?.textContent!,
+            item_quantity: number = Number(target.parentElement?.querySelector(".item-qty")?.textContent)
         // kollar om det redan finns det typen av varan då 'qty ++;' och returerar, slutar alltså hela funktionen. Annars pushar den in ett nytt object.
         for (let i = 0; i < cartArray.length; i++) {
             if (cartArray.some(h => h.product_id === productId)) {
                 productIndex = cartArray.findIndex(e => e.product_id === productId)
-                cartArray[productIndex].qty ++
-                renderCart();
-                return;
+
+                if (cartArray[productIndex].qty < cartArray[productIndex].stock_qty!) {
+                    cartArray[productIndex].qty ++
+                    renderCart()
+                    return;
+                } else {
+                    return
+                }
             }
         }
         cartArray.push({
@@ -44,7 +50,8 @@ document.querySelector('#grid')!.addEventListener("click", e => {
             product_id: productId,
             qty: 1,
             item_price: item_price,
-            item_total: item_price
+            item_total: item_price,
+            stock_qty: item_quantity
         })
         renderCart()
     }
@@ -60,7 +67,9 @@ cartListEl?.addEventListener("click", e => {
 
         let i = 0;
         for (; i < cartArray.length; i++) {
-            if (cartArray[i].item_name?.includes(productName)) {
+
+            if (cartArray[i].item_name?.includes(productName) && cartArray[i].qty < cartArray[i].stock_qty!) {
+                console.log(cartArray[i].stock_qty!)
                 cartArray[i].qty ++
                 renderCart()
                 return;
@@ -122,7 +131,6 @@ export const emptyCart = () => {
 
 // Funktion för att rendera ut DOM:en på 'cart'
 export const renderCart = () => {
-    console.log(cartArray)
     // Fyller på localStorage med nytt innehåll
     localStorage.setItem("cart", JSON.stringify(cartArray))
     // först tömmer man sin cart

@@ -7,12 +7,28 @@ body {
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
+
 header {
+	
+	background: rgb(255,255,255);
+	background-image: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 60%, rgba(32, 34, 37,1) 100%), url("./images/candy-hero-img.jpg");
+	height: 100vh;
+	width: 100%;
+	scroll-snap-align: end;
+	.introSpan {
+		margin: auto;
+		display: block;
+		width: fit-content;
+		text-align: center;
+	}
+}
+nav {
 	border-bottom: 1px solid black;
 	position: sticky;
 	top: 0px;
 	z-index: 1;
 	background-color: rgb(32, 34, 37);
+	scroll-snap-align: end;
 	
 	h1 {
 		margin: 0px;
@@ -449,7 +465,7 @@ div.hideDescription {
 }
 	@media screen and (max-width: 480px) {
 		body {
-			header {
+			nav {
 				#activeCart {
 					width: 100vw;
 					#cartList {
@@ -479,7 +495,7 @@ div.hideDescription {
 	
 	@media screen and (min-width: 480px) {
 		body {
-			header {
+			nav {
 				h1 {
 					font-size: 2.5rem;
 				}
@@ -503,7 +519,7 @@ div.hideDescription {
 	
 	@media screen and (min-width: 576px) {
 		body {
-			header {
+			nav {
 				#activeCart {
 					width: 75vw;
 				}
@@ -525,7 +541,7 @@ div.hideDescription {
 	
 	@media screen and (min-width: 768px) {
 		body {
-			header {
+			nav {
 				#activeCart {
 					max-width: 50vw;
 					width: 25rem;

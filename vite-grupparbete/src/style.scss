@@ -30,14 +30,36 @@ header {
 		box-shadow: 		0px 0px 50px 50px rgba(100,100,100,.6);
 		-webkit-box-shadow: 0px 0px 50px 50px rgba(100,100,100,.6);
 		-moz-box-shadow: 	0px 0px 50px 50px rgba(100,100,100,.6);
+
+		transition: all 1s;
+		animation: introAnimation 1s 0s 1 alternate;
+		animation-fill-mode: forwards;
+		@keyframes introAnimation {
+			0% {
+				opacity: 0;
+				margin-top: 5rem;
+			} 
+			100% {
+				opacity: 1;
+				margin-top: 0rem;
+			}
+		}
+
 		.introSpan {
 			font-family: 'Noto Serif Georgian', serif;
 		}
 		#intro1 {
-			font-size: 4rem;
+			font-size: 2.5rem;
 		}
 		#intro2 {
-			font-size: 7rem;
+			font-size: 3rem;
+			background-clip: text;
+			-webkit-background-clip: text;
+			-webkit-text-stroke: 3px transparent;
+			//background: rgb(255,0,0);
+			background-image: -moz-linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(245,255,0,1) 20%, rgba(82,255,0,1) 40%, rgba(0,255,188,1) 60%, rgba(0,198,255,1) 80%, rgba(25,0,255,1) 100%);
+			background-image: -webkit-linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(245,255,0,1) 20%, rgba(82,255,0,1) 40%, rgba(0,255,188,1) 60%, rgba(0,198,255,1) 80%, rgba(25,0,255,1) 100%);
+			background-image: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(245,255,0,1) 20%, rgba(82,255,0,1) 40%, rgba(0,255,188,1) 60%, rgba(0,198,255,1) 80%, rgba(25,0,255,1) 100%);
 		}
 	}
 }
@@ -530,6 +552,16 @@ div.hideDescription {
 
 @media screen and (min-width: 480px) {
 	body {
+		header {
+			#intro {
+				#intro1 {
+					font-size: 3rem;
+				}
+				#intro2 {
+					font-size: 4rem;
+				}
+			}
+		}
 		nav {
 			h1 {
 				font-size: 2.5rem;
@@ -554,6 +586,16 @@ div.hideDescription {
 
 @media screen and (min-width: 576px) {
 	body {
+		header {
+			#intro {
+				#intro1 {
+					font-size: 4rem;
+				}
+				#intro2 {
+					font-size: 5rem;
+				}
+			}
+		}
 		nav {
 			#activeCart {
 				width: 75vw;
@@ -593,6 +635,34 @@ div.hideDescription {
 							height: auto;
 						}
 					}
+				}
+			}
+		}
+	}
+}
+@media screen and (min-width: 1024px) {
+	body {
+		header {
+			#intro {
+				#intro1 {
+					font-size: 5rem;
+				}
+				#intro2 {
+					font-size: 6rem;
+				}
+			}
+		}
+	}
+}
+@media screen and (min-width: 1600px) {
+	body {
+		header {
+			#intro {
+				#intro1 {
+					font-size: 6rem;
+				}
+				#intro2 {
+					font-size: 7rem;
 				}
 			}
 		}

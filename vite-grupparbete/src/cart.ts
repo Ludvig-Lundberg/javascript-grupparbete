@@ -150,6 +150,7 @@ export const renderCart = () => {
         // sedan fyller man på igen
         for (let i = 0; i < cartArray.length; i++) {
             cartListEl!.innerHTML += `<li>
+            <div id="cartItem0"><span>Lagerstatus: ${cartArray[i].stock_qty}st kvar</span></div>
             <span class="cartItem1">${cartArray[i].item_name}</span>
             <br>
             <span class="cartItem2">

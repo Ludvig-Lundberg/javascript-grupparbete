@@ -1,7 +1,11 @@
 #checkout-btns {
     display: flex;
     justify-content: space-between;
-    margin: 10px 0;
+    margin: 10px;
+
+    button {
+        font-size: 1.2rem;
+    }
 }
 
 #checkout-cart {
@@ -50,6 +54,17 @@
     }
 }
 
+#empty-cart {
+    padding: 0.4rem 0.7rem;
+    background-color: black;
+    color: white;
+
+    &:hover {
+        background-color: white;
+        color: black;
+    }
+}
+
 #total-cost {
     font-weight: 500;
     letter-spacing: 0.05rem;
@@ -62,6 +77,14 @@
             span {
                 width: 25%;
             }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #cartList {
+        li:last-child {
+            margin-bottom: 30%;
         }
     }
 }

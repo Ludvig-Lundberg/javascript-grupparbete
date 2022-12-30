@@ -32,6 +32,7 @@ document.querySelector('#grid')!.addEventListener("click", e => {
     let productIndex;
     const target = e.target as HTMLElement;
     if (target.tagName === "BUTTON" && target.classList.contains("addButton")) {
+        document.querySelector("#empty-cart")!.classList.remove("d-none")
         let price: string = target.parentElement?.querySelector(".priceTitles")?.textContent!,
             productId: number = Number(target.parentElement?.parentElement?.getAttribute("id")),
             // ta bort allt förutom siffrorna
@@ -77,7 +78,7 @@ cartListEl?.addEventListener("click", e => {
         for (; i < cartArray.length; i++) {
 
             if (cartArray[i].item_name?.includes(productName) && cartArray[i].qty < cartArray[i].stock_qty!) {
-                console.log(cartArray[i].stock_qty!)
+                
                 cartArray[i].qty ++
                 renderCart()
                 return;
@@ -116,6 +117,10 @@ cartListEl?.addEventListener("click", e => {
 // visa och dölj sin varukorg
 cartEl?.addEventListener("click", function () {
     activeCartEl?.classList.toggle("d-none")
+    
+    if (cartArray.length > 0) {
+        document.querySelector("#empty-cart")!.classList.remove("d-none")
+    }
 })
 
 cartPayButton?.addEventListener("click", async () => {

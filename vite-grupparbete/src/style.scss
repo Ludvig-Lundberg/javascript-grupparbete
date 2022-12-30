@@ -176,7 +176,7 @@ header {
 				min-width: 100px;
 				display: grid;
 				grid-template-columns: 40px 1fr auto 40px;
-				grid-template-rows: repeat(2, 50px);
+				grid-template-rows: repeat(2, 50px) auto;
 				
 				i {
 					background: none;
@@ -253,6 +253,9 @@ header {
 							color: gray;
 						}
 					}
+				}
+				.cartItem6 {
+					grid-area: 3 / 2 / 4 / 3;
 				}
 			}
 		}
@@ -453,13 +456,6 @@ div.hideDescription {
 						
 						li {
 							padding-left: 0px;
-							
-							i {
-								font-size: 1.2rem;
-							}
-							.spanItem3{
-								font-size: 1.2rem;
-							}
 						}
 					}
 				}

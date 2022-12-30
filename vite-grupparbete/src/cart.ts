@@ -20,6 +20,13 @@ const cartEl = document.querySelector("#cart")
 
 // EVENTLISTENERS EVENTLISTENERS EVENTLISTENERS
 
+document.querySelector("#empty-cart")!.addEventListener("click", () => {
+    emptyCart()
+    renderCart()
+    document.querySelector("#empty-cart")!.classList.add("d-none")
+
+})
+
 // eventlistener som kollar om man trycker på "Lägg till i varukorgen"
 document.querySelector('#grid')!.addEventListener("click", e => {
     let productIndex;
@@ -149,24 +156,21 @@ export const renderCart = () => {
         <li id="totalCost" class="text-right float-right d-block">Totalt: ${totalCost} kr</li>`
         // sedan fyller man på igen
         for (let i = 0; i < cartArray.length; i++) {
-            cartListEl!.innerHTML += `<li>
-            <span class="cartItem6">Lagerstatus: ${cartArray[i].stock_qty}st kvar</span>
-            <span class="cartItem1">${cartArray[i].item_name}</span>
-            <br>
-            <span class="cartItem2">
-                ${cartArray[i].qty} st 
-            </span>
-            <br>
-            <span class="cartItem3">
-                ${(cartArray[i].item_price) * (cartArray[i].qty)} kr
-            </span>
-            <span class="cartItem4">
-                <i class="fa-solid fa-circle-plus plusButton float-left"></i>
+            cartListEl!.innerHTML += `
+            <li>
+                <span class="cartItem1">${cartArray[i].item_name}</span>
+                <span class="cartItem2">
                 <i class="fa-solid fa-circle-minus minusButton float-left"></i>
-            </span>
-            <span class="cartItem5">
-                <i class="fa-solid fa-circle-xmark removeButton"></i>
-            </span>
+                    ${cartArray[i].qty} st
+                    <i class="fa-solid fa-circle-plus plusButton float-left"></i>
+                </span>
+                <span class="cartItem3">
+                    <i class="fa-solid fa-circle-xmark removeButton"></i>
+                </span>
+                <span class="cartItem4">Lagerstatus: ${cartArray[i].stock_qty} st kvar</span>
+                <span class="cartItem5">
+                ${(cartArray[i].item_price) * (cartArray[i].qty)} kr
+                </span>
             </li>`
         }
     }

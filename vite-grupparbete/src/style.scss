@@ -1,4 +1,6 @@
-@import"information-box", "confirmation-box", "cart";
+@import"information-box",
+"confirmation-box",
+"cart";
 
 body {
     background: linear-gradient(300deg,#b2b2b2, #afeeee);
@@ -18,7 +20,7 @@ header {
 		margin: 0px 0px 0px 1rem;
 		font-family: 'Noto Serif Georgian', serif;
 		transition: all 0.5s;
-		
+
 		a {
 			text-decoration: none;
             -webkit-text-stroke-width: 1px;
@@ -31,7 +33,7 @@ header {
 			&:hover {
 				color: black;
 			}
-			
+
 			i {
 				opacity: 0;
 				animation: h1Animation 0.5s 0s 1 alternate;
@@ -39,28 +41,33 @@ header {
 				animation-fill-mode: backwards;
 				font-size: 2rem;
 				transform: translateY(-3px);
+
 				@keyframes h1Animation {
 					0% {
 						right: 10px;
 						color: black;
 						opacity: 1;
-					} 
+					}
+
 					100% {
 						right: 0px;
 						opacity: 0;
 					}
 				}
 			}
+
 			&:hover {
 				i {
 					animation: h1AnimationReverse 0.5s 0s 1 alternate;
 					position: relative;
 					animation-fill-mode: forwards;
+
 					@keyframes h1AnimationReverse {
 						0% {
 							right: 0px;
 							opacity: 0;
-						} 
+						}
+
 						100% {
 							right: 10px;
 							color: black;
@@ -84,6 +91,7 @@ header {
 		&:hover {
 			color: rgb(62, 62, 255);
 		}
+
 		#cartNumber {
 			font-size: 1rem;
 			color: white;
@@ -95,6 +103,7 @@ header {
 			right: 10px;
 		}
 	}
+
 	#activeCart {
 		position: absolute;
 		right: 0px;
@@ -110,7 +119,7 @@ header {
 		text-align: center;
 		overflow-y: scroll;
 		overflow-x: hidden;
-		
+
 		div {
 			position: sticky;
 			top: 0px;
@@ -118,11 +127,12 @@ header {
 			z-index: 1;
 			padding-bottom: 5px;
 			border-bottom: 1px solid black;
-			
+
 			#listSpan {
 				font-size: 2rem;
 				color: rgb(62, 62, 255);
 			}
+
 			#cartPay {
 				background: rgb(10, 163, 10);
 				border: none;
@@ -131,25 +141,27 @@ header {
 				color: white;
 				left: 1rem;
 				border-radius: 10px;
-				
+
 				&:hover {
 					i {
 						animation: cartAnimation 1s 0s infinite alternate;
 						position: relative;
-						
+
 						@keyframes cartAnimation {
 							0% {
 								left: 0px;
-							} 
+							}
+
 							100% {
 								left: 10px;
 							}
-							
+
 						}
 					}
 				}
 			}
-		} 
+		}
+
 		#cartList {
 			list-style: none;
 			padding: 0px;
@@ -157,17 +169,18 @@ header {
 			text-align: left;
 			margin-top: 2px;
 			margin-bottom: 75px;
-			
+
 			#totalCost {
 				font-size: 1.5rem;
 				color: green;
 				text-align: right;
 			}
+
 			li {
 				border-bottom: 0.5px solid rgb(167, 167, 167);
 				padding: 2px 0px 2px 1rem;
 				min-width: 100px;
-				
+
 				i {
 					background: none;
 					border: none;
@@ -176,21 +189,26 @@ header {
 					padding: 5px;
 					float: left;
 				}
+
 				.plusButton {
 					color: green;
 				}
+
 				.minusButton {
 					color: red;
 				}
+
 				.removeButton {
 					float: right;
 				}
+
 				.cartItem1 {
 					text-align: left;
 					font-size: 1.2rem;
 					width: 100%;
 					display: inline-block;
 				}
+
 				.cartItem2 {
 					text-align: left;
 					font-weight: lighter;
@@ -198,6 +216,7 @@ header {
 					width: 100%;
 					display: inline-block;
 				}
+
 				.cartItem3 {
 					text-align: right;
 					color: green;
@@ -214,6 +233,7 @@ main {
 	#hide {
 		display: none;
 	}
+
 	#continueShopping {
 		background: none;
 		border: none;
@@ -223,30 +243,35 @@ main {
 		float: left;
 		margin-bottom: 1rem;
 		color: rgb(105, 105, 105);
-		
+
 		i {
 			animation: formAnimation 0.5s 0s 1 alternate;
 			position: relative;
 			animation-fill-mode: backwards;
+
 			@keyframes formAnimation {
 				0% {
 					right: 10px;
 					color: black;
-				} 
+				}
+
 				100% {
 					right: 0px;
 				}
 			}
 		}
+
 		&:hover {
 			i {
 				animation: formAnimationHover 0.5s 0s 1 alternate;
 				position: relative;
 				animation-fill-mode: forwards;
+
 				@keyframes formAnimationHover {
 					0% {
 						right: 0px;
-					} 
+					}
+
 					100% {
 						right: 10px;
 						color: black;
@@ -260,6 +285,7 @@ main {
 		width: fit-content;
 		margin: 2rem;
 		text-align: center;
+
 		#showMoreButton {
 			border: 1px solid black;
 			border-radius: 15px;
@@ -268,6 +294,7 @@ main {
 			margin-top: 10px;
 		}
 	}
+
 	section {
 
 		#checkout-cart {
@@ -287,30 +314,45 @@ main {
 	}
 
 }
+
 div.Cardsbox {
 	display: block;
-	}
-	div.hideDescription {
-		display: none;
-	}
-	#btn {
-		margin-inline: auto;
-        color: black;
-	}
-	
+}
+
+div.hideDescription {
+	display: none;
+}
+
+.item-stock {
+	font-size: 0.9rem;
+	font-style: italic;
+}
+
+.item-qty {
+	font-size: 0.9rem;
+	font-style: italic;
+}
+
+#btn {
+	margin-inline: auto;
+	color: black;
+}
+
 @media screen and (max-width: 480px) {
 	header {
 		#activeCart {
 			width: 100vw;
-				#cartList {
-				
+
+			#cartList {
+
 				li {
 					padding-left: 0px;
-					
+
 					i {
 						font-size: 1.2rem;
 					}
-					.spanItem3{
+
+					.spanItem3 {
 						font-size: 1.2rem;
 					}
 				}

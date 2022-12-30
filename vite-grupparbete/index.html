@@ -76,54 +76,56 @@
 			</div>
 		</section>
 		<section title="checkout section" class="checkout-section">
-			<div class="d-none" id="checkout-cart">
-				<h4>Dina varor</h4>
-				<ul id="checkout-cart-list">
-				</ul>
-				<span id="total-cost"></span>
-				<p>Fyll i dina kontaktuppgifter för att gå vidare med köpet.</p>
-			</div>
-			<form id="form" class="bg-secondary col-12 flex d-none">
-				<span id="formTitle" class="text-center">Dina kontaktuppgifter</span>
-				<hr>
-				<div id="adjustbox" class="col-12 d-flex row text-center">
-					<div class="form-group col-6">
-						<label for="InputFirstName">Förnamn:</label>
-						<input name="firstname" type="string" class="form-control" id="firstName" placeholder="John"
-							required>
-					</div>
-					<div class="form-group col-6">
-						<label for="InputLastName">Efternamn:</label>
-						<input name="lastname" type="string" class="form-control" id="lastName" placeholder="Doe"
-							required>
-					</div>
-					<div class="form-group col-6">
-						<label for="InputEmail">Email:</label>
-						<input name="email" type="string" class="form-control" id="c-Email" placeholder="epost@here.se"
-							required>
-					</div>
-					<div class="form-group col-6">
-						<label for="InputPhoneNumber">Mobilnummer:</label>
-						<input name="phone-number" type="number" class="form-control" id="c-Phone"
-							placeholder="0000000000">
-					</div>
-					<div class="form-group col-4">
-						<label for="InputAdress">Adress:</label>
-						<input name="adress" type="string" class="form-control" id="c-Adress"
-							placeholder="Exempelgatan 12" required>
-					</div>
-					<div class="form-group col-4">
-						<label for="InputPostCode">Postnummer:</label>
-						<input name="postcode" type="string" class="form-control" id="c-Postcode" placeholder="111 22"
-							required>
-					</div>
-					<div class="form-group col-4">
-						<label for="InputCity">Ort:</label>
-						<input name="city" type="string" class="form-control" id="c-City" placeholder="Stad" required>
-					</div>
-					<button id="btn" type="submit" class="btn btn-success mt-3 col-3">Skicka in</button>
+			<div id="flexBox">
+				<div class="d-none" id="checkout-cart">
+					<h4>Dina varor</h4>
+					<ul id="checkout-cart-list">
+					</ul>
+					<span id="total-cost"></span>
+					<p>Fyll i dina kontaktuppgifter för att gå vidare med köpet.</p>
 				</div>
-			</form>
+				<form id="form" class="bg-secondary col-12 flex d-none">
+					<span id="formTitle" class="text-center">Dina kontaktuppgifter</span>
+					<hr>
+					<div id="adjustbox" class="col-12 d-flex row text-center">
+						<div class="form-group col-6">
+							<label for="InputFirstName">Förnamn:</label>
+							<input name="firstname" type="string" class="form-control" id="firstName" placeholder="John"
+								required>
+						</div>
+						<div class="form-group col-6">
+							<label for="InputLastName">Efternamn:</label>
+							<input name="lastname" type="string" class="form-control" id="lastName" placeholder="Doe"
+								required>
+						</div>
+						<div class="form-group col-6">
+							<label for="InputEmail">Email:</label>
+							<input name="email" type="string" class="form-control" id="c-Email" placeholder="epost@here.se"
+								required>
+						</div>
+						<div class="form-group col-6">
+							<label for="InputPhoneNumber">Mobilnummer:</label>
+							<input name="phone-number" type="number" class="form-control" id="c-Phone"
+								placeholder="0000000000">
+						</div>
+						<div class="form-group col-4">
+							<label for="InputAdress">Adress:</label>
+							<input name="adress" type="string" class="form-control" id="c-Adress"
+								placeholder="Exempelgatan 12" required>
+						</div>
+						<div class="form-group col-4">
+							<label for="InputPostCode">Postnummer:</label>
+							<input name="postcode" type="string" class="form-control" id="c-Postcode" placeholder="111 22"
+								required>
+						</div>
+						<div class="form-group col-4">
+							<label for="InputCity">Ort:</label>
+							<input name="city" type="string" class="form-control" id="c-City" placeholder="Stad" required>
+						</div>
+						<button id="btn" type="submit" class="btn btn-success mt-3 col-3">Skicka in</button>
+					</div>
+				</form>
+			</div>
 			<div id="confirmation" class="confirmation d-none">
 
 			</div>

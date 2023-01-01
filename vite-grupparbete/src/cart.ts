@@ -24,6 +24,7 @@ document.querySelector("#empty-cart")!.addEventListener("click", () => {
     emptyCart()
     renderCart()
     document.querySelector("#empty-cart")!.classList.add("d-none")
+    activeCartEl?.classList.toggle("d-none")
 
 })
 

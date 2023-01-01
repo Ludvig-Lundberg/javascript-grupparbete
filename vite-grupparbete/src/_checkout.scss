@@ -1,3 +1,7 @@
+#adjustbox {
+    margin-top: 0.5rem;
+}
+
 #checkout-cart {
 
     display: flex;
@@ -7,6 +11,7 @@
     border-radius: 12px;
     padding: 10px;
     margin: 0 0 20px 0;
+    width: 95%;
 
     h4 {
         text-transform: uppercase;
@@ -23,7 +28,15 @@
         font-style: italic;
         font-size: 0.9rem;
         padding-top: 0.2rem;
+        text-align: center;
     }
+}
+
+#checkout-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
 }
 
 #checkout-cart-list {
@@ -44,6 +57,7 @@
         span {
             display: flex;
             justify-content: center;
+            align-items: center;
             width: 20%;
 
             span {
@@ -67,6 +81,7 @@
     border-radius: 12px;
     padding: 10px;
     margin: 0 0 20px 0;
+    width: 95%;
 
     #formTitle {
         text-transform: uppercase;
@@ -87,6 +102,11 @@
     padding: 0.4rem 0 0.2rem;
 }
 
+.checkout-section {
+    display: flex;
+    justify-content: center;
+}
+
 @media screen and (max-width: 480px) {
 
     #checkout-cart-list {
@@ -102,24 +122,38 @@
     .container {
         max-width: 720px;
     }
-    #form {
-        max-width: 60%;
-    }
-    #checkout-cart {
-        max-width: 50%;
-    }
-    #flexBox {
-        display: flex;
-    }
-    span {
-        margin: 0px 10px 0px 0px;
-    }
 }
 
 @media screen and (min-width: 992px) {
 
+    #checkout-cart {
+        width: 50%;
+        max-width: 50%;
+    }
+
+    #checkout-cart-list {
+        li {
+            span {
+                width: 30%;
+            }
+        }
+    }    
+
+    #checkout-container {
+        margin-top: 2rem;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
     .checkout-section {
         margin: 0 10%;
+    }
+
+    #form {
+        margin-left: 5%;
+        width: 50%;
+        max-width: 60%;
     }
     
 }
@@ -134,12 +168,6 @@
     #checkout-cart {
         max-width: 40%;
     }
-    #flexBox {
-        display: flex;
-    }
-    span {
-        margin: 0px 10px 0px 0px;
-    }
 }
 
 @media screen and (min-width: 1440px) {
@@ -153,9 +181,6 @@
         max-width: 40%;
         width: 31rem;
     }
-    #flexBox {
-        display: flex;
-    }
 }
 
 @media screen and (min-width: 1856px) {
@@ -168,8 +193,5 @@
     #checkout-cart {
         max-width: 35%;
         width: 29rem;
-    }
-    #flexBox {
-        display: flex;
     }
 }

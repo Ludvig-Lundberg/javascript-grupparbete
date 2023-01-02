@@ -133,7 +133,7 @@ gridEl.addEventListener("click", async e => {
                 <button class="btn" id="close-info-btn"><i class="fa-solid fa-xmark"></i></button>
                 <img src="https://bortakvall.se/${foundItem.images.large}" alt="Bild av ${foundItem.name}">
                 <div id="info-text">
-                    <h4>${foundItem.name}</h4> 
+                    <h3>${foundItem.name}</h3> 
                     <span id="price">Pris: ${foundItem.price} kronor</span>
                     <div id="ingredients">
                         ${foundItem.description}
@@ -228,7 +228,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
 
         confirmationEl.innerHTML = `
         <button id="close-confirm" class="btn" type="button">Stäng</button>
-        <h4>Beställningen är slutförd!</h4>
+        <h3>Beställningen är slutförd!</h3>
         <p>Din order skickades in: ${orderResponse.data.order_date} och har fått order-id ${orderResponse.data.id}.
         <h5>Din order:</h5>
             <ul>

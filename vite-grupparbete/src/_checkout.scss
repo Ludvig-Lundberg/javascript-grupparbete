@@ -96,6 +96,8 @@
     margin-bottom: 1rem;
     color: white;
     margin-left: 2%;
+    z-index: 1;
+    position: relative; 
 
     i {
         animation: formAnimation 0.5s 0s 1 alternate;

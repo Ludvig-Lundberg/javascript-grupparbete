@@ -153,6 +153,7 @@ export const renderCart = () => {
     if (cartArray.length === 0) {
         cartPayButton?.classList.add("d-none")
         cartNumber?.classList.add("d-none")
+        document.querySelector("#empty-cart")!.classList.add("d-none")
     } else {
         cartPayButton?.classList.remove("d-none")
         cartNumber?.classList.remove("d-none")

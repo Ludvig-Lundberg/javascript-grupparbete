@@ -8,6 +8,8 @@ window.addEventListener("scroll", () => {
     if (navbarBounding.top <= (viewportHeight - 20) && navbarBounding.top >= (viewportHeight - 50)) {
         headerEl.classList.add("headerIntro")
         document.body.scrollTop = document.documentElement.scrollTop = 0;
-
+        setTimeout(() => {
+            headerEl.classList.add("d-none")
+        }, 1000);
     }
 })

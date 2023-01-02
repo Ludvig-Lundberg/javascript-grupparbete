@@ -196,53 +196,6 @@ body {
 				display: none;
 			}
 
-			#continueShopping {
-				background: none;
-				border: none;
-				font-size: 1.5rem;
-				text-align: left;
-				max-width: fit-content;
-				float: left;
-				margin-bottom: 1rem;
-				color: rgb(105, 105, 105);
-
-				i {
-					animation: formAnimation 0.5s 0s 1 alternate;
-					position: relative;
-					animation-fill-mode: backwards;
-
-					@keyframes formAnimation {
-						0% {
-							right: 10px;
-							color: black;
-						}
-
-						100% {
-							right: 0px;
-						}
-					}
-				}
-
-				&:hover {
-					i {
-						animation: formAnimationHover 0.5s 0s 1 alternate;
-						position: relative;
-						animation-fill-mode: forwards;
-
-						@keyframes formAnimationHover {
-							0% {
-								right: 0px;
-							}
-
-							100% {
-								right: 10px;
-								color: black;
-							}
-						}
-					}
-				}
-			}
-
 			#showMoreDiv {
 				color: lightgray;
 				width: fit-content;
@@ -496,6 +449,10 @@ div.hideDescription {
 			}
 		}
 	}
+
+	.container {
+        max-width: 720px;
+    }
 }
 
 @media screen and (min-width: 1024px) {
@@ -512,7 +469,18 @@ div.hideDescription {
 			}
 		}
 	}
+
+	.container {
+        max-width: 1340px;
+    }
 }
+
+@media screen and (min-width: 1440px) {
+	.container {
+		max-width: 1500px;
+	}
+
+} 
 
 @media screen and (min-width: 1600px) {
 	body {
@@ -527,5 +495,11 @@ div.hideDescription {
 				}
 			}
 		}
+	}
+}
+
+@media screen and (min-width: 1856px) {
+	.container {
+		max-width: 1900px;
 	}
 }

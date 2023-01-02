@@ -1,5 +1,4 @@
-@import"information-box", "confirmation-box", "cart";
-
+@import"information-box", "confirmation-box", "cart", "checkout", "config";
 
 body {
 	background-color: rgb(91, 91, 91);
@@ -111,6 +110,7 @@ nav {
 			}
 			
 			i {
+				padding-left: 1rem;
 				opacity: 0;
 				animation: h1Animation 0.5s 0s 1 alternate;
 				position: relative;
@@ -129,6 +129,7 @@ nav {
 					}
 				}
 			}
+			
 			&:hover {
 				i {
 					animation: h1AnimationReverse 0.5s 0s 1 alternate;
@@ -548,7 +549,6 @@ div.hideDescription {
 			}
 		}
 	}
-}
 
 @media screen and (min-width: 480px) {
 	body {

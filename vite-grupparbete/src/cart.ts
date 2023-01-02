@@ -20,11 +20,19 @@ const cartEl = document.querySelector("#cart")
 
 // EVENTLISTENERS EVENTLISTENERS EVENTLISTENERS
 
+document.querySelector("#empty-cart")!.addEventListener("click", () => {
+    emptyCart()
+    renderCart()
+    document.querySelector("#empty-cart")!.classList.add("d-none")
+
+})
+
 // eventlistener som kollar om man trycker på "Lägg till i varukorgen"
 document.querySelector('#grid')!.addEventListener("click", e => {
     let productIndex;
     const target = e.target as HTMLElement;
     if (target.tagName === "BUTTON" && target.classList.contains("addButton")) {
+        document.querySelector("#empty-cart")!.classList.remove("d-none")
         let price: string = target.parentElement?.querySelector(".priceTitles")?.textContent!,
             productId: number = Number(target.parentElement?.parentElement?.getAttribute("id")),
             // ta bort allt förutom siffrorna
@@ -64,7 +72,7 @@ cartListEl?.addEventListener("click", e => {
         
         // Lägger till +1
     } if ((e.target as HTMLElement).classList.contains("plusButton")) {
-        productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent
+        productName = (e.target as HTMLElement).parentElement!.parentElement?.parentElement!.querySelector(".cartItem1")?.textContent
 
         let i = 0;
         for (; i < cartArray.length; i++) {
@@ -78,7 +86,7 @@ cartListEl?.addEventListener("click", e => {
         }
         // Tar bort -1
     } else if ((e.target as HTMLElement).classList.contains("minusButton")) {
-        productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent
+        productName = (e.target as HTMLElement).parentElement!.parentElement?.parentElement!.querySelector(".cartItem1")?.textContent
         
         let i = 0
         for (; i < cartArray.length; i++) {
@@ -93,7 +101,7 @@ cartListEl?.addEventListener("click", e => {
         }
         // Tar bort hela varan
     } else if ((e.target as HTMLElement).classList.contains("removeButton")) {
-        productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent
+        productName = (e.target as HTMLElement).parentElement!.parentElement?.parentElement!.querySelector(".cartItem1")?.textContent
         
         let i = 0;
         for (; i < cartArray.length; i++) {
@@ -109,6 +117,10 @@ cartListEl?.addEventListener("click", e => {
 // visa och dölj sin varukorg
 cartEl?.addEventListener("click", function () {
     activeCartEl?.classList.toggle("d-none")
+    
+    if (cartArray.length > 0) {
+        document.querySelector("#empty-cart")!.classList.remove("d-none")
+    }
 })
 
 cartPayButton?.addEventListener("click", async () => {
@@ -170,8 +182,7 @@ export const renderCart = () => {
             </li>`
         }
     }
-};
-
+}
 
 // renderar ut nuvarande shopping cart till en lista på "checkout" sidan
 const renderCheckoutCart = async () => {

@@ -96,6 +96,8 @@
     max-width: fit-content;
     margin: 1rem 0 1rem 2%;
     color: white;
+    z-index: 1;
+    position: relative; 
 
     i {
         animation: formAnimation 0.5s 0s 1 alternate;

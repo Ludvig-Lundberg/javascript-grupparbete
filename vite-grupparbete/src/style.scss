@@ -167,30 +167,6 @@ body {
 				}
 			}
 		}
-
-		#cart {
-			margin-right: 1.5rem;
-			background: none;
-			border: none;
-			font-size: 2rem;
-			padding: 5px;
-			color: lightgray;
-
-			&:hover {
-				color: white;
-			}
-
-			#cartNumber {
-				font-size: 1rem;
-				color: white;
-				background-color: red;
-				padding: 4px;
-				border-radius: 50%;
-				position: relative;
-				bottom: 1.5rem;
-				right: 10px;
-			}
-		}
 	}
 
 	main {
@@ -371,35 +347,19 @@ body {
 				}
 			}
 		}
-
-		section {
-
-			#checkout-cart {
-				p {
-					font-size: 1.5rem;
-				}
-			}
-		}
-
-		#form {
-
-			#formTitle {
-				font-size: 1.5rem;
-				display: block;
-				color: black;
-			}
-		}
-
 	}
 }
+
 
 div.Cardsbox {
 	display: block;
 }
 
+
 div.hideDescription {
 	display: none;
 }
+
 
 #btn {
 	margin-inline: auto;

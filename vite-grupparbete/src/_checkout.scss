@@ -2,6 +2,12 @@
     margin-top: 0.5rem;
 }
 
+/* #checkout-cart {
+    p {
+        font-size: 1.5rem;
+    }
+} */
+
 #checkout-cart {
 
     display: flex;
@@ -73,6 +79,21 @@
         }
     }
 }
+
+/* #form {
+
+    #formTitle {
+        font-size: 1.5rem;
+        display: block;
+        color: black;
+    }
+
+
+    &:hover {
+        background-color: #088008;
+        border-color: #088008;
+    }
+} */
 
 #form {
     display: flex;

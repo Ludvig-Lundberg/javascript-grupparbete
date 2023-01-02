@@ -79,7 +79,7 @@ cartListEl?.addEventListener("click", e => {
         for (; i < cartArray.length; i++) {
 
             if (cartArray[i].item_name?.includes(productName) && cartArray[i].qty < cartArray[i].stock_qty!) {
-                console.log(cartArray[i].stock_qty!)
+                
                 cartArray[i].qty ++
                 renderCart()
                 return;

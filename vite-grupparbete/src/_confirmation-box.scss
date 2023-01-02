@@ -73,7 +73,8 @@
         display: flex;
         margin-left: auto;
         color: ivory;
-
+        z-index: 1;
+        
         &:hover {
             background: red;
         }

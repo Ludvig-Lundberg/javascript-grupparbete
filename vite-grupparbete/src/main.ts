@@ -231,7 +231,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         confirmationEl.innerHTML = `
         <button id="close-confirm" class="btn" type="button">Stäng</button>
         <h3>Beställningen är slutförd!</h3>
-        <p>Din order skickades in: ${orderResponse.data.order_date} och har fått order-id ${orderResponse.data.id}.
+        <p>Din order skickades in: <em>${orderResponse.data.order_date}</em> och har fått order-id <strong>${orderResponse.data.id}</strong>.
         <h5>Din order:</h5>
             <ul>
                 <li>Namn<span><span>Antal</span><span>Pris</span></span></li>

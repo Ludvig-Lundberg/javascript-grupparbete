@@ -91,6 +91,16 @@ body {
 
 	}
 
+	footer {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: rgb(32, 34, 37);
+		height: 50px;
+		color: lightgray;
+		font-size: 0.8rem;
+	}
+
 	nav {
 		border-bottom: 1px solid black;
 		position: sticky;

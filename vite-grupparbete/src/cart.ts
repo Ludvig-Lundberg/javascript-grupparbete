@@ -194,7 +194,8 @@ const renderCheckoutCart = async () => {
         </li>
         `
     )
-    .join("")}
+    .join("")
+}
 
 // funktion för att räkna ut total kostnaden för alla sina varor
 export const totalCostFunc = () => {

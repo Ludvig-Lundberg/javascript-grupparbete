@@ -6,7 +6,7 @@ import './intro'
 import './style.css'
 
 //* HTML elements *//
-const checkoutCart = document.querySelector("#checkout-cart") as HTMLElement
+export const checkoutCart = document.querySelector("#checkout-cart") as HTMLElement
 export const checkoutCartList = document.querySelector("#checkout-cart-list") as HTMLElement
 const confirmationEl = document.querySelector("#confirmation") as HTMLElement
 const continueShoppingEl = document.querySelector("#continueShopping") as HTMLElement
@@ -102,6 +102,7 @@ export const toggleFormFunc = async () => {
 }
 
 export const toggleCheckoutCart = async () => {
+    document.querySelector(".checkout-section")?.classList.toggle("d-none")
     checkoutCart.classList.toggle("d-none")
     document.querySelector("h2")?.classList.toggle("d-none")
 }
@@ -217,6 +218,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         .join("")
 
     toggleCheckoutCart()
+    document.querySelector(".checkout-section")?.classList.toggle("d-none")
 
     confirmationEl.classList.toggle("d-none")
 
@@ -238,6 +240,11 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         Totala kostnaden: ${totalCost} kr
         <p>Tack för du handlade hos oss!</p>
         `
+
+        if (totalCost >= 100) {
+            confirmationEl.innerHTML += `<p>Tack för att du handlade för över 100kr! Här har du en rabattkod på 10% till ditt nästa köp: <strong>GREATCANDY10</strong></p>`
+        }
+
         const closeConfirmEl = document.querySelector('#close-confirm') as HTMLElement
 
         closeConfirmEl.addEventListener('click', () => {
@@ -245,8 +252,8 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         })
     }
 
-        writeConfirmation()
-        toggleRemoveForm()
+    writeConfirmation()
+    toggleRemoveForm()
 
 })
 

@@ -1,0 +1,132 @@
+main {
+    background-color: rgb(91, 91, 91);
+    padding-top: 1rem;
+
+    section {
+        h2 {
+            color: white;
+            padding-left: 5vw;
+            margin: auto;
+            width: 90%;
+        }
+
+        #productAmount1 {
+            display: block;
+            margin: auto;
+        }
+
+        .amountOfProduct {
+            color: lightgray;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        #hide {
+            display: none;
+        }
+
+        #showMoreDiv {
+            color: lightgray;
+            width: fit-content;
+            margin: 2rem;
+            text-align: center;
+
+            #showMoreButton {
+                border: 1px solid lightgray;
+                border-radius: 15px;
+                background: none;
+                padding: 1rem;
+                margin-top: 10px;
+                color: lightgray;
+                transition: all 0.5s;
+                animation: showMoreAnimation 0.5s 0s 1 alternate;
+                animation-fill-mode: backwards;
+
+                @keyframes showMoreAnimation {
+                    0% {
+                        color: white;
+                        margin-top: 15px;
+                    }
+
+                    100% {
+                        color: lightgray;
+                    }
+                }
+
+                &:hover {
+                    animation: showMoreAnimationReverse 0.5s 0s 1 alternate;
+                    position: relative;
+                    animation-fill-mode: forwards;
+
+                    @keyframes showMoreAnimationReverse {
+                        0% {
+                            color: lightgray;
+                        }
+
+                        100% {
+                            color: white;
+                            margin-top: 15px;
+                        }
+                    }
+                }
+            }
+        }
+
+        #grid {
+            gap: 0.5rem;
+
+            .card {
+                padding: 0px;
+                border: 1px solid lightgray;
+                background-color: white;
+                margin-bottom: 10px;
+
+                img {
+                    width: 130px;
+                    height: 130px;
+                    margin: auto;
+                }
+
+                .card-body {
+                    border: none;
+                    padding: 0px 6px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+
+                    .card-title {
+                        font-size: 1.2rem;
+                        margin: 0px;
+                        justify-self: flex-start;
+                        align-self: flex-start;
+                    }
+
+                    .priceTitles {
+                        margin: 0px 0px 6px 0px;
+                        color: rgb(66, 66, 66);
+                    }
+
+                    .item-not-instock {
+                        color: red;
+                    }
+
+                    button {
+                        width: 100%;
+                        align-self: flex-end;
+                        margin-bottom: 3px;
+                    }
+
+                    .addButton {
+                        background-color: #0aa30a;
+                        border-color: #0aa30a;
+
+                        &:hover {
+                            background-color: #088008;
+                            border-color: #088008;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

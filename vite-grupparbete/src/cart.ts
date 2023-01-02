@@ -173,7 +173,7 @@ export const renderCart = () => {
                 <span class="cartItem3">
                     <i class="fa-solid fa-circle-xmark removeButton"></i>
                 </span>
-                <span class="cartItem4">Lagerstatus: ${cartArray[i].stock_qty} st kvar</span>
+                <span class="cartItem4">Lagerstatus: ${cartArray[i].stock_qty} st kvar / ${cartArray[i].item_price} kr styck</span>
                 <span class="cartItem5">
                 ${(cartArray[i].item_price) * (cartArray[i].qty)} kr
                 </span>

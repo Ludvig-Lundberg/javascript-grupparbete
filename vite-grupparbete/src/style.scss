@@ -346,6 +346,10 @@ main {
 			margin: auto;
 			width: 90%;
 		}
+		#productAmount1 {
+			display: block;
+			margin: auto;
+		}
 		.amountOfProduct {
 			color: lightgray;
 			margin-bottom: 5px;
@@ -549,7 +553,7 @@ div.hideDescription {
 			}
 		}
 	}
-
+}
 @media screen and (min-width: 480px) {
 	body {
 		header {

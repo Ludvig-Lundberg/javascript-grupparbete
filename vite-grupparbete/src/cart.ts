@@ -72,7 +72,7 @@ cartListEl?.addEventListener("click", e => {
         
         // Lägger till +1
     } if ((e.target as HTMLElement).classList.contains("plusButton")) {
-        productName = (e.target as HTMLElement).parentElement!.parentElement?.parentElement!.querySelector(".cartItem1")?.textContent
+        productName = (e.target as HTMLElement).parentElement!.parentElement!.querySelector(".cartItem1")?.textContent
 
         let i = 0;
         for (; i < cartArray.length; i++) {
@@ -86,7 +86,7 @@ cartListEl?.addEventListener("click", e => {
         }
         // Tar bort -1
     } else if ((e.target as HTMLElement).classList.contains("minusButton")) {
-        productName = (e.target as HTMLElement).parentElement!.parentElement?.parentElement!.querySelector(".cartItem1")?.textContent
+        productName = (e.target as HTMLElement).parentElement!.parentElement!.querySelector(".cartItem1")?.textContent
         
         let i = 0
         for (; i < cartArray.length; i++) {

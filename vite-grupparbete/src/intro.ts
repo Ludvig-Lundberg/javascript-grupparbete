@@ -9,7 +9,7 @@ window.addEventListener("scroll", () => {
         headerEl.classList.add("headerIntro")
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         setTimeout(() => {
-            headerEl.classList.add("d-none")
+            document.querySelector("#intro")!.classList.add("d-none")
         }, 1000);
     }
 })

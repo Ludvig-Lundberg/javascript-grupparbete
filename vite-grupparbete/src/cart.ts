@@ -102,7 +102,7 @@ cartListEl?.addEventListener("click", e => {
         }
         // Tar bort hela varan
     } else if ((e.target as HTMLElement).classList.contains("removeButton")) {
-        productName = (e.target as HTMLElement).parentElement!.parentElement?.parentElement!.querySelector(".cartItem1")?.textContent
+        productName = (e.target as HTMLElement).parentElement!.parentElement?.querySelector(".cartItem1")?.textContent
         
         let i = 0;
         for (; i < cartArray.length; i++) {

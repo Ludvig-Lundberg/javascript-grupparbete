@@ -3,7 +3,7 @@ import { items } from './main'
 export const amountEl1 = document.querySelector("#productAmount1")
 export const amountEl2 = document.querySelector("#productAmount2")
 export const showMoreEl = document.querySelector("#showMoreDiv")
-export let instockArray: [{name: string, instock: boolean}]
+export let instockArray: any = []
 
 // Används i for loopen
 let s = 0

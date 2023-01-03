@@ -27,6 +27,15 @@ body {
 		left: 0;
 		width: 100%;
 		z-index: 1;
+
+		a {
+			text-decoration: none;
+			color: lightgray;
+
+			&:hover {
+				color: #0aa30a;
+			}
+		}
 	}
 }
 

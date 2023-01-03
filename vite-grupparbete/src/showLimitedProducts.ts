@@ -1,8 +1,8 @@
 import { items } from './main'
 
-export const amountEl1 = document.querySelector("#productAmount1");
-export const amountEl2 = document.querySelector("#productAmount2");
-export const showMoreEl = document.querySelector("#showMoreDiv");
+export const amountEl1 = document.querySelector("#productAmount1")
+export const amountEl2 = document.querySelector("#productAmount2")
+export const showMoreEl = document.querySelector("#showMoreDiv")
 export let instockArray: [{name: string, instock: boolean}]
 
 // Används i for loopen
@@ -47,9 +47,9 @@ export const instockFunc = () => {
 
 export const renderAmount = () => {
     if (showMax < items.data.length) {
-        amountEl1!.textContent = `Visar ${showMax} av ${items.data.length} produkter varav ${instockArray.length} finns i lager`;
+        amountEl1!.textContent = `Visar ${showMax} av ${items.data.length} produkter varav ${instockArray.length} finns i lager`
     } else {
-        amountEl1!.textContent = `Visar ${items.data.length} av ${items.data.length} produkter varav ${instockArray.length} finns i lager`;
+        amountEl1!.textContent = `Visar ${items.data.length} av ${items.data.length} produkter varav ${instockArray.length} finns i lager`
     }
-    amountEl2!.textContent = `Visar ${showMax} av ${items.data.length} produkter varav ${instockArray.length} finns i lager`;
+    amountEl2!.textContent = `Visar ${showMax} av ${items.data.length} produkter varav ${instockArray.length} finns i lager`
 }

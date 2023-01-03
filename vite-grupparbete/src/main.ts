@@ -3,7 +3,7 @@ import { createOrder, fetchItems } from './api'
 import { amountEl1, showFirst20, showMoreEl, instockFunc } from './showLimitedProducts'
 import { cartArray, emptyCart, renderCart, totalCost, activeCartEl } from './cart'
 import './intro'
-import './style.css'
+import '/src/style.css'
 
 //* HTML elements *//
 export const checkoutCart = document.querySelector("#checkout-cart") as HTMLElement

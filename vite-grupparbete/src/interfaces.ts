@@ -1,3 +1,12 @@
+export interface ICartItem {
+    item_name?: string,
+    product_id: number,
+    qty: number,
+    item_price: number,
+    item_total: number,
+    stock_qty?: number
+}
+
 export interface IItem {
     id: number,
     name: string,
@@ -22,15 +31,6 @@ export interface IOrder {
     customer_phone?: string,
     order_total: number,
     order_items: Array<ICartItem>
-}
-
-export interface ICartItem {
-    item_name?: string,
-    product_id: number,
-    qty: number,
-    item_price: number,
-    item_total: number,
-    stock_qty?: number
 }
 
 export interface IReturnItem {

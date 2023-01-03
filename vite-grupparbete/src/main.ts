@@ -195,6 +195,17 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         return
     }
 
+    //* Check if the phone number has the correct format *//
+    const re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
+
+    if (newPhoneNumberTitle!.length > 0) {
+
+        if (!re.test(newPhoneNumberTitle!)) {
+            alert("Vänligen skriv in ett giltigt telefonnummer")
+            return
+        }
+    }
+
     orderObj = {
         customer_first_name: newFirstNameTitle,
         customer_last_name: newLastNameTitle,

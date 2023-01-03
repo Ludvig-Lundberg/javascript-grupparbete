@@ -4,32 +4,40 @@ export {};
 export const showMoreEl = document.querySelector("#showMoreDiv");
 export const amountEl1 = document.querySelector("#productAmount1");
 export const amountEl2 = document.querySelector("#productAmount2");
-export let instockArray: any = []
+export let instockArray: [
+                            {name: string,
+                            instock: boolean}
+                        ]
 
 // Används i for loopen
-let s = 0;
+let s = 0
 // används för att först visa 20, sedan 20 mer osv.
-let showMax = 20;
+let showMax = 20
+
 export let showFirst20 = async () => {
     for (; s < showMax; s++) {
-        let showItem = document.getElementsByClassName("card")[s];
+        let showItem = document.getElementsByClassName("card")[s]
         if (showItem !== undefined) {
             showItem.classList.remove("d-none")
         } else {
-            showMoreEl?.classList.add("d-none");
-            showMoreEl?.setAttribute("id", "hide");
-            renderAmount();
+            showMoreEl?.classList.add("d-none")
+            showMoreEl?.setAttribute("id", "hide")
+            renderAmount()
             return
         }
     }
-    renderAmount();
-};
+    renderAmount()
+}
+
+//* EventListeners *//
 showMoreEl?.addEventListener("click", e => {
     if ((e.target as HTMLElement).id === "showMoreButton") {
-        showMax += 20;
-        showFirst20();
+        showMax += 20
+        showFirst20()
     }
-});
+})
+
+//* Functions *//
 export const instockFunc = () => {
     items.data.map(item => {
         if (item.stock_status === "instock") {
@@ -40,6 +48,7 @@ export const instockFunc = () => {
         }
     })
 }
+
 export const renderAmount = () => {
     if (showMax < items.data.length) {
         amountEl1!.textContent = `Visar ${showMax} av ${items.data.length} produkter varav ${instockArray.length} finns i lager`;

@@ -23,7 +23,6 @@ let orderObj : IOrder
 let orderResponse : IResponse
 
 //* Functions *//
-
 export const getItems = async () => {
     items = await fetchItems()
 

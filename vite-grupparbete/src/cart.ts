@@ -2,7 +2,7 @@ import { toggleFormFunc, toggleCheckoutCart, checkoutCartList } from "./main"
 import { ICartItem } from "./interfaces"
 
 
-// Globala variablar och konstanter
+//* Globala variablar och konstanter *//
 export let cartArray: Array<ICartItem> = [],
             totalCost = 0
 
@@ -12,13 +12,13 @@ export const cartListEl = document.querySelector("#cartList"),
             activeCartEl = document.querySelector("#activeCart")
             
 
-// Lokala variablar och konstanter
+//* Lokala variablar och konstanter *//
 let productName: any
 
 const cartEl = document.querySelector("#cart")
 
 
-// EVENTLISTENERS EVENTLISTENERS EVENTLISTENERS
+//* EVENTLISTENERS EVENTLISTENERS EVENTLISTENERS *//
 
 document.querySelector("#empty-cart")!.addEventListener("click", () => {
     emptyCart()
@@ -65,7 +65,16 @@ document.querySelector('#grid')!.addEventListener("click", e => {
         })
         renderCart()
     }
-});
+})
+
+// visa och dölj sin varukorg
+cartEl?.addEventListener("click", function () {
+    activeCartEl?.classList.toggle("d-none")
+    
+    if (cartArray.length > 0) {
+        document.querySelector("#empty-cart")!.classList.remove("d-none")
+    }
+})
 
 // Eventlistener för shopping cart 
 cartListEl?.addEventListener("click", e => {
@@ -115,15 +124,6 @@ cartListEl?.addEventListener("click", e => {
     }
 })
 
-// visa och dölj sin varukorg
-cartEl?.addEventListener("click", function () {
-    activeCartEl?.classList.toggle("d-none")
-    
-    if (cartArray.length > 0) {
-        document.querySelector("#empty-cart")!.classList.remove("d-none")
-    }
-})
-
 cartPayButton?.addEventListener("click", async () => {
 
     await toggleCheckoutCart()
@@ -136,7 +136,7 @@ cartPayButton?.addEventListener("click", async () => {
     await toggleFormFunc()
 })
 
-// FUNKTIONER FUNKTIONER FUNKTIONER
+//* FUNKTIONER FUNKTIONER FUNKTIONER *//
 
 // funktion för att tömma cartArray
 export const emptyCart = () => {

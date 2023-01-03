@@ -129,3 +129,15 @@ main {
         }
     }
 }
+
+@media screen and (min-width: 1024px) {
+    .col-lg-3 {
+        width: 20%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .col-xl-2 {
+        width: 16.66666667%;
+    }
+}

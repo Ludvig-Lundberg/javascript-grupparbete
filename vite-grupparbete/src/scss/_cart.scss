@@ -1,85 +1,3 @@
-#checkout-btns {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 10px;
-
-    button {
-        font-size: 1.2rem;
-    }
-}
-
-#checkout-cart {
-    h4 {
-        text-transform: uppercase;
-        font-size: 1.2rem;
-        letter-spacing: 0.05rem;
-    }
-
-    margin: 0 0 20px 0;
-}
-
-
-#cart {
-    margin-right: 1.5rem;
-    background: none;
-    border: none;
-    font-size: 2rem;
-    padding: 5px;
-    color: lightgray;
-
-    &:hover {
-        color: white;
-    }
-
-    #cartNumber {
-        font-size: 1rem;
-        color: white;
-        background-color: red;
-        padding: 4px 6px;
-        border-radius: 50%;
-        position: relative;
-        bottom: 1.5rem;
-        right: 10px;
-    }
-}
-
-#cartPay {
-    background: rgb(67, 188, 16);
-    padding: 0.4rem 0.7rem;
-    color: white;
-
-    &:hover {
-        background: black;
-
-        i {
-            animation: cartAnimation 1s 0s infinite alternate;
-            position: relative;
-
-            @keyframes cartAnimation {
-                0% {
-                    left: 0px;
-                }
-
-                100% {
-                    left: 10px;
-                }
-
-            }
-        }
-    }
-}
-
-#empty-cart {
-    padding: 0.4rem 0.7rem;
-    background-color: black;
-    color: white;
-
-    &:hover {
-        background-color: white;
-        color: black;
-    }
-}
-
 #activeCart {
     position: absolute;
     right: 0px;
@@ -218,6 +136,77 @@
                 align-items: flex-end;
             }
         }
+    }
+}
+
+#cart {
+    margin-right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    padding: 5px;
+    color: lightgray;
+
+    &:hover {
+        color: white;
+    }
+
+    #cartNumber {
+        font-size: 1rem;
+        color: white;
+        background-color: red;
+        padding: 4px 6px;
+        border-radius: 50%;
+        position: relative;
+        bottom: 1.5rem;
+        right: 10px;
+    }
+}
+
+#cartPay {
+    background: rgb(67, 188, 16);
+    padding: 0.4rem 0.7rem;
+    color: white;
+
+    &:hover {
+        background: black;
+
+        i {
+            animation: cartAnimation 1s 0s infinite alternate;
+            position: relative;
+
+            @keyframes cartAnimation {
+                0% {
+                    left: 0px;
+                }
+
+                100% {
+                    left: 10px;
+                }
+
+            }
+        }
+    }
+}
+
+#checkout-btns {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10px;
+
+    button {
+        font-size: 1.2rem;
+    }
+}
+
+#empty-cart {
+    padding: 0.4rem 0.7rem;
+    background-color: black;
+    color: white;
+
+    &:hover {
+        background-color: white;
+        color: black;
     }
 }
 

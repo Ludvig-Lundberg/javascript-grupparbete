@@ -45,14 +45,6 @@
     }
 }
 
-#checkout-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    overflow: auto;
-}
-
 #checkout-cart-list {
     width: 100%;
     list-style: none;
@@ -86,6 +78,14 @@
             letter-spacing: 0.05rem;
         }
     }
+}
+
+#checkout-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    overflow: auto;
 }
 
 #continueShopping {

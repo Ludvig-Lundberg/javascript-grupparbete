@@ -67,7 +67,6 @@ const renderDom = (() => {
                 <h3 class="card-title">${item.name}</h3>
                 <div class="priceTitles">${item.price} kr per skopa</div>
                 <div class="item-qty item-not-instock">Varan är tyvärr slut</div>
-                <div class="hideDescription">${item.description}</div>
                     <button class="btn btn-primary addButton disabled">Lägg till i varukorgen</button>
                     <button class="btn btn-secondary read-more" data-item-id-button="${item.id}">Läs mer</button>
                 </div>
@@ -80,7 +79,6 @@ const renderDom = (() => {
                 <h3 class="card-title">${item.name}</h3>
                 <div class="priceTitles">${item.price} kr per skopa</div>
                 <div class="item-qty">${item.stock_quantity} st i lager</div>
-                <div class="hideDescription">${item.description}</div>
                 <button class="btn btn-primary addButton">Lägg till i varukorgen</button>
                 <button class="btn btn-secondary read-more" data-item-id-button="${item.id}">Läs mer</button>
             </div>

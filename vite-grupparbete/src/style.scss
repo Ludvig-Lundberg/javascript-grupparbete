@@ -1,231 +1,137 @@
 @import"header", "nav", "main", "information-box", "confirmation-box", "cart", "checkout", "config";
 
 body {
-	background-color: rgb(91, 91, 91);
-	background-image: url("./images/background.jpg");
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
+    background-color: rgb(91, 91, 91);
+    background-image: url("./images/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 
-	footer {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background-color: rgb(32, 34, 37);
-		height: 50px;
-		color: lightgray;
-		font-size: 0.8rem;
-		position: relative;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		z-index: 1;
+    footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(32, 34, 37);
+        height: 50px;
+        color: lightgray;
+        font-size: 0.8rem;
+        position: relative;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
 
-		a {
-			text-decoration: none;
-			color: lightgray;
+        a {
+            text-decoration: none;
+            color: lightgray;
 
-			&:hover {
-				color: #0aa30a;
-			}
-		}
-	}
+            &:hover {
+                color: #0aa30a;
+            }
+        }
+    }
 }
 
 div.Cardsbox {
-	display: block;
+    display: block;
 }
 
 div.hideDescription {
-	display: none;
+    display: none;
 }
 
 #btn {
-	margin-inline: auto;
-}
-
-@media screen and (max-width: 480px) {
-	body {
-		nav {
-			#activeCart {
-				width: 100vw;
-
-				#cartList {
-
-					li {
-						padding-left: 0px;
-					}
-				}
-			}
-		}
-
-		#main {
-			section {
-				h2 {
-					color: white;
-					padding-left: 5vw;
-					margin: auto;
-					width: 90%;
-				}
-
-				#grid {
-					padding-left: 0px;
-					padding-right: 0px;
-				}
-			}
-		}
-	}
+    margin-inline: auto;
 }
 
 @media screen and (min-width: 480px) {
-	body {
-		header {
-			#intro {
-				#intro1 {
-					font-size: 3rem;
-				}
+    body {
+        header {
+            #intro {
+                #intro1 {
+                    font-size: 3rem;
+                }
 
-				#intro2 {
-					font-size: 4rem;
-				}
-			}
-		}
+                #intro2 {
+                    font-size: 4rem;
+                }
+            }
+        }
 
-		nav {
-			h1 {
-				font-size: 2.5rem;
-			}
+        nav {
+            h1 {
+                font-size: 2.5rem;
+            }
 
-			#activeCart {
-				width: 75vw;
-			}
-		}
-
-		#main {
-			section {
-				h2 {
-					color: white;
-					padding-left: 5vw;
-					margin: auto;
-					width: 90%;
-				}
-			}
-		}
-	}
+            #activeCart {
+                width: 75vw;
+            }
+        }
+    }
 }
 
 
 @media screen and (min-width: 576px) {
-	body {
-		header {
-			#intro {
-				#intro1 {
-					font-size: 4rem;
-				}
+    body {
+        header {
+            #intro {
+                #intro1 {
+                    font-size: 4rem;
+                }
 
-				#intro2 {
-					font-size: 5rem;
-				}
-			}
-		}
+                #intro2 {
+                    font-size: 5rem;
+                }
+            }
+        }
 
-		nav {
-			#activeCart {
-				width: 75vw;
-			}
-		}
-
-		#main {
-			section {
-				#grid {
-					.card {
-						img {
-							width: 80%;
-							height: auto;
-						}
-					}
-				}
-			}
-		}
-	}
+        nav {
+            #activeCart {
+                width: 75vw;
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 768px) {
-	body {
-		nav {
-			#activeCart {
-				max-width: 50vw;
-				width: 25rem;
-			}
-		}
-
-		#main {
-			width: 90%;
-			padding: 1rem 0px 0px 0px;
-
-			section {
-				#grid {
-					.card {
-						img {
-							width: 80%;
-							height: auto;
-						}
-					}
-				}
-			}
-		}
-	}
-
-	.container {
-        max-width: 720px;
+    body {
+        nav {
+            #activeCart {
+                max-width: 50vw;
+                width: 25rem;
+            }
+        }
     }
 }
 
 @media screen and (min-width: 1024px) {
-	body {
-		header {
-			#intro {
-				#intro1 {
-					font-size: 5rem;
-				}
+    body {
+        header {
+            #intro {
+                #intro1 {
+                    font-size: 5rem;
+                }
 
-				#intro2 {
-					font-size: 6rem;
-				}
-			}
-		}
-	}
-
-	.container {
-        max-width: 1340px;
+                #intro2 {
+                    font-size: 6rem;
+                }
+            }
+        }
     }
 }
 
-@media screen and (min-width: 1440px) {
-	.container {
-		max-width: 1500px;
-	}
-
-} 
-
 @media screen and (min-width: 1600px) {
-	body {
-		header {
-			#intro {
-				#intro1 {
-					font-size: 6rem;
-				}
+    body {
+        header {
+            #intro {
+                #intro1 {
+                    font-size: 6rem;
+                }
 
-				#intro2 {
-					font-size: 7rem;
-				}
-			}
-		}
-	}
-}
-
-@media screen and (min-width: 1856px) {
-	.container {
-		max-width: 1900px;
-	}
+                #intro2 {
+                    font-size: 7rem;
+                }
+            }
+        }
+    }
 }

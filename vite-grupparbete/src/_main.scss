@@ -130,14 +130,80 @@ main {
     }
 }
 
+@media screen and (min-width: 480px) {
+    #main {
+        section {
+            h2 {
+                color: white;
+                padding-left: 5vw;
+                margin: auto;
+                width: 90%;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 576px) {
+    #main {
+        section {
+            #grid {
+                .card {
+                    img {
+                        width: 80%;
+                        height: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+
+    #main {
+        width: 90%;
+        padding: 1rem 0px 0px 0px;
+
+        section {
+            #grid {
+                .card {
+                    img {
+                        width: 80%;
+                        height: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media screen and (min-width: 1024px) {
     .col-lg-3 {
         width: 20%;
+    }
+
+    .container {
+        max-width: 1340px;
     }
 }
 
 @media screen and (min-width: 1200px) {
     .col-xl-2 {
         width: 16.66666667%;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .container {
+        max-width: 1500px;
+    }
+}
+
+@media screen and (min-width: 1856px) {
+    .container {
+        max-width: 1900px;
     }
 }

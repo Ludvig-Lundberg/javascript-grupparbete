@@ -1,12 +1,9 @@
 import { items } from './main'
-export {};
 
-export const showMoreEl = document.querySelector("#showMoreDiv");
 export const amountEl1 = document.querySelector("#productAmount1");
 export const amountEl2 = document.querySelector("#productAmount2");
-export let instockArray: [
-                            {name: string,
-                            instock: boolean}
+export const showMoreEl = document.querySelector("#showMoreDiv");
+export let instockArray: [{name: string, instock: boolean}
                         ]
 
 // Används i for loopen

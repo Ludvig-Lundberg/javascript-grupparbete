@@ -11,7 +11,7 @@ export const createOrder = async (order : IOrder) => {
 
 	// Check that everything went ok
 	if (!res.ok) {
-		console.log(`Could not create a new order, reason: ${res.status} ${res.statusText}`)
+		// confirmationEl.innerHTML = `Kunde tyvärr inte skapa en ny order ${res.statusText}.`
 
 		throw new Error(`Could not create a new order, reason: ${res.status} ${res.statusText}`)
 	}

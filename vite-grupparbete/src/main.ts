@@ -8,7 +8,7 @@ import '/src/style.css'
 //* HTML elements *//
 export const checkoutCart = document.querySelector("#checkout-cart") as HTMLElement
 export const checkoutCartList = document.querySelector("#checkout-cart-list") as HTMLElement
-const confirmationEl = document.querySelector("#confirmation") as HTMLElement
+export const confirmationEl = document.querySelector("#confirmation") as HTMLElement
 const continueShoppingEl = document.querySelector("#continueShopping") as HTMLElement
 const gridEl = document.querySelector("#grid") as HTMLElement
 const homeLinkEl = document.querySelector("#home-link") as HTMLElement
@@ -33,12 +33,24 @@ export const getItems = async () => {
 }
 
 const getOrderRes = async () => {
-    orderResponse = await createOrder(orderObj)
+
+    try {
+		orderResponse = await createOrder(orderObj)
+	} catch (e) {
+		console.log(e)
+        return confirmationEl.innerHTML = "Kunde tyvärr inte lägga en order"
+	}
 
     console.log(orderResponse)
     console.log("Order ID:" + orderResponse.data.id + " " + "Order Date:" + orderResponse.data.order_date)
 
-    return orderResponse
+    if (orderResponse.data.id === undefined) {
+        return confirmationEl.innerHTML = "Kunde tyvärr inte lägga en order"
+    } else {
+        return orderResponse
+    }
+
+    // return orderResponse
 
 }
 

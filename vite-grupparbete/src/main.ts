@@ -45,22 +45,18 @@ const getOrderRes = async () => {
     try {
 		orderResponse = await createOrder(orderObj)
 
-        if (orderResponse.data.id === undefined) {
+        if (orderResponse.status === "fail") {
             console.log(orderResponse)
             confirmationEl.innerHTML = `<p>Det gick tyvärr inte att lägga en order, försök på nytt igen.</p>`
             return
         }
         
-        return writeConfirmation()
 	} catch (e) {
 		console.log(e)
-        return confirmationEl.innerHTML = `${e}`
+        confirmationEl.innerHTML = `${e}`
 	}
 
-    console.log(orderResponse)
-    console.log("Order ID:" + orderResponse.data.id + " " + "Order Date:" + orderResponse.data.order_date)
-
-    // return orderResponse
+    writeConfirmation()
 
 }
 
@@ -164,8 +160,14 @@ const writeConfirmation = async () => {
 
 //* EventListeners *//
 continueShoppingEl.addEventListener("click", () => {
+
+    if (!confirmationEl.classList.contains("d-none")) {
+            window.location.assign("index.html")
+    }
+
     toggleFormFunc()
     toggleCheckoutCart()
+
 })
 
 gridEl.addEventListener("click", async e => {

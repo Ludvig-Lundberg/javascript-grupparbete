@@ -8,7 +8,8 @@ import '/src/style.css'
 //* HTML elements *//
 export const checkoutCart = document.querySelector("#checkout-cart") as HTMLElement
 export const checkoutCartList = document.querySelector("#checkout-cart-list") as HTMLElement
-export const confirmationEl = document.querySelector("#confirmation") as HTMLElement
+const confirmationEl = document.querySelector("#confirmation") as HTMLElement
+const confirmationConEl = document.querySelector("#confirmation-container") as HTMLElement
 const continueShoppingEl = document.querySelector("#continueShopping") as HTMLElement
 const gridEl = document.querySelector("#grid") as HTMLElement
 const homeLinkEl = document.querySelector("#home-link") as HTMLElement
@@ -35,6 +36,7 @@ export const getItems = async () => {
         return items
     } catch (e) {
         showMoreEl!.innerHTML = ``
+        document.querySelector("h2")?.classList.toggle("d-none")
         return gridEl.innerHTML = `<p class="text-light text-center mt-4">Produkterna kunde tyvärr inte läsas in korrekt, försök att ladda om sidan.</p>`
     }
 
@@ -47,6 +49,7 @@ const getOrderRes = async () => {
 
         if (orderResponse.status === "fail") {
             console.log(orderResponse)
+            document.querySelector("h2")?.classList.toggle("d-none")
             confirmationEl.innerHTML = `<p>Det gick tyvärr inte att lägga en order, försök på nytt igen.</p>`
             return
         }
@@ -283,9 +286,9 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     document.querySelector(".checkout-section")?.classList.toggle("d-none")
 
     confirmationEl.classList.toggle("d-none")
+    confirmationConEl.classList.toggle("d-none")
 
     getOrderRes()
-    // writeConfirmation()
     toggleRemoveForm()
 
 })

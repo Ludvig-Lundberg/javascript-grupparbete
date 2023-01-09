@@ -22,6 +22,9 @@ export let items: {data: Array<IItem>}
 let orderObj : IOrder
 let orderResponse : IResponse
 
+//* Variables *//
+let cartItems: string
+
 //* Functions *//
 export const getItems = async () => {
     items = await fetchItems()
@@ -36,19 +39,14 @@ const getOrderRes = async () => {
 
     try {
 		orderResponse = await createOrder(orderObj)
+        return orderResponse
 	} catch (e) {
 		console.log(e)
-        return confirmationEl.innerHTML = "Kunde tyvärr inte lägga en order"
+        return e
 	}
 
     console.log(orderResponse)
     console.log("Order ID:" + orderResponse.data.id + " " + "Order Date:" + orderResponse.data.order_date)
-
-    if (orderResponse.data.id === undefined) {
-        return confirmationEl.innerHTML = "Kunde tyvärr inte lägga en order"
-    } else {
-        return orderResponse
-    }
 
     // return orderResponse
 
@@ -120,6 +118,36 @@ const toggleRemoveForm = () => {
     document.querySelector("#form")?.classList.toggle("d-none")
     emptyCart()
     renderCart()
+}
+
+const writeConfirmation = async () => {
+
+    document.querySelector("h2")?.classList.toggle("d-none")
+    continueShoppingEl.classList.toggle("d-none")
+    await getOrderRes()
+
+    confirmationEl.innerHTML = `
+    <button id="close-confirm" class="btn" type="button">Stäng</button>
+    <h3>Beställningen är slutförd!</h3>
+    <p>Din order skickades in: <em>${orderResponse.data.order_date}</em> och har fått order-id <strong>${orderResponse.data.id}</strong>.
+    <h5>Din order:</h5>
+        <ul>
+            <li>Namn<span><span>Antal</span><span>Pris</span></span></li>
+            ${cartItems}
+        </ul>
+    Totala kostnaden: ${totalCost} kr
+    <p>Tack för du handlade hos oss!</p>
+    `
+
+    if (totalCost >= 100) {
+        confirmationEl.innerHTML += `<p>Tack för att du handlade för över 100kr! Här har du en rabattkod på 10% till ditt nästa köp: <strong>GREATCANDY10</strong></p>`
+    }
+
+    const closeConfirmEl = document.querySelector('#close-confirm') as HTMLElement
+
+    closeConfirmEl.addEventListener('click', () => {
+        return window.location.assign("index.html")
+    })
 }
 
 //* EventListeners *//
@@ -229,7 +257,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         order_items: cartArray
     }
     
-    let cartItems = cartArray
+    cartItems = cartArray
         .map(e =>
             `<li data-cart-item:"${e.product_id}">${e.item_name}<span><span>${e.qty} st</span><span>${e.item_price * e.qty} kr</span></span>
             </li>
@@ -242,35 +270,9 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
 
     confirmationEl.classList.toggle("d-none")
 
-    const writeConfirmation = async () => {
+    getOrderRes()
 
-        document.querySelector("h2")?.classList.toggle("d-none")
-        continueShoppingEl.classList.toggle("d-none")
-        await getOrderRes()
 
-        confirmationEl.innerHTML = `
-        <button id="close-confirm" class="btn" type="button">Stäng</button>
-        <h3>Beställningen är slutförd!</h3>
-        <p>Din order skickades in: <em>${orderResponse.data.order_date}</em> och har fått order-id <strong>${orderResponse.data.id}</strong>.
-        <h5>Din order:</h5>
-            <ul>
-                <li>Namn<span><span>Antal</span><span>Pris</span></span></li>
-                ${cartItems}
-            </ul>
-        Totala kostnaden: ${totalCost} kr
-        <p>Tack för du handlade hos oss!</p>
-        `
-
-        if (totalCost >= 100) {
-            confirmationEl.innerHTML += `<p>Tack för att du handlade för över 100kr! Här har du en rabattkod på 10% till ditt nästa köp: <strong>GREATCANDY10</strong></p>`
-        }
-
-        const closeConfirmEl = document.querySelector('#close-confirm') as HTMLElement
-
-        closeConfirmEl.addEventListener('click', () => {
-            return window.location.assign("index.html")
-        })
-    }
 
     writeConfirmation()
     toggleRemoveForm()

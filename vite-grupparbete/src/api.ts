@@ -13,7 +13,7 @@ export const createOrder = async (order : IOrder) => {
 	if (!res.ok) {
 		// confirmationEl.innerHTML = `Kunde tyvärr inte skapa en ny order ${res.statusText}.`
 
-		throw new Error(`Could not create a new order, reason: ${res.status} ${res.statusText}`)
+		throw new Error(`Kunde tyvärr inte lägga en ny order på grund utav: ${res.status} ${res.statusText}`)
 	}
 
 	return await res.json() as IResponse

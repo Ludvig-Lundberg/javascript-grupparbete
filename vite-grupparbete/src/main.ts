@@ -27,11 +27,16 @@ let cartItems: string
 
 //* Functions *//
 export const getItems = async () => {
-    items = await fetchItems()
 
-    instockFunc();
-    renderDom()
-    return items
+    try {
+        items = await fetchItems()
+        instockFunc()
+        renderDom()
+        return items
+    } catch (e) {
+        showMoreEl!.innerHTML = ``
+        return gridEl.innerHTML = `<p class="text-light text-center mt-4">Produkterna kunde tyvärr inte läsas in korrekt, försök att ladda om sidan.</p>`
+    }
 
 }
 
@@ -39,10 +44,17 @@ const getOrderRes = async () => {
 
     try {
 		orderResponse = await createOrder(orderObj)
-        return orderResponse
+
+        if (orderResponse.data.id === undefined) {
+            console.log(orderResponse)
+            confirmationEl.innerHTML = `<p>Det gick tyvärr inte att lägga en order, försök på nytt igen.</p>`
+            return
+        }
+        
+        return writeConfirmation()
 	} catch (e) {
 		console.log(e)
-        return e
+        return confirmationEl.innerHTML = `${e}`
 	}
 
     console.log(orderResponse)
@@ -124,7 +136,7 @@ const writeConfirmation = async () => {
 
     document.querySelector("h2")?.classList.toggle("d-none")
     continueShoppingEl.classList.toggle("d-none")
-    await getOrderRes()
+    // await getOrderRes()
 
     confirmationEl.innerHTML = `
     <button id="close-confirm" class="btn" type="button">Stäng</button>
@@ -271,10 +283,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     confirmationEl.classList.toggle("d-none")
 
     getOrderRes()
-
-
-
-    writeConfirmation()
+    // writeConfirmation()
     toggleRemoveForm()
 
 })

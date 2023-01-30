@@ -1,0 +1,130 @@
+#close-info-btn {
+  margin: 10px 0 0;
+}
+
+#fade-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#info-text {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+#info-text p {
+  margin-bottom: 0.3rem;
+}
+
+#ingredients p:nth-child(2) {
+  font-size: small;
+  overflow-y: scroll;
+  max-height: 15vw;
+}
+
+#more-information {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  max-width: 800px;
+  height: auto;
+  max-height: 90%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5%;
+}
+#more-information img {
+  width: 85%;
+  max-width: 350px;
+  height: auto;
+  border: black 2px solid;
+  border-radius: 5%;
+  margin: 5% 0 5%;
+}
+
+.price {
+  text-transform: uppercase;
+  letter-spacing: 0.03rem;
+  font-weight: 600;
+}
+
+header {
+  border-bottom: 1px solid black;
+  margin-bottom: 1rem;
+}
+header h1 {
+  margin: 0px;
+}
+header #cart {
+  margin-right: 1.5rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  padding: 5px;
+}
+header #cart:hover {
+  color: rgb(62, 62, 255);
+}
+header #activeCart {
+  position: absolute;
+  right: 0px;
+  padding: 5px 1.5rem;
+  width: 15rem;
+  top: 75px;
+  z-index: 1;
+  background-color: white;
+  border: 1px solid black;
+  border-top: none;
+  border-bottom-left-radius: 15px;
+  text-align: center;
+}
+header #activeCart #listSpan {
+  font-size: 2rem;
+  color: rgb(62, 62, 255);
+}
+header #activeCart #cartList {
+  list-style: none;
+  padding: 0px;
+  width: 100%;
+  text-align: left;
+}
+header #activeCart #cartList li {
+  border-bottom: 0.5px solid rgb(167, 167, 167);
+  padding: 2px 1rem;
+  min-width: 100px;
+}
+header #activeCart #cartList .cartItem1 {
+  text-align: left;
+  font-size: 1.2rem;
+}
+header #activeCart #cartList .cartItem2 {
+  text-align: left;
+  font-weight: lighter;
+  font-size: 1.1rem;
+}
+header #activeCart #cartList .cartItem3 {
+  text-align: right;
+  float: right;
+  color: green;
+  font-size: 1.5rem;
+  position: relative;
+  bottom: 5px;
+}
+
+div#Cardsbox {
+  display: block;
+}
+
+div#hideDescription {
+  display: none;
+}/*# sourceMappingURL=style.min.css.map */

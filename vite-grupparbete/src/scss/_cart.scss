@@ -33,7 +33,6 @@
 
     #cartList {
         list-style: none;
-        padding: 0px;
         width: 100%;
         text-align: left;
         margin-top: 2px;
@@ -48,7 +47,7 @@
 
         li {
             border-bottom: 0.5px solid rgb(140, 140, 140);
-            padding: 2px 0px 2px 0px;
+            padding: 2px 0px;
             min-width: 100px;
             display: grid;
             grid-template-columns: 120px 1fr auto 40px;
@@ -210,17 +209,18 @@
     }
 }
 
-
-@media screen and (max-width: 480px) {
+@media screen and (min-width: 480px) {
 
     #activeCart {
-        width: 100vw;
-
-        #cartList {
-
-            li {
-                padding-left: 0px;
-            }
-        }
+        width: 75vw;
     }
+}
+
+@media screen and (min-width: 768px) {
+
+    #activeCart {
+        max-width: 50vw;
+        width: 25rem;
+    }
+
 }

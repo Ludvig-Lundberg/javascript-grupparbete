@@ -42,6 +42,7 @@
         flex-direction: column;
         padding: 0 0 10px;
         margin: 0 0 5px 0;
+        font-size: 0.9rem;
 
         li {
             background-color: rgb(194, 192, 192);
@@ -53,7 +54,7 @@
             span {
                 display: flex;
                 justify-content: center;
-                width: 25%;
+                width: 30%;
 
                 span {
                     width: 50%;
@@ -92,14 +93,14 @@
     overflow: auto;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (min-width: 480px) {
     #confirmation {
         ul {
             font-size: 0.9rem;
 
             li {
                 span {
-                    width: 30%;
+                    width: 25%;
                 }
             }
         }

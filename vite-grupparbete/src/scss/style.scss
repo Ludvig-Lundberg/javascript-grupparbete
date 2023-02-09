@@ -12,6 +12,7 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        
         background-color: rgb(32, 34, 37);
         height: 60px;
         color: lightgray;
@@ -36,7 +37,7 @@ body {
         }
 
         span:nth-child(2) {
-            margin: 0.3rem 0 0.2rem;
+            margin: 0.4rem 0 0.2rem;
             font-size: 0.7rem;
             color: rgb(91, 91, 91);
 

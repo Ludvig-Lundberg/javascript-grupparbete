@@ -4,6 +4,7 @@ nav {
     top: 0px;
     z-index: 2;
     background-color: rgb(32, 34, 37);
+    height: 75px;
     scroll-snap-align: end;
 
     h1 {
@@ -80,27 +81,6 @@ nav {
     nav {
         h1 {
             font-size: 2.5rem;
-        }
-
-        #activeCart {
-            width: 75vw;
-        }
-    }
-}
-
-@media screen and (min-width: 576px) {
-    nav {
-        #activeCart {
-            width: 75vw;
-        }
-    }
-}
-
-@media screen and (min-width: 768px) {
-    nav {
-        #activeCart {
-            max-width: 50vw;
-            width: 25rem;
         }
     }
 }

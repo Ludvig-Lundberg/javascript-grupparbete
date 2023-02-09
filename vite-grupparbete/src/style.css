@@ -209,7 +209,6 @@ main section #grid .card {
   border: 1px solid lightgray;
   background-color: white;
   margin-bottom: 10px;
-  word-break: break-all;
 }
 main section #grid .card img {
   width: 130px;

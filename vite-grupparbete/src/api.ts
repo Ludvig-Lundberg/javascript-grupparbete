@@ -9,8 +9,6 @@ export const createOrder = async (order : IOrder) => {
 		body: JSON.stringify(order)
 	})
 
-	console.log(res, res.ok, res.status, res.statusText)
-
 	// Check that everything went ok
 	if (!res.ok) {
 		throw new Error(`Kunde tyvärr inte lägga en ny order på grund utav: ${res.status} ${res.statusText}`)

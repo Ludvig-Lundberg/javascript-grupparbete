@@ -50,13 +50,16 @@ const getOrderRes = async () => {
         if (orderResponse.status === "fail") {
             console.log(orderResponse)
             document.querySelector("h2")?.classList.toggle("d-none")
-            confirmationEl.innerHTML = `<p>Det gick tyvärr inte att lägga en order, försök på nytt igen.</p>`
+            confirmationEl.innerHTML = `
+            <p> Det blev ett validerings fel när du försökte lägga din order, felet var:<br>${JSON.stringify(orderResponse.data)}<br>Vänligen försök på nytt igen.</p>`
             return
         }
         
 	} catch (e) {
 		console.log(e)
         confirmationEl.innerHTML = `${e}`
+        return
+
 	}
 
     writeConfirmation()
@@ -135,7 +138,6 @@ const writeConfirmation = async () => {
 
     document.querySelector("h2")?.classList.toggle("d-none")
     continueShoppingEl.classList.toggle("d-none")
-    // await getOrderRes()
 
     confirmationEl.innerHTML = `
     <button id="close-confirm" class="btn" type="button">Stäng</button>

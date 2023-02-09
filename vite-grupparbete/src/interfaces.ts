@@ -44,6 +44,7 @@ export interface IReturnItem {
 
 export interface IResponse {
     status: string,
+    message: string,
     data: {
         id: number,
         order_date: string,

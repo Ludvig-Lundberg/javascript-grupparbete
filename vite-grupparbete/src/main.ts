@@ -1,5 +1,5 @@
 import { IItem, IOrder, IResponse } from './interfaces'
-import { createOrder, fetchItems } from './api'
+import { postOrder, fetchItems } from './api'
 import { amountEl1, showFirst20, showMoreEl, instockFunc } from './showLimitedProducts'
 import { cartArray, emptyCart, renderCart, totalCost, activeCartEl } from './cart'
 import './intro'
@@ -19,33 +19,16 @@ const infoDiv = document.querySelector("#fade-background") as HTMLElement
 //* Arrays *//
 export let items: {data: Array<IItem>}
 
-//* Objects *//
-let orderObj : IOrder
-let orderResponse : IResponse
-
 //* Variables *//
 let cartItems: string
 
 //* Functions *//
-export const getItems = async () => {
+const createOrder = async (orderObj : IOrder) => {
+
+    let orderResponse : IResponse
 
     try {
-        items = await fetchItems()
-        instockFunc()
-        renderDom()
-        return items
-    } catch (e) {
-        showMoreEl!.innerHTML = ``
-        document.querySelector("h2")?.classList.toggle("d-none")
-        return gridEl.innerHTML = `<p class="text-light text-center mt-4">Produkterna kunde tyvärr inte läsas in korrekt, försök att ladda om sidan.</p>`
-    }
-
-}
-
-const getOrderRes = async () => {
-
-    try {
-		orderResponse = await createOrder(orderObj)
+		orderResponse = await postOrder(orderObj)
 
         if (orderResponse.status === "fail") {
             console.log(orderResponse)
@@ -62,7 +45,47 @@ const getOrderRes = async () => {
 
 	}
 
-    writeConfirmation()
+    // Write order confirmation
+    document.querySelector("h2")?.classList.toggle("d-none")
+    continueShoppingEl.classList.toggle("d-none")
+
+    confirmationEl.innerHTML = `
+    <button id="close-confirm" class="btn" type="button">Stäng</button>
+    <h3>Beställningen är slutförd!</h3>
+    <p>Din order skickades in: <em>${orderResponse.data.order_date}</em> och har fått order-id <strong>${orderResponse.data.id}</strong>.
+    <h5>Din order:</h5>
+        <ul>
+            <li>Namn<span><span>Antal</span><span>Pris</span></span></li>
+            ${cartItems}
+        </ul>
+    Totala kostnaden: ${totalCost} kr
+    <p>Tack för du handlade hos oss!</p>
+    `
+
+    if (totalCost >= 100) {
+        confirmationEl.innerHTML += `<p>Tack för att du handlade för över 100kr! Här har du en rabattkod på 10% till ditt nästa köp: <strong>GREATCANDY10</strong></p>`
+    }
+
+    const closeConfirmEl = document.querySelector('#close-confirm') as HTMLElement
+
+    closeConfirmEl.addEventListener('click', () => {
+        return window.location.assign("index.html")
+    })
+
+}
+
+export const getItems = async () => {
+
+    try {
+        items = await fetchItems()
+        instockFunc()
+        renderDom()
+        return items
+    } catch (e) {
+        showMoreEl!.innerHTML = ``
+        document.querySelector("h2")?.classList.toggle("d-none")
+        return gridEl.innerHTML = `<p class="text-light text-center mt-4">Produkterna kunde tyvärr inte läsas in korrekt, försök att ladda om sidan.</p>`
+    }
 
 }
 
@@ -132,35 +155,6 @@ const toggleRemoveForm = () => {
     document.querySelector("#form")?.classList.toggle("d-none")
     emptyCart()
     renderCart()
-}
-
-const writeConfirmation = async () => {
-
-    document.querySelector("h2")?.classList.toggle("d-none")
-    continueShoppingEl.classList.toggle("d-none")
-
-    confirmationEl.innerHTML = `
-    <button id="close-confirm" class="btn" type="button">Stäng</button>
-    <h3>Beställningen är slutförd!</h3>
-    <p>Din order skickades in: <em>${orderResponse.data.order_date}</em> och har fått order-id <strong>${orderResponse.data.id}</strong>.
-    <h5>Din order:</h5>
-        <ul>
-            <li>Namn<span><span>Antal</span><span>Pris</span></span></li>
-            ${cartItems}
-        </ul>
-    Totala kostnaden: ${totalCost} kr
-    <p>Tack för du handlade hos oss!</p>
-    `
-
-    if (totalCost >= 100) {
-        confirmationEl.innerHTML += `<p>Tack för att du handlade för över 100kr! Här har du en rabattkod på 10% till ditt nästa köp: <strong>GREATCANDY10</strong></p>`
-    }
-
-    const closeConfirmEl = document.querySelector('#close-confirm') as HTMLElement
-
-    closeConfirmEl.addEventListener('click', () => {
-        return window.location.assign("index.html")
-    })
 }
 
 //* EventListeners *//
@@ -264,7 +258,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
         }
     }
 
-    orderObj = {
+    let orderObj : IOrder = {
         customer_first_name: newFirstNameTitle,
         customer_last_name: newLastNameTitle,
         customer_address: newAdressTitle,
@@ -290,7 +284,7 @@ document.querySelector('#form')?.addEventListener('submit', async e => {
     confirmationEl.classList.toggle("d-none")
     confirmationConEl.classList.toggle("d-none")
 
-    getOrderRes()
+    createOrder(orderObj)
     toggleRemoveForm()
 
 })

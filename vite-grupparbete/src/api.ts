@@ -1,6 +1,6 @@
 import { IOrder, IResponse } from './interfaces'
 
-export const createOrder = async (order : IOrder) => {
+export const postOrder = async (order : IOrder) => {
 	const res = await fetch("https://bortakvall.se/api/orders", {
 		method: "POST",
 		headers: {

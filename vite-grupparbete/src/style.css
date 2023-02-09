@@ -497,12 +497,12 @@ div.Cardsbox {
 }
 @media screen and (min-width: 768px) {
   #confirmation {
-    width: 70%;
+    width: 75%;
   }
 }
 @media screen and (min-width: 1024px) {
   #confirmation {
-    width: 50%;
+    width: 75%;
   }
   #confirmation p {
     width: 90%;

@@ -1,4 +1,4 @@
-import { IOrder, IResponse } from './interfaces'
+import { IOrder, ICreateOrderResponse } from './interfaces'
 
 export const postOrder = async (order : IOrder) => {
 	const res = await fetch("https://bortakvall.se/api/orders", {
@@ -14,7 +14,7 @@ export const postOrder = async (order : IOrder) => {
 		throw new Error(`Kunde tyvärr inte lägga en ny order på grund utav: ${res.status} ${res.statusText}`)
 	}
 
-	return await res.json() as IResponse
+	return await res.json() as ICreateOrderResponse
 
 }
 

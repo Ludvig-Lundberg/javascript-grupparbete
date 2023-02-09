@@ -42,7 +42,7 @@ export interface IReturnItem {
     item_total: number
 }
 
-export interface IResponse {
+export interface ICreateOrderResponse {
     status: string,
     message: string,
     data: {

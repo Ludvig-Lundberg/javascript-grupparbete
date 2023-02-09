@@ -1,4 +1,4 @@
-import { IItem, IOrder, IResponse } from './interfaces'
+import { IItem, IOrder, ICreateOrderResponse } from './interfaces'
 import { postOrder, fetchItems } from './api'
 import { amountEl1, showFirst20, showMoreEl, instockFunc } from './showLimitedProducts'
 import { cartArray, emptyCart, renderCart, totalCost, activeCartEl } from './cart'
@@ -25,7 +25,7 @@ let cartItems: string
 //* Functions *//
 const createOrder = async (orderObj : IOrder) => {
 
-    let orderResponse : IResponse
+    let orderResponse : ICreateOrderResponse
 
     try {
 		orderResponse = await postOrder(orderObj)
